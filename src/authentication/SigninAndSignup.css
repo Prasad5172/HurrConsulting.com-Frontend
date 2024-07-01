@@ -1,0 +1,536 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.display-none{
+    display: none;
+}
+
+.marginDown {
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.marginDown:hover {
+    text-decoration: underline;
+}
+
+/* button on signup */
+.signup-with-google-btn {
+    background-color: black;
+    padding: 15px;
+    border-radius: .5rem;
+    color: white;
+    border: none;
+    transition: all 0.7s ease-in-out;
+}
+
+.signup-with-google-btn :hover {
+    background-color: white;
+    color: black;
+}
+
+.signup-with-google-btn i {
+    margin-right: 10px;
+}
+
+.outer-box {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #545454, #030303);
+}
+
+.spotify-nav-login {
+    background-color: #000000;
+    height: 10vh;
+    gap: 20px;
+}
+
+.back-arrow-in-login {
+    transform: scale(1.5);
+    margin-left: 40px;
+
+}
+
+.spotify-name-in-loginpage {
+    width: 20px;
+}
+
+.black-logo {
+    width: 50px;
+}
+
+.inner-box {
+    width: 509px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    position: relative;
+    top: 40%;
+
+    transform: translateY(-50%);
+    /* background-color: #ffffffcc; */
+    background: linear-gradient(to top left #ffffffff, #ffffff33);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.field {
+    color: #aaaaaa;
+}
+
+.forgotpassword {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    font-size: 20px;
+    
+}
+.forgotpassword a,.signup-footer a{
+    color: #0091ff;
+    text-decoration: none;
+}
+.forgotpassword a:hover, .signup-footer a:hover{
+    color: #0091ff;
+    text-decoration: underline;
+}
+
+.signup-header h1 {
+    font-size: 3rem;
+    color: #aaaaaa;
+
+}
+
+.signup-header p {
+    font-size: 1rem;
+    color: #cacaca;
+}
+
+.signup-body {
+    margin: 40px 0 0 0;
+
+}
+
+.signup-body p {
+    margin: 10px 0 10px 0
+}
+
+.signup-body p label {
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: block;
+}
+
+.signup-body p input {
+    width: 94%;
+    border: 2px solid rgb(164, 164, 164);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.create-account {
+    color: #ffffff;
+    font-weight: 700;
+
+}
+
+.password-mismatch {
+    color: red;
+    margin-top: 10px;
+}
+
+.show-and-hide{
+    margin-left: 3px;
+}
+
+
+/* sign in btn */
+.outer-box #sign-in-btn ,
+.outer-box #reset-btn{
+    background-color: #4b4b4b;
+    margin: 10px 0;
+    border: none;
+    transition: transform 0.2s ease-in-out;
+    transition: all .3s ease;
+    width: 95%;
+}
+
+.outer-box #sign-in-btn:hover,
+.outer-box #reset-btn:hover {
+    translate: -4px -4px;
+    box-shadow: 4px 4px 0 white;
+}
+
+.outer-box .btn-click {
+    translate: 4px 4px !important;
+    box-shadow: none !important;
+}
+.row .btn-click {
+    translate: 4px 4px !important;
+    box-shadow: none !important;
+}
+
+
+
+
+/* signup btn */
+.outer-box #sign-up-btn {
+    background-color: #4b4b4b;
+    margin: 10px 0;
+    border: none;
+    transition: transform 0.2s ease-in-out;
+    transition: all .3s ease;
+    width: 95%;
+}
+
+.outer-box #sign-up-btn:hover {
+    translate: -4px -4px;
+    box-shadow: 4px 4px 0 white;
+}
+
+/* verify otp */
+.outer-box #verify-otp-btn {
+    background-color: #4b4b4b;
+    margin: 10px 0;
+    transition: all .3s ease;
+    width: 95%;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+    height: 50px;
+    text-align: center;
+}
+
+.outer-box #verify-otp-btn:hover {
+    translate: -4px -4px;
+    box-shadow: 4px 4px 0 white;
+}
+
+
+.shake-button {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.signup-footer {
+    margin-top: 20px;
+}
+
+.signup-footer p {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+
+}
+
+.signup-footer p a {
+    color: #0091ff  ;
+
+}
+
+.message-box {
+    margin-top: 10px;
+}
+
+.message-box p {
+    display: inline;
+}
+
+.inner-box {
+    box-shadow: 3px 3px 5px;
+}
+
+#signup-page .inner-box {
+    margin-top: 3vh;
+}
+
+#signup-page .signup-body {
+    margin: 20px 0 0 0;
+}
+
+#signup-page .signup-body p {
+    margin: 12px 0;
+}
+
+/* verify otp styling */
+
+form .otp {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.bgWhite {
+    background: transparent;
+}
+
+.title {
+    font-weight: 600;
+    margin-top: 0px;
+    font-size: 24px;
+    color: #aaaaaa;
+    margin-bottom: 20px;
+}
+
+.otp-holders {
+    gap: 10px;
+}
+
+.customBtn {
+    border-radius: 0px;
+    padding: 10px;
+}
+
+form input {
+    
+    height: 50px;
+}
+
+/* forgot password page */
+.footer p a{
+    color: #0091ff;
+}
+.row {
+    color: #fff;
+    text-align: center;
+    padding: 0em 0em 0em;
+    width: 90%;
+    margin: 0em auto;
+    border-radius: 5px;
+}
+
+.row h1 {
+    font-size: 2.5em;
+}
+
+.row .form-group {
+    margin: 0.5em 0;
+}
+
+.row .form-group label {
+    display: block;
+    color: #fff;
+    text-align: left;
+    font-weight: 600;
+}
+
+.row .form-group input {
+    display: block;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    border: none;
+    border-bottom: 1px solid #555;
+    padding: 1em 0.5em;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 1em;
+
+}
+
+.row .form-group input:focus {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    animation: pulse 1s infinite ease;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+
+.row .footer h5 {
+    margin-top: 1em;
+}
+
+.row .footer p {
+    margin-top: 1em;
+}
+.row .footer a {
+    text-decoration: underline;
+}
+.information-text{
+    margin-bottom:20px ;
+    font-size: 1em;
+}
+@media screen and (max-width: 700px) {
+    .inner-box{
+        width: 450px !important;
+    }
+    .signup-header h1 {
+        font-size: 2rem;
+    }
+    .signup-body {
+        margin: 20px 0 0 0;
+    }
+    .signup-body p label {
+        font-size: 1.3rem;
+    }
+    .signup-body p input {
+        width: 94%;
+        border: 2px solid rgb(164, 164, 164);
+        border-radius: 5px;
+        padding: 6px;
+        font-size: 1rem;
+    }
+    .back-arrow-in-login {
+        transform: scale(1.3);
+        margin-left: 22px;
+    }
+    .black-logo {
+        width: 40px;
+    }
+    .spotify-name-in-loginpage {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 550px){
+   .inner-box{
+    padding: 20px 20px;
+   }
+   .inner-box{
+        width: 350px !important;
+    }
+    .signup-header h1 {
+        font-size: 1.8rem;
+    }
+    .signup-body {
+        margin: 15px 0 0 0;
+    }
+    .signup-body p label {
+        font-size: 1rem;
+    }
+    .signup-body p input {
+        width: 90%;
+        border: 2px solid rgb(164, 164, 164);
+        border-radius: 5px;
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    .forgotpassword {
+       
+        font-size: 16px;
+    }
+    .back-arrow-in-login {
+        transform: scale(1.3);
+        margin-left: 22px;
+    }
+    .black-logo {
+        width: 40px;
+    }
+    .spotify-name-in-loginpage {
+        font-size: 1.5rem;
+    }
+    .signup-footer p {
+        
+        font-size: 1rem;
+    }
+    form input {
+        height: 43px;
+    }
+    .create-account {
+        font-weight: 600;
+    }
+    .row h1 {
+        font-size: 2.0em;
+    }
+    .row .form-group input {
+        font-size: 0.5em;
+    }
+}
+
+@media screen and (max-width: 380px){
+    .spotify-nav-login {
+       
+        gap: 3px;
+    }
+   .inner-box{
+    padding: 10px 10px;
+   }
+   .inner-box{
+        width: 300px !important;
+    }
+    .signup-header h1 {
+        font-size: 1.5rem;
+    }
+    .signup-body {
+        margin: 15px 0 0 0;
+    }
+    .signup-body p label {
+        font-size: 1rem;
+    }
+    .signup-body p input {
+        width: 90%;
+        border: 2px solid rgb(164, 164, 164);
+        border-radius: 5px;
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    .forgotpassword {
+       
+        font-size: 16px;
+    }
+    .back-arrow-in-login {
+        transform: scale(1.1);
+        margin-left: 10px;
+    }
+    .black-logo {
+        width: 40px;
+    }
+    .spotify-name-in-loginpage {
+        font-size: 1.5rem;
+    }
+    .signup-footer p {
+        
+        font-size: 1rem;
+    }
+    form input {
+        height: 43px;
+    }
+    .create-account {
+        font-weight: 600;
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .row {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .row h1 {
+        font-size: 1.5em !important;
+    }
+}

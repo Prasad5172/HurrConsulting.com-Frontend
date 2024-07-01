@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+.text h1{
+    font-size: 3rem;
+}
+
+.error-page{
+    position: relative;
+    top: 150px;
+
+}
+.image{
+    display: flex;
+    justify-content: center;
+}
+
+.text p,.text h1{
+    display: flex;
+    justify-content: center;
+}
+
+.button-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 31px;
+}
+.error-page-body{
+    padding: 40px;
+}
+.error-page-body img{
+    width: 70px;
+}
+
+.error-page-body h1{
+    font-size: 3.5em;
+    font-weight: 700;
+}
+
+.error-page-body p{
+    font-size: 1.5rem;
+    font-weight: 500;
+   color: rgb(155, 155, 155);
+   margin-top: 22px;
+}
+.error-page-body .Home-button{
+    width: 114px;
+    background-color: white;
+    color: black;
+    padding: 15px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.error-page-body a{
+    color: white;
+    font-weight: bold;
+}
+.anchor,.loading{
+    text-align: center;
+}
+
+
+@media screen and (width<=448px) {
+    .error-page-body {
+        padding: 10px;
+    }
+    .error-page-body h1{
+        font-size: 3em;
+        font-weight: 600;
+    }
+    .Home-button{
+        width: 100px !important;
+    }
+    .text{
+        font-size: 0.7em;
+    }
+    .anchor,.loading{
+        text-align: center;
+        font-size: 0.6em;
+    }
+
+}
+
