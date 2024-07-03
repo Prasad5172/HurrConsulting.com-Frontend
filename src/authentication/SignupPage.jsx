@@ -3,19 +3,23 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./SigninAndSignup.css"
 // import blackLogo from "../black-logo.jpg"
 import { useGoogleLogin } from "@react-oauth/google";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import {toastSuccess,toastFailed }  from "../Util/ToastFunctions"
+
+
 const SignupPage = () => {
-  const BackendUrl = "http://localhost:8081"
-  // const BackendUrl = ""
+  
+
   const navigate = useNavigate();
   const [formdata, setformData] = useState({
-    firstname: "",
     email: "",
     password: "",
     confirmpassword: ""
   });
   const [showOtpPage, setShowOtpPage] = useState(false);
 
-  const [isRegistationSuccesful, setIsRegistrationSuccessful] = useState("");
  
 
 
@@ -37,25 +41,23 @@ const SignupPage = () => {
     }, 300);
     event.preventDefault();
     try {
-      console.log({...formdata,first_name:formdata.firstname})
-      const res = await fetch(`${BackendUrl}/auth/signup`, {
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL+`/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({first_name:formdata.firstname,password:formdata.password,email:formdata.email}),
+        body: JSON.stringify({password:formdata.password,email:formdata.email}),
       });
 
       const response = await res.json();
       console.log(response)
       if (res.ok) {
         setShowOtpPage(true)
+        toastSuccess(response.message);
       } else {
         signupBtnFailedAnimation();
+        toastFailed(response.message)
       }
-      setIsRegistrationSuccessful(response.message);
-      statusOfSignUp()
-
     } catch (error) {
       console.log(error);
     }
@@ -79,8 +81,9 @@ const SignupPage = () => {
     onSuccess: async response => {
       console.log(response);
       console.log(response.access_token);
+      console.log(process.env.REACT_APP_BACKEND_URL);
       try {
-        const res1 = await fetch(`${BackendUrl}/auth/signup`, {
+        const res1 = await fetch( process.env.REACT_APP_BACKEND_URL + "/auth/signup", {
           method: "POST",
           headers: {
             "Authorization":`Bearer ${response.access_token}`,
@@ -89,14 +92,12 @@ const SignupPage = () => {
         })
         const condition = await res1.json();
         console.log(condition)
-        if (condition === 'succesful') {
-          console.log("hi")
+        if (res1.ok) {
+          toastSuccess(condition.message)
         } else {
           signupBtnFailedAnimation()
-          statusOfSignUp()
+          toastFailed(condition.message)
         }
-        setIsRegistrationSuccessful(condition.message);
-        statusOfSignUp()
       } catch (err) {
         console.log(err);
       }
@@ -143,22 +144,24 @@ const SignupPage = () => {
       otp = otpData.join("")
     }
     console.log(otp)
-    const res = await fetch(`${BackendUrl}/auth/verifyOtp`, {
+    const res = await fetch(`http://localhost:8000/auth/verifyOtp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...formdata, "otp": otp })
     })
+    const data = await res.json();
     if (res.ok) {
       setformData({
-        firstname: "",
         email: "",
         password: "",
         confirmpassword: ""
       })
-      setShowOtpPage(false)
+      setShowOtpPage(false);
+      toastSuccess(data.message);
     } else {
+      toastFailed(data.message);
       const failed = document.getElementById("verify-otp-btn");
       failed.classList.add("shake-button");
       setTimeout(() => {
@@ -176,44 +179,11 @@ const SignupPage = () => {
     if (firstInputRef.current) {
       firstInputRef.current.focus();
     }
-    const data = await res.json();
-    console.log(data);
-    setIsRegistrationSuccessful(data.message);
-    statusOfSignUp()
+    
   }
 
-  const statusOfSignUp = () => {
-    // console.log("i am in status of signup")
-    const toast1 = document.querySelector(".toast1"),
-      closeIcon = document.querySelector(".close1"),
-      progress = document.querySelector(".progress1");
-    let timer1, timer2;
-    toast1.classList.remove("display-none");
-    toast1.classList.add("active");
-    progress.classList.add("active");
-    // console.log(toast1)
-
-    setTimeout(() => {
-      toast1.classList.add("display-none");
-      toast1.classList.remove("active");
-    }, 5000);   //1s = 1000 milliseconds
-
-    setTimeout(() => {
-      progress.classList.remove("active");
-    }, 5300);
-
-    closeIcon?.addEventListener("click", () => {
-      toast1.classList.remove("active");
-
-      setTimeout(() => {
-        progress.classList.remove("active");
-      }, 300);
-
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-    });
-  }
   const firstInputRef = useRef(null);
+
   useEffect(() => {
     // Auto-focus the first input element when the component mounts
     if (firstInputRef.current) {
@@ -224,7 +194,8 @@ const SignupPage = () => {
   const handleResendOTP = async (event) => {
     event.preventDefault()
     try {
-      const res = await fetch(`${BackendUrl}/auth/sendEmail`, {
+      
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL+"/auth/sendOtp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -236,12 +207,12 @@ const SignupPage = () => {
       console.log(response)
       if (res.ok) {
         setShowOtpPage(true)
+        toastSuccess(`Otp send to ${formdata.email}`)
       } else {
         signupBtnFailedAnimation();
+        toastFailed("failed to send otp")
       }
 
-      setIsRegistrationSuccessful(response.message);
-      statusOfSignUp()
       if (firstInputRef.current) {
         firstInputRef.current.focus();
       }
@@ -259,12 +230,6 @@ const SignupPage = () => {
   }
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const handleTogglePassword1 = () => {
-    setShowPassword1(!showPassword1);
-  };
-  const handleTogglePassword2 = () => {
-    setShowPassword2(!showPassword2);
-  };
 
   const handlePaste = (event) => {
     event.preventDefault();
@@ -305,49 +270,12 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="outer-box " id="signup-page">
+      <div className="outer-box mt-[100px] mb-5" id="signup-page">
       
-        <div className="toast1 toast display-none" style={{ background: `${(isRegistationSuccesful == "succesful" || isRegistationSuccesful == "otpsend") ? "green" : "red"}` }}>
-          <div className="toast-content">
-            <i className={`fa-solid ${(isRegistationSuccesful == "succesful" || isRegistationSuccesful == "otpsend") ? "fa-check" : "fa-xmark"} check`} style={{ background: `${isRegistationSuccesful == "succesful" || isRegistationSuccesful == "otpsend" ? "green" : "red"}`, color: "white" }}></i>
-            <div className="message">
-              <span className="text text-1">{(isRegistationSuccesful == "succesful" || isRegistationSuccesful == "otpsend") ? ((isRegistationSuccesful == "succesful") ? "Registred succesfull" : "Succesful") : "Signup Failed"}</span>
-              <span className="text text-2">
-                {isRegistationSuccesful === "succesful" ? "Registration was succesful" : ""}
-                {isRegistationSuccesful === "wrongOtp" ? "Enter a valid OTP" : ""}
-                {isRegistationSuccesful === "notValidMail" ? "Email is alerady registred" : ""}
-                {isRegistationSuccesful === "password" ? "Password and Confirm password not matched" : ""}
-                {isRegistationSuccesful === "expired" ? "otp expired click to resend otp" : ""}
-                {isRegistationSuccesful === "otpsend" ? `OTP Send Succesfully to ${formdata.email}` : ""}
-              </span>
-            </div>
-          </div>
-          <i className="fa-solid fa-xmark close1 close"></i>
+        
+        
 
-          <div className="progress1  progress"></div>
-        </div>
-        <div className="spotify-nav-login flex">
-          <i className="fa-solid fa-arrow-left back-arrow-in-login"
-            style={{ color: " #ffffff" }}
-            onClick={() => {
-              if (showOtpPage) {
-                setShowOtpPage(false);
-                setformData({
-                  firstname: "",
-                  email: "",
-                  password: "",
-                  confirmpassword: ""
-                })
-              } else {
-                navigate(-1)
-              }
-            }}></i>
-          <img src={``} alt="Logo" className="black-logo" />
-          <h1 className="spotify-name-in-loginpage">Spotify</h1>
-        </div>
-
-
-        <div className="inner-box ">
+        <div className="inner-box mx-auto my-auto">
           {
             showOtpPage ?
               <>
@@ -359,8 +287,8 @@ const SignupPage = () => {
                           <div className="title centering">
                             Verify OTP
                           </div>
-                          <h4 style={{ color: "#ffff", paddingBottom: "20px" }} className="centering">Enter the OTP send to {formdata.email} </h4>
-                          <form action="" className="otp-holders centering">
+                          <h4 style={{ color: "#000000", paddingBottom: "20px" }} className="centering">Enter the OTP send to {formdata.email} </h4>
+                          <form action="" className="otp-holders centering flex">
                             {Object.entries(otpData).map(([name, value], index) => (
                               <input
                                 className="otp"
@@ -394,24 +322,13 @@ const SignupPage = () => {
                 </header>
                 <main className="signup-body">
                   <form onSubmit={handleSubmit} className="form">
+                    
                     <p>
-                      <label htmlFor="fname" className="field">User Name</label>
-                      <input
-                        type="text"
-                        className="fname"
-                        name="firstname"
-                        autoComplete="on"
-                        onChange={InputEvent}
-                        value={formdata.firstname}
-                        required
-                        onPaste={handlePaste}
-                      />
-                    </p>
-                    <p>
-                      <label htmlFor="fname" className="field">Enter Your Email</label>
+                      <label htmlFor="email" className="field">Enter Your Email</label>
                       <input
                         type="email"
-                        className="fname"
+                        className="email"
+                        id="email"
                         name="email"
                         value={formdata.email}
                         onChange={InputEvent}
@@ -429,13 +346,13 @@ const SignupPage = () => {
                           name="password"
                           value={formdata.password}
                           onChange={InputEvent}
-                          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,}$"
+                          // pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,}$"
                           title=" Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one special symbol (!@#$%^&*), and one digit."
                           required
                           onPaste={handlePaste}
                         />
                         {
-                          showPassword1 ? <i className="fa-solid fa-eye-slash show-and-hide" onClick={() => setShowPassword1(!showPassword1)}></i> : <i className="fa-solid fa-eye show-and-hide" onClick={() => setShowPassword1(!showPassword1)}></i>
+                          showPassword1 ? <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword1(!showPassword1)}/>: <FontAwesomeIcon icon={faEyeSlash}  onClick={() => setShowPassword1(!showPassword1)}/>
                         }
                       </div>
                     </p>
@@ -452,22 +369,23 @@ const SignupPage = () => {
                           onPaste={handlePaste}
                         />
                         {
-                          showPassword2 ? <i className="fa-solid fa-eye-slash show-and-hide" onClick={() => setShowPassword2(!showPassword2)}></i> : <i className="fa-solid fa-eye show-and-hide" onClick={() => setShowPassword2(!showPassword2)}></i>
+                          showPassword2 ? <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword2(!showPassword2)}/>: <FontAwesomeIcon icon={faEyeSlash}  onClick={() => setShowPassword2(!showPassword2)}/>
                         }
                       </div>
                       {formdata.password !== formdata.confirmpassword && (
                         <span className="password-mismatch">*Passwords do not match</span>
                       )}
                     </p>
-                    <p className="centering">
+                    <p className="centering cursor-pointer">
                       <input type="submit" id="sign-up-btn" value="Sign up" className="create-account" />
                     </p>
                   </form>
                 </main>
-                <div className="centering">
-                  <button onClick={login} className="signup-with-google-btn">
-                    <i className="fa-brands fa-google"></i>
-                    Sign up with google
+                <div className="flex justify-center">
+                  <button onClick={login} className="signup-with-google-btn flex justify-between items-center">
+
+                    <FontAwesomeIcon icon={faGoogle} />
+                    <span className="pl-3">Sign up with google</span>
                   </button>
                 </div>
                 <footer className="signup-footer footer-in-singup">

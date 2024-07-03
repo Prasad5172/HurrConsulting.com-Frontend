@@ -14,7 +14,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-white py-4 relative flex justify-center">
+      <nav className="bg-white py-2 relative flex justify-center sticky">
         <div className="container  flex justify-between items-center relative mx-2">
           {/* Logo */}
           <div className="flex items-center justify-between w-full  ">
@@ -147,17 +147,7 @@ function Navbar() {
                 Internet
               </p>
             </li>
-            {/* <li className="hover:bg-gray-50 p-2">
-              <p
-                onClick={() => {
-                  toggleMenu();
-                  navigate("/careers");
-                }}
-                className="block text-black py-2 px-4 hover:text-orange-600 hover:cursor-pointer"
-              >
-                Careers
-              </p>
-            </li> */}
+            
             <li className="hover:bg-gray-50 p-2">
               <p
                 onClick={() => {

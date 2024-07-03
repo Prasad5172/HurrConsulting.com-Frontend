@@ -3,12 +3,16 @@ import { useLocation, NavLink, useNavigate } from 'react-router-dom';
 // import { SigninContext } from '../context/SigninContext'
 // import blackLogo from "../black-logo.jpg"
 import "./SigninAndSignup.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import {toastFailed,toastSuccess}  from "../Util/ToastFunctions"
+
 function ForgotPassword(props) {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false);
+    const [tokenToResetPassword,setTokenToResetPassword] = useState("");
 
-    // const BackendUrl = ""
-    const BackendUrl = "http://localhost:8081"
+
     const navigate = useNavigate()
     const location = useLocation()
     // const { userName, setUserName, displayProfile, setDisplayProfile, profile, setProfile, isAuthenticated, setAuthenticated, IsLoginSuccesful, setIsLoginSuccesful } = useContext(SigninContext)
@@ -19,7 +23,6 @@ function ForgotPassword(props) {
         password: "",
         confirmpassword: ""
     })
-    const [isResetSuccesful, setIsResetSuccesful] = useState("")
     const [otpData, setOtpData] = useState({
         one: '',
         two: '',
@@ -45,7 +48,7 @@ function ForgotPassword(props) {
         }, 300);
         event.preventDefault();
             try {
-                const res = await fetch(`${BackendUrl}/auth/sendEmail`, {
+                const res = await fetch(process.env.REACT_APP_BACKEND_URL+`/auth/sendOtp`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -57,14 +60,14 @@ function ForgotPassword(props) {
                 console.log(response)
                 if (res.ok) {
                     setShowOtpPage(true)
+                    toastSuccess(response.message);
                 } else {
                     signupBtnFailedAnimation();
+                    toastFailed(response.message);
                 }
-                setIsResetSuccesful(response.message);
-                statusOfForgotPasswordReset()
-
             } catch (error) {
                 console.log(error);
+                toastFailed(error)
             }
     };
 
@@ -113,16 +116,19 @@ function ForgotPassword(props) {
       otp = otpData.join("")
     }
         // console.log(otp)
-        const res = await fetch(`${BackendUrl}/auth/verifyOtp`, {
+        const res = await fetch(process.env.REACT_APP_BACKEND_URL+`/auth/verifyOtp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ ...formdata, "otp": otp })
         })
+        const data = await res.json();
         if (res.ok) {
-            setIsOtpVerified(true)
+            setIsOtpVerified(true);
+            toastSuccess(data.message);
         } else {
+            toastFailed(data.message);
             const failed = document.getElementById("verify-otp-btn");
             failed.classList.add("shake-button");
             setTimeout(() => {
@@ -140,10 +146,8 @@ function ForgotPassword(props) {
         if (firstInputRef.current) {
             firstInputRef.current.focus();
         }
-        const data = await res.json();
         console.log(data);
-        setIsResetSuccesful(data.message);
-        statusOfForgotPasswordReset()
+        setTokenToResetPassword(data.data.token);
     }
     useEffect(() => {
         const currentUrl = location.pathname;
@@ -164,36 +168,7 @@ function ForgotPassword(props) {
         }
     }, [location])
 
-    const statusOfForgotPasswordReset = () => {
-        const toast = document.querySelector(".toast2"),
-            closeIcon = document.querySelector(".close2"),
-            progress = document.querySelector(".progress2");
-        let timer1, timer2;
-        toast.classList.remove("display-none");
-        toast.classList.add("active");
-        progress.classList.add("active");
-
-        setTimeout(() => {
-            toast.classList.add("display-none");
-            toast.classList.remove("active");
-        }, 5000); //1s = 1000 milliseconds
-
-        setTimeout(() => {
-            progress.classList.remove("active");
-        }, 5300);
-
-        closeIcon?.addEventListener("click", () => {
-            toast.classList.remove("active");
-
-            setTimeout(() => {
-                progress.classList.remove("active");
-            }, 300);
-
-            clearTimeout(timer1);
-            clearTimeout(timer2);
-        });
-
-    }
+    
 
     const firstInputRef = useRef(null);
 
@@ -207,7 +182,7 @@ function ForgotPassword(props) {
     const handleResendOTP = async (event) => {
         event.preventDefault()
         try {
-            const res = await fetch(`${BackendUrl}/auth/sendEmail`, {
+            const res = await fetch(process.env.REACT_APP_BACKEND_URL+`/auth/sendOtp`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -219,12 +194,12 @@ function ForgotPassword(props) {
             console.log(response)
             if (res.ok) {
                 setShowOtpPage(true)
+                toastSuccess(response.message);
             } else {
                 signupBtnFailedAnimation();
+                toastFailed(response.message);
             }
 
-            setIsResetSuccesful(response.message);
-            statusOfForgotPasswordReset()
             if (firstInputRef.current) {
                 firstInputRef.current.focus();
             }
@@ -249,10 +224,11 @@ function ForgotPassword(props) {
         event.preventDefault()
         console.log("i am in handle reset password function")
         try {
-            const res = await fetch(`${BackendUrl}/auth/resetpassword`, {
+            const res = await fetch(`http://localhost:8000/auth/resetpassword`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization":`Bearer ${tokenToResetPassword}`,
                 },
                 body: JSON.stringify(formdata),
             })
@@ -260,28 +236,22 @@ function ForgotPassword(props) {
             const data = await res.json()
             console.log(data)
             if (res.ok) {
-                setIsResetSuccesful(data.message)
                 setIsOtpVerified(false);
                 setShowOtpPage(false);
                 navigate("/signin")
-                statusOfForgotPasswordReset()
-                props.setIsPasswordResetSuccesful("resetpassword")
                 setTimeout(() => {
                     props.setIsPasswordResetSuccesful("")
                 }, 5000);
+                toastSuccess(data.message);
             }
         } catch (error) {
             console.log(error)
+            toastFailed(error)
         }
     }
     const [showPassword1, setShowPassword1] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
-    const handleTogglePassword1 = () => {
-        setShowPassword1(!showPassword1);
-    };
-    const handleTogglePassword2 = () => {
-        setShowPassword2(!showPassword2);
-    };
+    
     const handlePaste = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -324,32 +294,11 @@ function ForgotPassword(props) {
         {
             !isAuthenticated && (
                 <>
-                    <div className="outer-box" id="forgotpage-signin">
+                    <div className="outer-box mt-[100px] mb-5" id="forgotpage-signin">
                     
-                        <div className="toast toast2 display-none" style={{ background: `${(isResetSuccesful == "succesful" || isResetSuccesful == "otpsend" || isResetSuccesful == "verifiedotp") ? "green" : "red"}` }}>
-                            <div className="toast-content">
-                                <i className={`fa-solid ${(isResetSuccesful == "succesful" || isResetSuccesful == "otpsend" || isResetSuccesful == "verifiedotp") ? "fa-check" : "fa-xmark"} check`} style={{ background: `${(isResetSuccesful == "succesful" || isResetSuccesful == "otpsend" || isResetSuccesful == "verifiedotp") ? "green" : "red"}`, color: "white" }}></i>
-                                <div className="message">
-                                    <span className="text text-1">{(isResetSuccesful == "succesful" || isResetSuccesful == "otpsend" || isResetSuccesful == "verifiedotp") ? (isResetSuccesful == "verifiedotp" ? "OTP Verified Succesfull" : ((isResetSuccesful == "succesful") ? "Registred succesfull" : "Succesful")) : "Sign Failed"}</span>
-                                    <span className="text text-2">
-                                        {isResetSuccesful == "failed" ? "Invalid credentials" : ""}
-                                        {isResetSuccesful == "signup" ? "Email is not Registred" : ""}
-                                        {isResetSuccesful == "succesful" ? "Your password has been successfully reset!" : ""}
-                                        {isResetSuccesful === "wrongOtp" ? "Enter a valid OTP" : ""}
-                                        {isResetSuccesful === "expired" ? "otp expired click to resend otp" : ""}
-                                        {isResetSuccesful === "otpsend" ? `OTP Send Succesfully to ${formdata.email}` : ""}
-                                        {isResetSuccesful === "verifiedotp" ? "OTP verified Succesfully" : ""}
-                                        {isResetSuccesful === "failedtoupdate" ? "Failed to update password" : ""}
-
-                                    </span>
-                                </div>
-                            </div>
-                            <i className="fa-solid fa-xmark close close2"></i>
-                            <div className="progress progress2"></div>
-                        </div>
-
+                        
                        
-                        <div className="inner-box">
+                        <div className="inner-box mx-auto my-auto">
                             {
                                 showOtpPage ?
                                     (
@@ -370,13 +319,13 @@ function ForgotPassword(props) {
                                                                     name="password"
                                                                     value={formdata.password}
                                                                     onChange={InputEvent}
-                                                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,}$"
+                                                                    // pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,}$"
                                                                     title=" Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one special symbol (!@#$%^&*), and one digit."
                                                                     required
                                                                     onPaste={handlePaste}
                                                                 />
                                                                 {
-                                                                    showPassword1 ? <i className="fa-solid fa-eye-slash show-and-hide" onClick={() => setShowPassword1(!showPassword1)}></i> : <i className="fa-solid fa-eye show-and-hide" onClick={() => setShowPassword1(!showPassword1)}></i>
+                                                                    showPassword1 ? <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword1(!showPassword1)}/>: <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword1(!showPassword1)}/>
                                                                 }
                                                             </div>
                                                         </p>
@@ -394,7 +343,7 @@ function ForgotPassword(props) {
                                                                     onPaste={handlePaste}
                                                                 />
                                                                 {
-                                                                    showPassword2 ? <i className="fa-solid fa-eye-slash show-and-hide" onClick={() => setShowPassword2(!showPassword2)}></i> : <i className="fa-solid fa-eye show-and-hide" onClick={() => setShowPassword2(!showPassword2)}></i>
+                                                                    showPassword2 ? <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword2(!showPassword2)}/>: <FontAwesomeIcon icon={faEye}  onClick={() => setShowPassword2(!showPassword2)}/>
                                                                 }
                                                             </div>
                                                             {formdata.password !== formdata.confirmpassword && (
@@ -411,42 +360,41 @@ function ForgotPassword(props) {
                                             </>
                                             :
                                             <>
-                                                <div className="container">
-                                                    <div className="row justify-content-md-center">
-                                                        <div className="col-md-4 text-center">
-                                                            <div className="row">
-                                                                <div className="col-sm-12 mt-5 bgWhite">
-                                                                    <div className="title centering">
-                                                                        Verify OTP
-                                                                    </div>
-                                                                    <h4 style={{ color: "#ffff", paddingBottom: "20px" }} className="centering">Enter the OTP send to {formdata.email} </h4>
-                                                                    <form action="" className="otp-holders centering">
-                                                                        {Object.entries(otpData).map(([name, value], index) => (
-                                                                            <input
-                                                                                className="otp"
-                                                                                type="text"  // Use text type for accepting single digits
-                                                                                name={name}
-                                                                                value={value}
-                                                                                onChange={(e) => handleChange(e, index)}
-                                                                                maxLength="1"
-                                                                                key={name}
-                                                                                ref={index === 0 ? firstInputRef : (input) => (inputRefs.current[index] = input)}
-                                                                                onPaste={(e) => handlePasteOnInputRef(e, index)}
-
-                                                                            />
-                                                                        ))}
-                                                                    </form>
-                                                                    <hr className="horizontalLine line-in-verifyOtp" />
-                                                                    <button type="submit" id="verify-otp-btn" className='create-account' onClick={handleVerifyOtp}>Verify</button>
-                                                                    <footer className="signup-footer footer-in-singup">
-                                                                        <p>Already Registered? <NavLink to="/signin" className="marginDown">Click here to login</NavLink></p>
-                                                                        <p>Didn't receive OTP? <a href="#" onClick={handleResendOTP} className="marginDown">Resend OTP</a></p>
-                                                                    </footer>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div className="container">
+                  <div className="row justify-content-md-center">
+                    <div className="col-md-4 text-center">
+                      <div className="row">
+                        <div className="col-sm-12 mt-5 bgWhite">
+                          <div className="title centering">
+                            Verify OTP
+                          </div>
+                          <h4 style={{ color: "#000000", paddingBottom: "20px" }} className="centering">Enter the OTP send to {formdata.email} </h4>
+                          <form action="" className="otp-holders centering flex">
+                            {Object.entries(otpData).map(([name, value], index) => (
+                              <input
+                                className="otp"
+                                type="text"  // Use text type for accepting single digits
+                                name={name}
+                                value={value}
+                                onChange={(e) => handleChange(e, index)}
+                                maxLength="1"
+                                key={name}
+                                ref={index === 0 ? firstInputRef : (input) => (inputRefs.current[index] = input)}
+                                onPaste={(e) => handlePasteOnInputRef(e, index)}
+                              />
+                            ))}
+                          </form>
+                          <hr className="horizontalLine line-in-verifyOtp" />
+                          <button type="submit" id="verify-otp-btn" className='create-account' onClick={handleVerifyOtp}>Verify</button>
+                          <footer className="signup-footer footer-in-singup">
+                            <p>Already Registered? <NavLink to="/signin" className="marginDown">Click here to login</NavLink></p>
+                            <p>Didn't receive OTP? <a href="#" onClick={handleResendOTP} className="marginDown">Resend OTP</a></p>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                                             </>
 
                                     )

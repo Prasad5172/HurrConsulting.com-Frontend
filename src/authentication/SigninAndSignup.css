@@ -19,17 +19,19 @@
 
 /* button on signup */
 .signup-with-google-btn {
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     padding: 15px;
     border-radius: .5rem;
-    color: white;
+    color: rgb(29, 28, 28);
     border: none;
     transition: all 0.7s ease-in-out;
+    border: 2px solid gray;
 }
 
+
 .signup-with-google-btn :hover {
-    background-color: white;
-    color: black;
+    /* background-color: rgb(0, 0, 0); */
+    /* color: rgb(255, 255, 255); */
 }
 
 .signup-with-google-btn i {
@@ -38,8 +40,7 @@
 
 .outer-box {
     width: 100vw;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #545454, #030303);
+    /* background: linear-gradient(to bottom right, #545454, #030303); */
 }
 
 .spotify-nav-login {
@@ -64,21 +65,14 @@
 
 .inner-box {
     width: 509px;
-    margin: 0 auto;
     padding: 20px 40px;
-    position: relative;
-    top: 40%;
-
-    transform: translateY(-50%);
     /* background-color: #ffffffcc; */
-    background: linear-gradient(to top left #ffffffff, #ffffff33);
     backdrop-filter: blur(5px);
     border-radius: 8px;
-    z-index: 1;
 }
 
 .field {
-    color: #aaaaaa;
+    color: #000000;
 }
 
 .forgotpassword {
@@ -99,13 +93,13 @@
 
 .signup-header h1 {
     font-size: 3rem;
-    color: #aaaaaa;
+    color: #000000;
 
 }
 
 .signup-header p {
     font-size: 1rem;
-    color: #cacaca;
+    color: #000000;
 }
 
 .signup-body {
@@ -115,6 +109,10 @@
 
 .signup-body p {
     margin: 10px 0 10px 0
+}
+
+.h-90{
+    height: 90%;
 }
 
 .signup-body p label {
@@ -134,7 +132,7 @@
 .create-account {
     color: #ffffff;
     font-weight: 700;
-
+    cursor: pointer;
 }
 
 .password-mismatch {
@@ -161,7 +159,7 @@
 .outer-box #sign-in-btn:hover,
 .outer-box #reset-btn:hover {
     translate: -4px -4px;
-    box-shadow: 4px 4px 0 white;
+    box-shadow: 4px 4px 0 #bababa;
 }
 
 .outer-box .btn-click {
@@ -188,7 +186,7 @@
 
 .outer-box #sign-up-btn:hover {
     translate: -4px -4px;
-    box-shadow: 4px 4px 0 white;
+    box-shadow: 4px 4px 0 #bababa;
 }
 
 /* verify otp */
@@ -208,7 +206,7 @@
 
 .outer-box #verify-otp-btn:hover {
     translate: -4px -4px;
-    box-shadow: 4px 4px 0 white;
+    box-shadow: 4px 4px 0 #bababa;
 }
 
 
@@ -248,7 +246,7 @@
 
 .signup-footer p {
     text-align: center;
-    color: #ffffff;
+    color: #000000;
     font-size: 1.2rem;
 
 }
@@ -270,10 +268,6 @@
     box-shadow: 3px 3px 5px;
 }
 
-#signup-page .inner-box {
-    margin-top: 3vh;
-}
-
 #signup-page .signup-body {
     margin: 20px 0 0 0;
 }
@@ -289,6 +283,8 @@ form .otp {
     width: 50px;
     height: 50px;
     text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
 }
 
 .bgWhite {
@@ -322,10 +318,10 @@ form input {
     color: #0091ff;
 }
 .row {
-    color: #fff;
+    color: #000000;
     text-align: center;
     padding: 0em 0em 0em;
-    width: 90%;
+    width: 100%;
     margin: 0em auto;
     border-radius: 5px;
 }
@@ -340,7 +336,7 @@ form input {
 
 .row .form-group label {
     display: block;
-    color: #fff;
+    color: #000000;
     text-align: left;
     font-weight: 600;
 }
@@ -350,8 +346,8 @@ form input {
     width: 100%;
     margin-top: 1em;
     margin-bottom: 0.5em;
-    border: none;
-    border-bottom: 1px solid #555;
+    /* border: none; */
+    border: 1px solid #555;
     padding: 1em 0.5em;
     border-radius: 5px;
     font-weight: 400;
@@ -420,7 +416,7 @@ form input {
     padding: 20px 20px;
    }
    .inner-box{
-        width: 350px !important;
+        width: 400px !important;
     }
     .signup-header h1 {
         font-size: 1.8rem;
@@ -436,7 +432,7 @@ form input {
         border: 2px solid rgb(164, 164, 164);
         border-radius: 5px;
         padding: 6px;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     .forgotpassword {
        
