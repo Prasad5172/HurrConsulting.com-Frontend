@@ -249,9 +249,10 @@ function ForgotPassword(props) {
             toastFailed(error)
         }
     }
+    
     const [showPassword1, setShowPassword1] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
-    
+
     const handlePaste = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
