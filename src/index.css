@@ -25,3 +25,9 @@ code {
 .nav-items.open {
   max-height: 100vh; /* Change to whatever height you want when the nav is open */
 }
+
+.three-sides-box-shadow{
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2), 
+                -3px 3px 5px rgba(0, 0, 0, 0.2),
+                0px -3px 5px rgba(255, 255, 255, 1); /* This cancels out the top shadow */
+}

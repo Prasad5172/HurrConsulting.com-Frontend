@@ -1,10 +1,14 @@
 import React from 'react'
+import AppointmentPage from '../Apponiment/AppointmentPage'
 
 function Home() {
+
   return (
-    <div>
+    <>
+      <div className="">
         this is home
-    </div>
+      </div>
+    </>
   )
 }
 

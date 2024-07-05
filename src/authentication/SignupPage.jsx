@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SigninAndSignup.css"
 // import blackLogo from "../black-logo.jpg"
@@ -7,11 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import {toastSuccess,toastFailed }  from "../Util/ToastFunctions"
+import { storeInLocalStorage }  from "../Util/LocalStorage"
+import OtpInput from 'react-otp-input';
+import { AuthContext } from "../context/AuthContext";
 
+const SignupPage = (props) => {
 
-const SignupPage = () => {
+  const {setUserName,setDisplayProfile,setAuthenticated,setProfile,setAdmin,isAuthenticated} = useContext(AuthContext);
+
   
-
   const navigate = useNavigate();
   const [formdata, setformData] = useState({
     email: "",
@@ -19,7 +23,7 @@ const SignupPage = () => {
     confirmpassword: ""
   });
   const [showOtpPage, setShowOtpPage] = useState(false);
-
+  const [otp, setOtp] = useState('');
  
 
 
@@ -49,14 +53,14 @@ const SignupPage = () => {
         body: JSON.stringify({password:formdata.password,email:formdata.email}),
       });
 
-      const response = await res.json();
-      console.log(response)
+      const data = await res.json();
+      console.log(data)
       if (res.ok) {
         setShowOtpPage(true)
-        toastSuccess(response.message);
+        toastSuccess(data.message);
       } else {
         signupBtnFailedAnimation();
-        toastFailed(response.message)
+        toastFailed(data.message)
       }
     } catch (error) {
       console.log(error);
@@ -83,55 +87,32 @@ const SignupPage = () => {
       console.log(response.access_token);
       console.log(process.env.REACT_APP_BACKEND_URL);
       try {
-        const res1 = await fetch( process.env.REACT_APP_BACKEND_URL + "/auth/signup", {
+        const res = await fetch( process.env.REACT_APP_BACKEND_URL + "/auth/signup", {
           method: "POST",
           headers: {
             "Authorization":`Bearer ${response.access_token}`,
             "Content-Type": "application/json",
           }
         })
-        const condition = await res1.json();
-        console.log(condition)
-        if (res1.ok) {
-          toastSuccess(condition.message)
+        const data = await res.json();
+        console.log(data)
+        if (res.ok) {
+          setAuthenticated(true);
+          setAdmin(data.is_admin);
+          setUserName(data.name)
+          navigate("/");
+          storeInLocalStorage(data)
+          toastSuccess(data.message)
         } else {
           signupBtnFailedAnimation()
-          toastFailed(condition.message)
+          toastFailed(data.message)
         }
       } catch (err) {
         console.log(err);
       }
     }
   });
-  const [otpData, setOtpData] = useState({
-    one: '',
-    two: '',
-    three: '',
-    four: '',
-    five: '',
-    six: '',
-  });
-  const inputRefs = useRef([]);
-  const handleChange = (e, inputIndex) => {
-    const { name, value } = e.target;
-    // Ensure the value is a single digit
-    if (/^\d$/.test(value)) {
-      // Update the input value in the state
-      setOtpData((prevOtpData) => ({
-        ...prevOtpData,
-        [name]: value,
-      }));
-
-      // Move focus to the next input field
-      if (inputIndex < inputRefs.current.length - 1) {
-        inputRefs.current[inputIndex + 1].focus();
-      }
-    }
-  };
-  const getCombinedOTP = () => {
-    const { one, two, three, four, five, six } = otpData;
-    return (one + two + three + four + five + six);
-  };
+ 
 
   const handleVerifyOtp = async () => {
     const btn = document.getElementById("verify-otp-btn")
@@ -139,12 +120,11 @@ const SignupPage = () => {
     setTimeout(() => {
       btn.classList.remove("btn-click")
     }, 300);
-    var otp = getCombinedOTP()
     if(!otp){
-      otp = otpData.join("")
+      return toastFailed("Enter Otp to proceed")
     }
     console.log(otp)
-    const res = await fetch(`http://localhost:8000/auth/verifyOtp`, {
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL+`/auth/verifyOtp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -152,7 +132,12 @@ const SignupPage = () => {
       body: JSON.stringify({ ...formdata, "otp": otp })
     })
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
+      storeInLocalStorage(data);
+      setAuthenticated(true);
+      navigate("/");
+      setAdmin(data.is_admin)
       setformData({
         email: "",
         password: "",
@@ -168,33 +153,14 @@ const SignupPage = () => {
         failed.classList.remove("shake-button");
       }, 1000);
     }
-    setOtpData({
-      one: '',
-      two: '',
-      three: '',
-      four: '',
-      five: '',
-      six: '',
-    })
-    if (firstInputRef.current) {
-      firstInputRef.current.focus();
-    }
-    
+    setOtp("");
   }
 
-  const firstInputRef = useRef(null);
 
-  useEffect(() => {
-    // Auto-focus the first input element when the component mounts
-    if (firstInputRef.current) {
-      firstInputRef.current.focus();
-    }
-  }, [showOtpPage]);
 
   const handleResendOTP = async (event) => {
     event.preventDefault()
     try {
-      
       const res = await fetch(process.env.REACT_APP_BACKEND_URL+"/auth/sendOtp", {
         method: "POST",
         headers: {
@@ -212,18 +178,7 @@ const SignupPage = () => {
         signupBtnFailedAnimation();
         toastFailed("failed to send otp")
       }
-
-      if (firstInputRef.current) {
-        firstInputRef.current.focus();
-      }
-      setOtpData({
-        one: '',
-        two: '',
-        three: '',
-        four: '',
-        five: '',
-        six: '',
-      })
+      setOtp("")
     } catch (error) {
       console.log(error);
     }
@@ -256,25 +211,12 @@ const SignupPage = () => {
     const changeEvent = new Event('input', { bubbles: true });
     input.dispatchEvent(changeEvent);
   };
-  const handlePasteOnInputRef = (event, index) => {
-    const pastedText = event.clipboardData.getData('text/plain').trim();
-    if (pastedText.length === 6) {
-      const arr = pastedText.split('')
-      console.log(arr)
-      setOtpData(pastedText.split(''));
-      if (inputRefs.current && inputRefs.current[0]) {
-        inputRefs.current[0].focus();
-      }
-    }
-  }
+
+
 
   return (
     <>
       <div className="outer-box mt-[100px] mb-5" id="signup-page">
-      
-        
-        
-
         <div className="inner-box mx-auto my-auto">
           {
             showOtpPage ?
@@ -283,27 +225,34 @@ const SignupPage = () => {
                   <div className="row justify-content-md-center">
                     <div className="col-md-4 text-center">
                       <div className="row">
-                        <div className="col-sm-12 mt-5 bgWhite">
+                        <div className="col-sm-12 mt-5 bgWhite otp-section">
                           <div className="title centering">
                             Verify OTP
                           </div>
                           <h4 style={{ color: "#000000", paddingBottom: "20px" }} className="centering">Enter the OTP send to {formdata.email} </h4>
-                          <form action="" className="otp-holders centering flex">
-                            {Object.entries(otpData).map(([name, value], index) => (
-                              <input
-                                className="otp"
-                                type="text"  // Use text type for accepting single digits
-                                name={name}
-                                value={value}
-                                onChange={(e) => handleChange(e, index)}
-                                maxLength="1"
-                                key={name}
-                                ref={index === 0 ? firstInputRef : (input) => (inputRefs.current[index] = input)}
-                                onPaste={(e) => handlePasteOnInputRef(e, index)}
-                              />
-                            ))}
-                          </form>
-                          <hr className="horizontalLine line-in-verifyOtp" />
+                          
+                          <OtpInput
+                            value={otp}
+                            onChange={setOtp}
+                            numInputs={6}
+                            renderInput={(props) => <input
+                                                {...props}
+                                                style={{
+                                                  display: "inline-block",
+                                                  width: "50px",
+                                                  height: "50px",
+                                                  textAlign: "center",
+                                                  border: "1px solid black",
+                                                  borderRadius: "4px",
+                                                  marginRight: "5px", // Optional: To add some space between the inputs
+                                                }}
+                                              />
+                            }
+                            placeholder="000000"
+                            onPaste={handlePaste}
+                            
+                          />
+                          <hr className="horizontalLine line-in-verifyOtp mt-10 mb-5" />
                           <button type="submit" id="verify-otp-btn" className='create-account' onClick={handleVerifyOtp}>Verify</button>
                           <footer className="signup-footer footer-in-singup">
                             <p>Already Registered? <NavLink to="/signin" className="marginDown">Click here to login</NavLink></p>

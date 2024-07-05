@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Tooltip from '@mui/material/Tooltip';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const {isAuthenticated,displayProfile,setAuthenticated,profile,userName,} = useContext(AuthContext)
 
   const toggleMenu = () => {
-    // document.getElementById("mobile_nav").classList.toggle("top-minus-100");
-    // document.getElementById("mobile_nav").classList.toggle("top-12");
     setIsOpen(!isOpen);
   };
 
   return (
     <>
-      <nav className="bg-white py-2 relative flex justify-center sticky">
+      <nav className="bg-white py-2 relative flex justify-center ">
         <div className="container  flex justify-between items-center relative mx-2">
           {/* Logo */}
           <div className="flex items-center justify-between w-full  ">
@@ -24,7 +27,7 @@ function Navbar() {
             >
               <img
                 className="h-16 mr-4"
-                src="./boost-fiji.webp" // Replace with your logo path
+                src="logo192.png" // Replace with your logo path
                 alt="logo"
               />
             </div>
@@ -78,13 +81,36 @@ function Navbar() {
           </div>
 
           {/* Hamburger Menu */}
-          <div className="block lg:hidden">
+          <div className=" lg:hidden flex flex-row gap-4 items-center mr-8">
+          {
+                isAuthenticated && (
+                    <>
+                        {
+                            displayProfile ? (
+                              <Tooltip title={userName} placement="top" className="hover:cursor-pointer">
+                                    < img src={`${profile}`} alt="Profile"  className="w-[40px] h-[40px] rounded-full" id='account-logo' />
+                                </Tooltip>
+
+                            ) : <>
+
+                                <Tooltip title={userName} placement="top" className="hover:cursor-pointer">
+                                    <FontAwesomeIcon icon={faUser} id="account-logo" style={{color:"#000000"}}/>
+                                </Tooltip>
+
+                            </>
+                        }
+
+
+                    </>
+
+                )
+            }
             <button
               onClick={toggleMenu}
               className="text-black focus:outline-none"
             >
               <svg
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -110,7 +136,7 @@ function Navbar() {
           </div>
           <ul
             id="mobile_nav"
-            className={`lg:hidden bg-white absolute left-0 top-16 w-full nav-items z-10 ${
+            className={`lg:hidden bg-white absolute left-0 top-16 w-full nav-items z-10 three-sides-box-shadow ${
               isOpen ? "open" : ""
             }`}
           >
@@ -129,11 +155,11 @@ function Navbar() {
               <p
                 onClick={() => {
                   toggleMenu();
-                  navigate("/locations");
+                  navigate("/appointment");
                 }}
                 className="block text-black py-2 px-4 hover:text-orange-600 hover:cursor-pointer"
               >
-                Locations
+                Appoinment
               </p>
             </li>
             <li className="hover:bg-gray-50 p-2">
@@ -161,8 +187,6 @@ function Navbar() {
             </li>
           </ul>
         </div>
-
-        {/* Navigation Links */}
       </nav>
     </>
   );
