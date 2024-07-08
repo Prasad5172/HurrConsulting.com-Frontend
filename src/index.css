@@ -22,7 +22,10 @@ code {
   transition: max-height 0.5s ease-in-out; /* Adjust the duration and timing function as needed */
 }
 
-.nav-items.open {
+.nav-items.open-menu {
+  max-height: 100vh; /* Change to whatever height you want when the nav is open */
+}
+.nav-items.open-profile {
   max-height: 100vh; /* Change to whatever height you want when the nav is open */
 }
 

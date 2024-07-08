@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
-import PaymentStatus from "./PaymentStatus";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Outlet } from "react-router-dom"
 
 
 
@@ -48,12 +47,8 @@ function Payment() {
     <div>
         {clientSecret ? (
           <Elements stripe={stripePromise} options={options}>
-          <Routes>
-            <Route exact path='/' element={ <CheckoutForm />}></Route>
-            <Route exact path='/status' element={ <PaymentStatus/>}></Route>
-          </Routes>
-          
-            
+            <CheckoutForm/>  
+            <Outlet/>
           </Elements>
         ) : (
           <p>Loading...</p>

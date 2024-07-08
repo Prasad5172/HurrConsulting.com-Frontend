@@ -1,5 +1,4 @@
 import React from 'react'
-import AppointmentPage from '../Apponiment/AppointmentPage'
 
 function Home() {
 

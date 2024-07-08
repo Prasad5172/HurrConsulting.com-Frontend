@@ -1,11 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
 import InputMask from "react-input-mask";
-import "./AppointmentPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { toastFailed } from "../Util/ToastFunctions";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
+import axios from "axios";
 
-function AppointmentPage() {
+// Load Stripe with your publishable key
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
+const AppointmentForm = ({ setClientSecret, clientSecret }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [openPaymentPage, setOpenPaymentPage] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     firstname: "",
@@ -16,70 +30,83 @@ function AppointmentPage() {
   });
   const textareaRef = useRef(null);
 
+  const [message, setMessage] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const [timeSlots, setTimeSlots] = useState([
     "11:00 AM - 12:00 AM",
-    "12:00 AM - 13:00 PM",
-    "15:00 PM - 04:00 PM",
+    "12:00 AM - 01:00 PM",
+    "03:00 PM - 04:00 PM",
     "04:00 PM - 05:00 PM",
   ]);
 
-  const InputEvent = (event) => {
-    // console.log(formdata)
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-   
-    setFormData((preval) => ({
-      ...preval,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [name]: value });
   };
-
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
       const adjustHeight = () => {
-        textarea.style.height = "auto"; // Reset the height
-        textarea.style.height = `${textarea.scrollHeight}px`; // Set it to the scroll height
+        textarea.style.height = "auto";
+        textarea.style.height = `${textarea.scrollHeight}px`;
       };
-      // Adjust the height on initial render
       adjustHeight();
-      // Adjust the height when the input changes
       textarea.addEventListener("input", adjustHeight);
-      // Clean up the event listener
       return () => {
         textarea.removeEventListener("input", adjustHeight);
       };
     }
   }, []);
-
   const handleRemoveSlot = () => {
-    setFormData((preval) => ({
-      ...preval,
-      ["slot"]: null,
+    setFormData((prev) => ({
+      ...prev,
+      slot: null,
     }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
     if (!formData.slot) {
-      return toastFailed("Select Sot For Appoinment");
+      return toastFailed("Select Slot For Appointment");
     }
     try {
-      const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/api/bookevent`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/create-payment-intent`,
+        formData
       );
-      const data =await res.json();
-      console.log(data);
+      const { clientSecret } = response.data;
+      setClientSecret(clientSecret); // Update parent component's state with clientSecret
+      setOpenPaymentPage(true);
     } catch (error) {
       console.log(error);
+      toastFailed(error.message);
     }
+  };
+
+  const handlePayment = async (event) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+    setIsProcessing(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: `${window.location.origin}/completion`,
+      },
+    });
+    if (error.type === "card_error" || error.type === "validation_error") {
+      setMessage(error.message);
+    } else {
+      setMessage("An unexpected error occured.");
+    }
+    setIsProcessing(false);
   };
 
   const getTodayDate = () => {
@@ -103,178 +130,214 @@ function AppointmentPage() {
   return (
     <>
       <div className="">
-        <div>
-          <p className="text-center font-bold 2xl:text-4xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-3xl text-2xl">
-            Book an appointment
-          </p>
-          <div>
-            <form
-              class="2xl:max-w-3xl xl:max-w-3xl lg:max-w-3xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto mt-20 "
-              onSubmit={handleSubmit}
-            >
-              <div class="relative z-0 w-full mb-5 group">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=""
-                  required
-                  value={formData.email}
-                  onChange={InputEvent}
-                  autoComplete="on"
-                />
-                <label
-                  for="email"
-                  class="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+        {!openPaymentPage  ? (
+          <div className="payment-form">
+              <form id="payment-form" onSubmit={handlePayment}>
+                <PaymentElement id="payment-element" />
+                <button
+                  disabled={isProcessing || !stripe || !elements}
+                  id="submit"
                 >
-                  Email address
-                </label>
-              </div>
-
-              <div class="grid md:grid-cols-2 md:gap-6  mt-10">
-                <div class="relative z-0 w-full mb-5 group">
+                  <span id="button-text">
+                    {isProcessing ? "Processing ... " : "Pay now"}
+                  </span>
+                </button>
+                {/* Show any error or success messages */}
+                {message && <div id="payment-message">{message}</div>}
+              </form>
+          </div>
+        )
+        :
+        (
+          <div>
+            <p className="text-center font-bold 2xl:text-4xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-3xl text-2xl">
+              Book an appointment
+            </p>
+            <div>
+              <form
+                className="2xl:max-w-3xl xl:max-w-3xl lg:max-w-3xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto mt-20 "
+                onSubmit={handleSubmit}
+              >
+                <div className="relative z-0 w-full mb-5 group">
                   <input
-                    type="text"
-                    name="firstname"
-                    id="firstname"
-                    class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=""
                     required
-                    value={formData.name}
-                    onChange={InputEvent}
+                    value={formData.email}
+                    onChange={handleInputChange}
                     autoComplete="on"
                   />
                   <label
-                    for="firstname"
-                    class="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    for="email"
+                    className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    Name
+                    Email address
                   </label>
                 </div>
-                <div class="relative z-0 w-full mb-5 group lg:mt-0 2xl:mt-0 xl:mt-0 md:mt-0 mt-5 ">
-                  <InputMask
-                    mask="(999)999-9999"
-                    value={formData.phone}
-                    onChange={InputEvent}
-                  >
-                    {(inputProps) => (
-                      <input
-                        {...inputProps}
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-non  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      />
-                    )}
-                  </InputMask>
-                  <label
-                    for="floating_phone"
-                    class="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Phone number (123-456-7890)
-                  </label>
-                </div>
-              </div>
-              <div class="relative z-0 w-full mb-5 group mt-10">
-                <textarea
-                  ref={textareaRef}
-                  name="problem"
-                  id="problem"
-                  className="block p-5 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=""
-                  value={formData.problem}
-                  onChange={InputEvent}
-                  required
-                  autoComplete="off"
-                  rows={10}
-                ></textarea>
-                <label
-                  for="problem"
-                  class="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Type Your Problem Here :
-                </label>
-              </div>
-
-              <div class="grid md:grid-cols-2 md:gap-6 mt-10">
-                <div class="relative z-0 w-full mb-5 group">
-                  <input
-                    type="date"
-                    name="date"
-                    min={getTodayDate()}
-                    max={getMaxDate()}
-                    id="date"
-                    class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    value={formData.date}
-                    onChange={InputEvent}
-                  />
-                  <label
-                    for="firstname"
-                    class="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Date
-                  </label>
-                </div>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group mt-10">
-                <label
-                  htmlFor="time_slots"
-                  className="  text-lg text-gray-500 mr-3"
-                >
-                  Available Time Slots :
-                </label>
-                {formData.slot && (
-                  <div className="break-normal text-[15px] bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300">
-                    <span className="text-[15px]">{formData.slot}</span>
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      className="mx-2"
-                      onClick={handleRemoveSlot}
+                <div className="grid md:grid-cols-2 md:gap-6  mt-10">
+                  <div className="relative z-0 w-full mb-5 group">
+                    <input
+                      type="text"
+                      name="firstname"
+                      id="firstname"
+                      className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      autoComplete="on"
                     />
+                    <label
+                      for="firstname"
+                      className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Name
+                    </label>
                   </div>
-                )}
-                <hr className="my-5" />
-                <div className="mt-4 flex justify-center  overflow-x-auto">
-                  <div className="w-full">
-                    {timeSlots.map((slot, index) => (
-                      <div
-                        key={index}
-                        className="break-normal text-[15px] mb-5 bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300"
-                      >
-                        {slot}
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          className="mx-2"
-                          onClick={() =>
-                            setFormData((preval) => ({
-                              ...preval,
-                              ["slot"]: slot,
-                            }))
-                          }
+                  <div className="relative z-0 w-full mb-5 group lg:mt-0 2xl:mt-0 xl:mt-0 md:mt-0 mt-5 ">
+                    <InputMask
+                      mask="(999)999-9999"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    >
+                      {(inputProps) => (
+                        <input
+                          {...inputProps}
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-non  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         />
-                      </div>
-                    ))}
+                      )}
+                    </InputMask>
+                    <label
+                      for="floating_phone"
+                      className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Phone number (123-456-7890)
+                    </label>
                   </div>
                 </div>
-              </div>
-              <div className="flex justify-center">
+                <div className="relative z-0 w-full mb-5 group mt-10">
+                  <textarea
+                    ref={textareaRef}
+                    name="problem"
+                    id="problem"
+                    className="block p-5 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=""
+                    value={formData.problem}
+                    onChange={handleInputChange}
+                    required
+                    autoComplete="off"
+                    rows={6}
+                  ></textarea>
+                  <label
+                    for="problem"
+                    className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Type Your Problem Here :
+                  </label>
+                </div>
+                <div className="grid md:grid-cols-2 md:gap-6 mt-10">
+                  <div className="relative z-0 w-full mb-5 group">
+                    <input
+                      type="date"
+                      name="date"
+                      min={getTodayDate()}
+                      max={getMaxDate()}
+                      id="date"
+                      className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                      value={formData.date}
+                      onChange={handleInputChange}
+                    />
+                    <label
+                      for="firstname"
+                      className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Date
+                    </label>
+                  </div>
+                </div>
+                <div className="relative z-0 w-full mb-5 group mt-10">
+                  <label
+                    htmlFor="time_slots"
+                    className="  text-lg text-gray-500 mr-3"
+                  >
+                    Available Time Slots :
+                  </label>
+                  {formData.slot && (
+                    <div className="break-normal text-[15px] bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300">
+                      <span className="text-[15px]">{formData.slot}</span>
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className="mx-2"
+                        onClick={handleRemoveSlot}
+                      />
+                    </div>
+                  )}
+                  <hr className="my-5" />
+                  <div className="mt-4 flex justify-center  overflow-x-auto">
+                    <div className="w-full">
+                      {timeSlots.map((slot, index) => (
+                        <div
+                          key={index}
+                          className="break-normal text-[15px] mb-5 bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300"
+                        >
+                          {slot}
+                          <FontAwesomeIcon
+                            icon={faPlus}
+                            className="mx-2"
+                            onClick={() =>
+                              setFormData((preval) => ({
+                                ...preval,
+                                ["slot"]: slot,
+                              }))
+                            }
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 <button
                   type="submit"
-                  class="mb-20 mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
+                  className="mt-10 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700"
                 >
-                  Book an appointment
+                  Book Appointment
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        ) 
+        }
       </div>
     </>
   );
-}
+};
+
+const AppointmentPage = () => {
+  const [clientSecret, setClientSecret] = useState("");
+  const appearance = {
+    theme: "light",
+  };
+
+  const options = {
+    clientSecret,
+    appearance,
+  };
+  return (
+    <Elements stripe={stripePromise} options={options}>
+      <AppointmentForm
+        setClientSecret={setClientSecret}
+        clientSecret={clientSecret}
+      />
+    </Elements>
+  );
+};
 
 export default AppointmentPage;

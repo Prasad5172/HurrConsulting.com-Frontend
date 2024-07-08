@@ -1,16 +1,19 @@
 import React,{useState} from "react";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 import { Routes,Route } from "react-router-dom";
 import SignupPage from "./authentication/SignupPage";
 import SigninPage from "./authentication/SigninPage";
 import ForgotPassword from "./authentication/ForgotPassword";
 import ErrorPage from "./Error/ErrorPage";
-import Home from "./HomePage/Home";
+import Home from "./Pages/HomePage/Home";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './context/AuthContext';
-import AppointmentPage from "./Apponiment/AppointmentPage";
-
+import Service from "./Pages/Service/Service";
+import Resource from "./Pages/Resource/Resource";
+import Testimonials from "./Pages/Testimonials/Testimonials";
+import Contact from "./Pages/ContactUs/Contact";
+import About from "./Pages/AboutUs/About"
 
 const App = () => {
   const [isLoading,setIsLoading] = useState(false);
@@ -21,13 +24,18 @@ const App = () => {
   const [isAdmin,setAdmin] = useState(false)
   return (
     <AuthContext.Provider value={{isAuthenticated,setAuthenticated,userName,setUserName,isAdmin,setAdmin,isLoading,setIsLoading,displayProfile,setDisplayProfile,profile,setProfile}}>
-      <div className="overflow-x-hidden h-screen">
+      <div className="overflow-x-hidden h-screen bg-blue-500 ">
         <header>
           <Navbar/>
         </header>
         <Routes>
           <Route exact path='/' element={<Home />}/>
-          <Route exact path='/appointment' element={<AppointmentPage />}/>
+          <Route exact path='/service' element={<Service />}/>
+          <Route exact path='/about' element={<About />}/>
+          <Route exact path='/resource' element={<Resource />}/>
+          <Route exact path='/testimonials' element={<Testimonials />}/>
+          <Route exact path='/contact' element={<Contact />}/>
+
           <Route exact path='/signup' element={!isAuthenticated ? <SignupPage isLoading={isLoading} /> : <ErrorPage />} />
           <Route exact path='/signin' element={!isAuthenticated ? <SigninPage isLoading={isLoading}  /> : <ErrorPage />} />
           <Route exact path='/forgotpassword' element={!isAuthenticated ? <ForgotPassword isLoading={isLoading}  /> : <ErrorPage />} />
