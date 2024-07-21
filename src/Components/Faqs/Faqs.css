@@ -1,0 +1,16 @@
+.faq-row-wrapper .faq-body .faq-row .row-title:hover .row-title-text{
+    text-decoration: underline;
+}
+.faq-row-wrapper .faq-body {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.faq-row-wrapper .faq-body .faq-row{
+    padding-inline: 20px;
+    background-color: #f3f3fd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.faq-row-wrapper .faq-body .faq-row .row-content .row-content-text{
+    margin-bottom: 10px;
+}

@@ -12,8 +12,9 @@ import { AuthContext } from './context/AuthContext';
 import Service from "./Pages/Service/Service";
 import Resource from "./Pages/Resource/Resource";
 import Testimonials from "./Pages/Testimonials/Testimonials";
-import Contact from "./Pages/ContactUs/Contact";
+import ContactUsPage from "./Pages/ContactUs/ContactUsPage";
 import About from "./Pages/AboutUs/About"
+import Fotter from "./Components/Fotter/Fotter";
 
 const App = () => {
   const [isLoading,setIsLoading] = useState(false);
@@ -24,7 +25,7 @@ const App = () => {
   const [isAdmin,setAdmin] = useState(false)
   return (
     <AuthContext.Provider value={{isAuthenticated,setAuthenticated,userName,setUserName,isAdmin,setAdmin,isLoading,setIsLoading,displayProfile,setDisplayProfile,profile,setProfile}}>
-      <div className="overflow-x-hidden h-screen bg-blue-500 ">
+      <div className="overflow-x-hidden h-screen">
         <header>
           <Navbar/>
         </header>
@@ -34,13 +35,14 @@ const App = () => {
           <Route exact path='/about' element={<About />}/>
           <Route exact path='/resource' element={<Resource />}/>
           <Route exact path='/testimonials' element={<Testimonials />}/>
-          <Route exact path='/contact' element={<Contact />}/>
+          <Route exact path='/contact' element={<ContactUsPage />}/>
 
           <Route exact path='/signup' element={!isAuthenticated ? <SignupPage isLoading={isLoading} /> : <ErrorPage />} />
           <Route exact path='/signin' element={!isAuthenticated ? <SigninPage isLoading={isLoading}  /> : <ErrorPage />} />
           <Route exact path='/forgotpassword' element={!isAuthenticated ? <ForgotPassword isLoading={isLoading}  /> : <ErrorPage />} />
           <Route exact path='*' element={<ErrorPage />} />
         </Routes>
+        <Fotter/>
         <ToastContainer position="top-right" />
       </div>
     </AuthContext.Provider>

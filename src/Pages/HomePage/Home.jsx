@@ -4,7 +4,7 @@ function Home() {
 
   return (
     <>
-      <div className="">
+      <div className="mt-20">
         this is home
       </div>
     </>

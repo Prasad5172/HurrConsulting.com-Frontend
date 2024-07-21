@@ -6,13 +6,6 @@ const Navbar = () => {
   const navigate = useNavigate()
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-    let toggle = document.getElementById("menu-toggle");
-    toggle.classList.toggle('menu-toggle-active');
-  }
-
-
   const handleClick = () => {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
@@ -22,11 +15,10 @@ const Navbar = () => {
       link.classList.toggle("fade");
     });
     hamburger.classList.toggle("toggle");
-
   }
 
   return (
-    <nav className='flex justify-between '>
+    <nav className='flex justify-between bg-black'>
       <div className=" flex justify-center items-center ml-4">
         <div class="logo flex items-center">
           <img src="logo192.png" alt="Logo Image" />
@@ -35,12 +27,30 @@ const Navbar = () => {
       </div>
 
       <ul class="nav-links 2xl:mr-10 xl:mr-10 lg:mr-10 md:mr-5 mr-3 2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4 ">
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/")}>Home</p></li>
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/service")}>Service</p></li>
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/about")}>About</p></li>
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/resource")}>Resource</p></li>
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/testimonials")}>Testimonials</p></li>
-        <li className='hover:cursor-pointer'><p onClick={() => navigate("/contact")}>ContactUs</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/")
+          handleClick()
+        }}>Home</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/service")
+          handleClick()
+        }}>Service</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/about")
+          handleClick()
+        }}>About</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/resource")
+          handleClick()
+        }}>Resource</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/testimonials")
+          handleClick()
+        }}>Testimonials</p></li>
+        <li className='hover:cursor-pointer'><p onClick={() => {
+          navigate("/contact")
+          handleClick()
+        }}>ContactUs</p></li>
       </ul>
       <div className="row nav-right-margin 2xl:hidden xl:hidden lg:hidden block ">
         <div className="d-flex">
