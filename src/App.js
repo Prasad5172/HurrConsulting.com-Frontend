@@ -15,6 +15,7 @@ import Testimonials from "./Pages/Testimonials/Testimonials";
 import ContactUsPage from "./Pages/ContactUs/ContactUsPage";
 import About from "./Pages/AboutUs/About"
 import Fotter from "./Components/Fotter/Fotter";
+import AdminPage from "./Pages/Admin/AdminPage";
 
 const App = () => {
   const [isLoading,setIsLoading] = useState(false);
@@ -30,12 +31,13 @@ const App = () => {
           <Navbar/>
         </header>
         <Routes>
-          <Route exact path='/' element={<Home />}/>
+          <Route exact path='/' element={<><Home /></>}/>
           <Route exact path='/service' element={<Service />}/>
           <Route exact path='/about' element={<About />}/>
           <Route exact path='/resource' element={<Resource />}/>
           <Route exact path='/testimonials' element={<Testimonials />}/>
           <Route exact path='/contact' element={<ContactUsPage />}/>
+          <Route exact path='/admin' element={<AdminPage />}/>
 
           <Route exact path='/signup' element={!isAuthenticated ? <SignupPage isLoading={isLoading} /> : <ErrorPage />} />
           <Route exact path='/signin' element={!isAuthenticated ? <SigninPage isLoading={isLoading}  /> : <ErrorPage />} />

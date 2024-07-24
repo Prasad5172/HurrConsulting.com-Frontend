@@ -1,0 +1,9 @@
+/* Ensure the cursor changes to a pointer when hovering over the clock icon in the time input field */
+.time-input {
+    position: relative;
+}
+
+.time-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
