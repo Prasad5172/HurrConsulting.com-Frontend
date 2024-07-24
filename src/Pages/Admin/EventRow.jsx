@@ -4,7 +4,7 @@ import { PulseLoader } from "react-spinners";
 import {toastSuccess,toastFailed }  from "../../Util/ToastFunctions"
 
 
-function EventRow({id, email,  startTime, endTime ,summary,description,attendees }) {
+function EventRow({id, email,  startTime, endTime ,summary,description,attendees,calEventArray,setCalEventsArray }) {
   const [isModifying, setIsModifying] = useState(false);
 
   const [calEvent, setCalEvent] = useState({
@@ -43,13 +43,17 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
   };
 
   const handleReset = () => {
-    console.log("handle reset");
-    setCalEvent({
-      date: startTime.substring(0,10),
-    start_time: startTime.substring(11,16),
-    end_time: endTime.substring(11,16),
-    duration: "",
-    });
+    calEventArray.map((ele) => {
+      if(ele.id == id) {
+        console.log(ele.start.dateTime.substring(0,10));
+        setCalEvent({
+          date: ele.start.dateTime.substring(0,10),
+          start_time: ele.start.dateTime.substring(11,16),
+          end_time: ele.end.dateTime.substring(11,16),
+          duration: "",
+        });
+      }
+    })
   };
   const handleUpdate = async () => {
     setIsModifying(true);
@@ -65,19 +69,34 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
     }else{
       toastFailed("Failed to Delete")
     }
+    calEventArray.map((ele,ind) => {
+      if(ele.id == id) {
+        ele.start = `${calEvent.date}T${calEvent.start_time}:00`;
+        ele.end = `${calEvent.date}T${calEvent.end_time}:00`;
+      }
+    })
     setIsModifying(false);
   };
   const handleDelete = async () => {
     setIsModifying(true);
-    const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`);
-    console.log(res);
-    if(res.status){
-      toastSuccess("Deleted Succesfully")
-    }else{
-      toastFailed("Failed to Delete")
+    try {
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`);
+      if (res.status === 200) {
+        toastSuccess("Deleted Successfully");
+  
+        // Remove the event from the local state in AdminPage
+        setCalEventsArray(calEventArray.filter((ele) => ele.id !== id));
+      } else {
+        toastFailed("Failed to Delete");
+      }
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      toastFailed("Failed to Delete");
+    } finally {
+      setIsModifying(false);
     }
-    setIsModifying(false);
   };
+  
 
   return (
     <>
