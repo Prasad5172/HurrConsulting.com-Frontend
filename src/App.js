@@ -19,7 +19,7 @@ import AdminPage from "./Pages/Admin/AdminPage";
 import { HashLoader } from "react-spinners";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [displayProfile, setDisplayProfile] = useState(false);

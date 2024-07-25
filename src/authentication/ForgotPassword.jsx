@@ -14,7 +14,6 @@ function ForgotPassword({}) {
   const [tokenToResetPassword, setTokenToResetPassword] = useState("");
   const {isAuthenticated,isLoading,setIsLoading,setAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
   const [showOtpPage, setShowOtpPage] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [formdata, setformData] = useState({
@@ -36,13 +35,13 @@ function ForgotPassword({}) {
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     const btn = document.getElementById("verify-otp-btn");
     btn.classList.add("btn-click");
     setTimeout(() => {
       btn.classList.remove("btn-click");
-    }, 300);
-    event.preventDefault();
-    // setIsLoading(true)
+    }, 200);
+    setIsLoading(true)
     try {
       const res = await fetch(
         process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
@@ -57,6 +56,7 @@ function ForgotPassword({}) {
 
       const response = await res.json();
       console.log(response);
+      console.log(res.ok)
       if (res.ok) {
         setShowOtpPage(true);
         toastSuccess(response.message);
@@ -64,20 +64,20 @@ function ForgotPassword({}) {
         signupBtnFailedAnimation();
         toastFailed(response.message);
       }
-      // setIsLoading(false)
     } catch (error) {
-      console.log(error);
       toastFailed(error);
+    }finally{
+      setIsLoading(false)
     }
   };
 
   const signupBtnFailedAnimation = () => {
     const failed = document.getElementById("sign-up-btn");
     setTimeout(() => {
-      failed.classList.add("shake-button");
+      failed?.classList.add("shake-button");
     }, 500);
     setTimeout(() => {
-      failed.classList.remove("shake-button");
+      failed?.classList.remove("shake-button");
     }, 1000);
   };
 
@@ -87,9 +87,10 @@ function ForgotPassword({}) {
     setTimeout(() => {
       btn.classList.remove("btn-click");
     }, 300);
-    // setIsLoading(true)
+    setIsLoading(true)
     console.log(otp);
     if (!otp) {
+      setIsLoading(false)
       return toastFailed("Enter Otp to proceed");
     }
     // console.log(otp)
@@ -119,13 +120,13 @@ function ForgotPassword({}) {
     }
     setOtp("");
     console.log(data);
-    // setIsLoading(false)
+    setIsLoading(false)
   };
 
 
   const handleResendOTP = async (event) => {
     event.preventDefault();
-    // setIsLoading(true)
+    setIsLoading(true)
     try {
       const res = await fetch(
         process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
@@ -148,19 +149,19 @@ function ForgotPassword({}) {
         toastFailed(response.message);
       }
       setOtp("");
-      // setIsLoading(false)
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
     }
   };
   const handleResetPassword = async (event) => {
+    event.preventDefault();
     const btn = document.getElementById("reset-btn");
     btn.classList.add("btn-click");
     setTimeout(() => {
       btn.classList.remove("btn-click");
     }, 300);
-    event.preventDefault();
-    // setIsLoading(true);
+    setIsLoading(true);
     console.log("i am in handle reset password function");
     try {
       const res = await fetch(
@@ -186,7 +187,7 @@ function ForgotPassword({}) {
       }else{
         toastFailed("Password Reset failed")
       }
-      // setIsLoading(false)
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
       toastFailed(error);

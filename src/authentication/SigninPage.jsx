@@ -8,11 +8,21 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { toastFailed, toastSuccess } from "../Util/ToastFunctions";
 import { storeInLocalStorage } from "../Util/LocalStorage";
 import { AuthContext } from "../context/AuthContext";
+import { HashLoader } from "react-spinners";
 
 
-const SinginPage = (props) => {
+const SinginPage = () => {
+  const {
+    setUserName,
+    setDisplayProfile,
+    setAuthenticated,
+    setProfile,
+    setAdmin,
+    isAuthenticated,
+    isLoading,
+    setIsLoading
+  } = useContext(AuthContext);
 
-  const {setUserName,setDisplayProfile,setAuthenticated,setProfile,setAdmin,isAuthenticated} = useContext(AuthContext);
 
   const [signInData, setSignInData] = useState({
     email: "",
@@ -37,6 +47,7 @@ const SinginPage = (props) => {
     setTimeout(() => {
       btn.classList.remove("btn-click");
     }, 300);
+    setIsLoading(true)
     try {
       const res = await fetch(
         process.env.REACT_APP_BACKEND_URL + `/auth/signin`,
@@ -49,13 +60,14 @@ const SinginPage = (props) => {
         }
       );
       var data = await res.json();
+      console.log(data)
       if (res.ok) {
         storeInLocalStorage(data);
         setAuthenticated(true);
-        setUserName(data.name)
+        setUserName(data.name);
         navigate("/");
         toastSuccess(data.message);
-        setAdmin(data.is_admin)
+        setAdmin(data.is_admin);
         // Reset the form input fields by setting signInData to its initial values
         setSignInData({
           email: "",
@@ -68,15 +80,16 @@ const SinginPage = (props) => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false)
   };
 
   const signinBtnFailedAnimation = () => {
     const failed = document.getElementById("sign-in-btn");
     setTimeout(() => {
-      failed.classList.add("shake-button");
+      failed?.classList.add("shake-button");
     }, 500);
     setTimeout(() => {
-      failed.classList.remove("shake-button");
+      failed?.classList.remove("shake-button");
     }, 1000);
   };
 
@@ -107,10 +120,13 @@ const SinginPage = (props) => {
 
   return (
     <>
-      {
-
-      }
-      {!isAuthenticated && (
+      di
+      {isLoading && (
+        <div className="loading-spinner w-screen h-screen flex justify-center items-center">
+          <HashLoader size={50} color={"#123abc"} loading={true} />
+        </div>
+      )}
+      {!isLoading && !isAuthenticated && (
         <>
           <div className="outer-box mt-[100px]" id="signin-page">
             <div className="inner-box mx-auto ">
@@ -205,7 +221,7 @@ const SinginPage = (props) => {
                         setDisplayProfile(true);
                         setAuthenticated(true);
                         setProfile(payload.picture);
-                        setAdmin(data.is_admin)
+                        setAdmin(data.is_admin);
                         window.localStorage.setItem("token", data.data.token);
                         toastSuccess(data.message);
                       } else {
