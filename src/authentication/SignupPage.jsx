@@ -1,7 +1,6 @@
 import React, { useState, useContext, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SigninAndSignup.css"
-// import blackLogo from "../black-logo.jpg"
 import { useGoogleLogin } from "@react-oauth/google";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -235,10 +234,12 @@ const SignupPage = (props) => {
                             value={otp}
                             onChange={setOtp}
                             numInputs={6}
+                            containerStyle={{justifyContent:"center"}}
                             renderInput={(props) => <input
                                                 {...props}
                                                 style={{
                                                   display: "inline-block",
+                                                  
                                                   width: "50px",
                                                   height: "50px",
                                                   textAlign: "center",

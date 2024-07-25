@@ -14,7 +14,6 @@ const SinginPage = (props) => {
 
   const {setUserName,setDisplayProfile,setAuthenticated,setProfile,setAdmin,isAuthenticated} = useContext(AuthContext);
 
-
   const [signInData, setSignInData] = useState({
     email: "",
     password: "",
@@ -108,6 +107,9 @@ const SinginPage = (props) => {
 
   return (
     <>
+      {
+
+      }
       {!isAuthenticated && (
         <>
           <div className="outer-box mt-[100px]" id="signin-page">

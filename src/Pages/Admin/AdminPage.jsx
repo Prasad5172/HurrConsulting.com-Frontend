@@ -9,11 +9,16 @@ import { HashLoader } from "react-spinners";
 function AdminPage() {
   const [calEvents, setCalEvents] = useState([]);
   const [loading, setLoading] = useState(true); // Add a loading state
+  const token = localStorage.getItem('token')
 
   // Function to fetch events from the backend
   const fetchEvents = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/events`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/events`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       console.log(res)
       if (res.data) {
         setCalEvents(res.data); // Store events in state

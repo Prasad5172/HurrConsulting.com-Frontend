@@ -9,7 +9,7 @@ function Service() {
         <div>
           <header
             id="page-header"
-            class="page-header overlay"
+            className="page-header overlay"
             style={{
               background: "url('page-header-bg-services.jpg')",
               backgroundRepeat: "no-repeat",
@@ -17,11 +17,11 @@ function Service() {
               backgroundPosition: "center center",
             }}
           >
-            <div class="container">
-              <div class="section-header">
-                <div class="row">
-                  <div class=" 2xl:max-w-fit xl:max-w-fit lg:max-w-fit md:max-w-fit w-full ">
-                    <p class="page-title 2xl:text-[65px] xl:text-[50px] lg:text-[40px] md:text-[40px] text-[35px]">
+            <div className="container service">
+              <div className="section-header">
+                <div className="row">
+                  <div className=" 2xl:max-w-fit xl:max-w-fit lg:max-w-fit md:max-w-fit w-full ">
+                    <p className="page-title 2xl:text-[65px] xl:text-[50px] lg:text-[40px] md:text-[40px] text-[35px]">
                       Our <span>Quality</span> Services{" "}
                     </p>
                   </div>

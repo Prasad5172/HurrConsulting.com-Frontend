@@ -50,7 +50,7 @@ function ContactUsPage() {
   }, []);
   return (
     <>
-      <section class="mt-[72px] bg-white  ">
+      <section className="mt-[72px] bg-white  ">
         <ContactForm/>
       </section>
     </>

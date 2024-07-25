@@ -46,7 +46,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet
@@ -66,7 +66,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet
@@ -86,7 +86,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet
@@ -106,7 +106,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet
@@ -126,7 +126,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet
@@ -146,7 +146,7 @@ export default function SimpleSlider({slidesToShow,at1250 }) {
           <div className=" rounded-sm">
             <h3 className=" text-center">
               <div id="content">
-                <div class="testimonial">
+                <div className="testimonial">
                   <blockquote>
                     Vivamus sagittis lacus vel augue laoreet rutrum faucibus
                     dolor auctor. Vivamus sagittis lacus vel augue laoreet

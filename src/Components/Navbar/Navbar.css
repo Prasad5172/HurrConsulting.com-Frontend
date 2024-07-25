@@ -163,7 +163,7 @@ nav h1 {
         display: block;
         
     }
-    .row {
+    nav .row {
         width: 50% !important;
     }
 

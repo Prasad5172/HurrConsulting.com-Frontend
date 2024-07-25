@@ -4,19 +4,17 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 // import blackLogo from "../black-logo.jpg"
 import "./SigninAndSignup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faL } from "@fortawesome/free-solid-svg-icons";
 import { toastFailed, toastSuccess } from "../Util/ToastFunctions";
 import OtpInput from "react-otp-input";
 import { AuthContext } from "../context/AuthContext";
+import { HashLoader } from "react-spinners";
 
-function ForgotPassword(props) {
+function ForgotPassword({}) {
   const [tokenToResetPassword, setTokenToResetPassword] = useState("");
-  const {setUserName,setDisplayProfile,setAuthenticated,setProfile,setAdmin,isAuthenticated} = useContext(AuthContext);
-
-
+  const {isAuthenticated,isLoading,setIsLoading,setAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  // const { userName, setUserName, displayProfile, setDisplayProfile, profile, setProfile, isAuthenticated, setAuthenticated, IsLoginSuccesful, setIsLoginSuccesful } = useContext(SigninContext)
   const [showOtpPage, setShowOtpPage] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [formdata, setformData] = useState({
@@ -44,6 +42,7 @@ function ForgotPassword(props) {
       btn.classList.remove("btn-click");
     }, 300);
     event.preventDefault();
+    // setIsLoading(true)
     try {
       const res = await fetch(
         process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
@@ -65,6 +64,7 @@ function ForgotPassword(props) {
         signupBtnFailedAnimation();
         toastFailed(response.message);
       }
+      // setIsLoading(false)
     } catch (error) {
       console.log(error);
       toastFailed(error);
@@ -87,6 +87,7 @@ function ForgotPassword(props) {
     setTimeout(() => {
       btn.classList.remove("btn-click");
     }, 300);
+    // setIsLoading(true)
     console.log(otp);
     if (!otp) {
       return toastFailed("Enter Otp to proceed");
@@ -103,11 +104,10 @@ function ForgotPassword(props) {
       }
     );
     const data = await res.json();
+    console.log(data)
     if (res.ok) {
-      navigate("/");
-      props.setAuthenticated(true);
-      window.localStorage.setItem("token", data.data.token);
       setIsOtpVerified(true);
+      setTokenToResetPassword(data.data.token)
       toastSuccess(data.message);
     } else {
       toastFailed(data.message);
@@ -119,11 +119,13 @@ function ForgotPassword(props) {
     }
     setOtp("");
     console.log(data);
+    // setIsLoading(false)
   };
 
 
   const handleResendOTP = async (event) => {
     event.preventDefault();
+    // setIsLoading(true)
     try {
       const res = await fetch(
         process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
@@ -146,6 +148,7 @@ function ForgotPassword(props) {
         toastFailed(response.message);
       }
       setOtp("");
+      // setIsLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -157,6 +160,7 @@ function ForgotPassword(props) {
       btn.classList.remove("btn-click");
     }, 300);
     event.preventDefault();
+    // setIsLoading(true);
     console.log("i am in handle reset password function");
     try {
       const res = await fetch(
@@ -173,15 +177,16 @@ function ForgotPassword(props) {
       // console.log(await res.json())
       const data = await res.json();
       console.log(data);
-      if (res.ok) {
+      if (data == "succesful") {
         setIsOtpVerified(false);
         setShowOtpPage(false);
+        toastSuccess("Password Reset Succesful")
         navigate("/signin");
-        setTimeout(() => {
-          props.setIsPasswordResetSuccesful("");
-        }, 5000);
         toastSuccess(data.message);
+      }else{
+        toastFailed("Password Reset failed")
       }
+      // setIsLoading(false)
     } catch (error) {
       console.log(error);
       toastFailed(error);
@@ -215,10 +220,16 @@ function ForgotPassword(props) {
     const changeEvent = new Event("input", { bubbles: true });
     input.dispatchEvent(changeEvent);
   };
+  
 
   return (
     <>
-      {!isAuthenticated && (
+      {isLoading && (
+        <div className="loading-spinner w-screen h-screen flex justify-center items-center">
+          <HashLoader size={50} color={"#123abc"} loading={true} />
+        </div>
+      )}
+      {!isLoading && !isAuthenticated && (
         <>
           <div className="outer-box mt-[100px] mb-5" >
             <div className="inner-box mx-auto my-auto">
@@ -231,7 +242,7 @@ function ForgotPassword(props) {
                     <main className="signup-body mt-10">
                       <form onSubmit={handleResetPassword} className="form">
                         <p className="my-2.5">
-                          <label for="fname" className="text-black block text-2xl">
+                          <label htmlFor="fname" className="text-black block text-2xl">
                             New Password
                           </label>
                           <div>
@@ -260,7 +271,7 @@ function ForgotPassword(props) {
                           </div>
                         </p>
                         <p>
-                          <label for="fname" className="text-black">
+                          <label htmlFor="fname" className="text-black">
                             Check Password
                           </label>
                           <div>
@@ -323,6 +334,7 @@ function ForgotPassword(props) {
                                 value={otp}
                                 onChange={setOtp}
                                 numInputs={6}
+                                containerStyle={{justifyContent:"center"}}
                                 renderInput={(props) => (
                                   <input
                                     {...props}
@@ -383,7 +395,7 @@ function ForgotPassword(props) {
                     </h6>
                     <div className="form-group">
                       <form className="form" onSubmit={handleSubmit}>
-                        <label for="fname" className="text-black">
+                        <label htmlFor="fname" className="text-black">
                           Enter Your Email
                         </label>
                         <input

@@ -6,7 +6,7 @@ import {toastSuccess,toastFailed }  from "../../Util/ToastFunctions"
 
 function EventRow({id, email,  startTime, endTime ,summary,description,attendees,calEventArray,setCalEventsArray }) {
   const [isModifying, setIsModifying] = useState(false);
-
+  const token = localStorage.getItem("token")
   const [calEvent, setCalEvent] = useState({
     date: startTime.substring(0,10),
     start_time: startTime.substring(11,16),
@@ -57,13 +57,21 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
   };
   const handleUpdate = async () => {
     setIsModifying(true);
-    const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`,{
+    const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`,
+      {
       summary:summary,
       description:description,
       start :`${calEvent.date}T${calEvent.start_time}:00`,
       end :`${calEvent.date}T${calEvent.end_time}:00`,
       attendees:attendees
-    });
+    }, 
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  );
     if(res.status){
       toastSuccess("Updated Succesfully")
     }else{
@@ -80,7 +88,11 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
   const handleDelete = async () => {
     setIsModifying(true);
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (res.status === 200) {
         toastSuccess("Deleted Successfully");
   

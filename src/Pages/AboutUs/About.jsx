@@ -105,32 +105,32 @@ function About() {
                 <div className="">
                   <p className="font-bold text-center mb-10">Our Values:</p>
                   <ul>
-                    <li class="card"  style={{color:"#ececec",backgroundColor:"#e98b43"}}>
-                      <div class="icon"><img  className="rounded-lg w-[100px]" src="integrity.jpg" alt="Integrity" /></div>
+                    <li className="card"  style={{color:"#ececec",backgroundColor:"#e98b43"}}>
+                      <div className="icon"><img  className="rounded-lg w-[100px]" src="integrity.jpg" alt="Integrity" /></div>
                       <div>
-                        <div class="social-title max-w-[700px]">Integrity</div>
-                        <div class="content">We uphold the highest ethical standards in all our interactions.</div>
+                        <div className="social-title max-w-[700px]">Integrity</div>
+                        <div className="content">We uphold the highest ethical standards in all our interactions.</div>
                       </div>
                     </li>
-                    <li class="card" style={{color:"#ececec",backgroundColor:"#C23D2A"}}>
-                      <div class="icon"><img className="rounded-lg w-[100px]" src="excellence.jpg" alt="Excellence" /></div>
+                    <li className="card" style={{color:"#ececec",backgroundColor:"#C23D2A"}}>
+                      <div className="icon"><img className="rounded-lg w-[100px]" src="excellence.jpg" alt="Excellence" /></div>
                       <div>
-                        <div class="social-title">Excellence</div>
-                        <div class="content">We strive for exceptional quality in our services and advice.</div>
+                        <div className="social-title">Excellence</div>
+                        <div className="content">We strive for exceptional quality in our services and advice.</div>
                       </div>
                     </li>
-                    <li class="card" style={{color:"#ececec",backgroundColor:"#842C2A"}}>
-                      <div class="icon"><img className="rounded-lg w-[100px]" src="innovation.jpg" alt="Innovation" /></div>
+                    <li className="card" style={{color:"#ececec",backgroundColor:"#842C2A"}}>
+                      <div className="icon"><img className="rounded-lg w-[100px]" src="innovation.jpg" alt="Innovation" /></div>
                       <div>
-                        <div class="social-title">Innovation</div>
-                        <div class="content">We leverage the latest legal developments and technology to provide cutting-edge solutions.</div>
+                        <div className="social-title">Innovation</div>
+                        <div className="content">We leverage the latest legal developments and technology to provide cutting-edge solutions.</div>
                       </div>
                     </li>
-                    <li class="card" style={{color:"#ececec",backgroundColor:"#022F46"}}>
-                      <div class="icon"><img className="rounded-lg w-[100px]" src="empathy.jpg" alt="Empathy" /></div>
+                    <li className="card" style={{color:"#ececec",backgroundColor:"#022F46"}}>
+                      <div className="icon"><img className="rounded-lg w-[100px]" src="empathy.jpg" alt="Empathy" /></div>
                       <div>
-                        <div class="social-title">Empathy</div>
-                        <div class="content"> We listen actively and respond with care andunderstanding.</div>
+                        <div className="social-title">Empathy</div>
+                        <div className="content"> We listen actively and respond with care andunderstanding.</div>
                       </div>
                     </li>
                     
