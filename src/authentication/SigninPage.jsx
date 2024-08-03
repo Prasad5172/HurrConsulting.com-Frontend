@@ -47,41 +47,47 @@ const SinginPage = () => {
     setTimeout(() => {
       btn.classList.remove("btn-click");
     }, 300);
-    setIsLoading(true)
+  
+    setIsLoading(true);
     try {
-      const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/auth/signin`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(signInData),
-        }
-      );
-      var data = await res.json();
-      console.log(data)
-      if (res.ok) {
-        storeInLocalStorage(data);
-        setAuthenticated(true);
-        setUserName(data.name);
-        navigate("/");
-        toastSuccess(data.message);
-        setAdmin(data.is_admin);
-        // Reset the form input fields by setting signInData to its initial values
-        setSignInData({
-          email: "",
-          password: "",
-        });
-      } else {
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + `/auth/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signInData),
+      });
+  
+      if (!res.ok) {
+        // If response is not OK, handle it as a failure
+        const data = await res.json();
         signinBtnFailedAnimation();
         toastFailed(data.message);
+        return; // Early exit to prevent setting loading state to false
       }
+  
+      const data = await res.json();
+      storeInLocalStorage(data);
+      setAuthenticated(true);
+      setUserName(data.name);
+      navigate("/");
+      toastSuccess(data.message);
+      setAdmin(data.is_admin);
+  
+      // Reset the form input fields
+      setSignInData({
+        email: "",
+        password: "",
+      });
     } catch (error) {
       console.log(error);
+      signinBtnFailedAnimation();
+      toastFailed("Failed to connect to the server. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false)
   };
+  
 
   const signinBtnFailedAnimation = () => {
     const failed = document.getElementById("sign-in-btn");
@@ -122,7 +128,7 @@ const SinginPage = () => {
     <>
       { !isAuthenticated && (
         <>
-          <div className="outer-box mt-[100px]" id="signin-page">
+          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" id="signin-page">
             <div className="inner-box mx-auto ">
               <header className="signup-header">
                 <h1>Signin</h1>

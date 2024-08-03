@@ -18,6 +18,7 @@ import Fotter from "./Components/Fotter/Fotter";
 import AdminPage from "./Pages/Admin/AdminPage";
 import { HashLoader } from "react-spinners";
 import { toastFailed } from "./Util/ToastFunctions";
+import "./App.css"
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);

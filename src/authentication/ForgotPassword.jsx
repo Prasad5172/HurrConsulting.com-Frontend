@@ -10,9 +10,9 @@ import OtpInput from "react-otp-input";
 import { AuthContext } from "../context/AuthContext";
 import { HashLoader } from "react-spinners";
 
-function ForgotPassword({}) {
+function ForgotPassword() {
   const [tokenToResetPassword, setTokenToResetPassword] = useState("");
-  const {isAuthenticated,isLoading,setIsLoading,setAuthenticated} = useContext(AuthContext);
+  const {isAuthenticated,setIsLoading} = useContext(AuthContext);
   const navigate = useNavigate();
   const [showOtpPage, setShowOtpPage] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
@@ -61,18 +61,20 @@ function ForgotPassword({}) {
         setShowOtpPage(true);
         toastSuccess(response.message);
       } else {
-        signupBtnFailedAnimation();
+        btnFailedAnimation("verify-otp-btn");
         toastFailed(response.message);
       }
     } catch (error) {
-      toastFailed(error);
+      toastFailed(error.message);
+      btnFailedAnimation("verify-otp-btn");
+
     }finally{
       setIsLoading(false)
     }
   };
 
-  const signupBtnFailedAnimation = () => {
-    const failed = document.getElementById("sign-up-btn");
+  const btnFailedAnimation = (id) => {
+    const failed = document.getElementById(id);
     setTimeout(() => {
       failed?.classList.add("shake-button");
     }, 500);
@@ -91,35 +93,37 @@ function ForgotPassword({}) {
     console.log(otp);
     if (!otp) {
       setIsLoading(false)
-      return toastFailed("Enter Otp to proceed");
+      toastFailed("Enter Otp to proceed");
+      btnFailedAnimation("verify-otp-btn");
+      return 
     }
-    // console.log(otp)
-    const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + `/auth/verifyOtp`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formdata, otp: otp }),
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BACKEND_URL + `/auth/verifyOtp`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...formdata, otp: otp }),
+        }
+      );
+      const data = await res.json();
+      console.log(data)
+      if (res.ok) {
+        setIsOtpVerified(true);
+        setTokenToResetPassword(data.data.token)
+        toastSuccess(data.message);
+      } else {
+        toastFailed(data.message);
+        btnFailedAnimation("verify-otp-btn");
       }
-    );
-    const data = await res.json();
-    console.log(data)
-    if (res.ok) {
-      setIsOtpVerified(true);
-      setTokenToResetPassword(data.data.token)
-      toastSuccess(data.message);
-    } else {
-      toastFailed(data.message);
-      const failed = document.getElementById("verify-otp-btn");
-      failed.classList.add("shake-button");
-      setTimeout(() => {
-        failed.classList.remove("shake-button");
-      }, 1000);
+    } catch (error) {
+      console.log(error);
+      toastFailed(error.message);
+      btnFailedAnimation("verify-otp-btn")
     }
     setOtp("");
-    console.log(data);
     setIsLoading(false)
   };
 
@@ -145,14 +149,17 @@ function ForgotPassword({}) {
         setShowOtpPage(true);
         toastSuccess(response.message);
       } else {
-        signupBtnFailedAnimation();
+        btnFailedAnimation("verify-otp-btn");
         toastFailed(response.message);
       }
-      setOtp("");
-      setIsLoading(false)
+      
     } catch (error) {
       console.log(error);
+      toastFailed(error.message)
+      btnFailedAnimation("verify-otp-btn")
     }
+    setOtp("");
+      setIsLoading(false)
   };
   const handleResetPassword = async (event) => {
     event.preventDefault();
@@ -186,10 +193,12 @@ function ForgotPassword({}) {
         toastSuccess(data.message);
       }else{
         toastFailed("Password Reset failed")
+        btnFailedAnimation("reset-btn");
       }
       setIsLoading(false)
     } catch (error) {
       console.log(error);
+      btnFailedAnimation("reset-btn");
       toastFailed(error);
     }
   };
@@ -200,7 +209,6 @@ function ForgotPassword({}) {
     event.preventDefault();
     const { name, value } = event.target;
     const pastedText = event.clipboardData.getData("text/plain");
-
     const input = event.target;
     const inputType = input.type; // Store the original input type
     input.type = "text"; // Temporarily change input type to "text"
@@ -227,7 +235,7 @@ function ForgotPassword({}) {
     <>
       {!isAuthenticated && (
         <>
-          <div className="outer-box mt-[100px] mb-5" >
+          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" >
             <div className="inner-box mx-auto my-auto">
               {showOtpPage ? (
                 isOtpVerified ? (
@@ -368,6 +376,7 @@ function ForgotPassword({}) {
                                   Didn't receive OTP?{" "}
                                   <a
                                     href="#"
+
                                     onClick={handleResendOTP}
                                     className="marginDown"
                                   >

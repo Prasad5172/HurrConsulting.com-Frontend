@@ -258,6 +258,13 @@ nav h1 {
         -webkit-clip-path: circle(880px at 150% 6%);
         pointer-events: all;
     }
+    
+}
+
+@media(max-width:640px) {
+    nav {
+        height: 60px;
+    }
 }
 
 /*Animating Hamburger Icon on Click*/

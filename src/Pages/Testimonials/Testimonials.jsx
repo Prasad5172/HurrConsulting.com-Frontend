@@ -3,7 +3,7 @@ import "./Testimonials.css"
 function Testimonials() {
   return (
     <>
-    <div className="mt-[72px]">
+    <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
       <div className="outerdiv">
     <div className="innerdiv">
       {/* <!-- div1 --> */}

@@ -76,6 +76,8 @@ const SignupPage = () => {
       }
     } catch (error) {
       console.log(error);
+      signupBtnFailedAnimation();
+      toastFailed(error.message);
     }
     setIsLoading(false)
   };
@@ -92,9 +94,6 @@ const SignupPage = () => {
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
-      console.log(response);
-      console.log(response.access_token);
-      console.log(process.env.REACT_APP_BACKEND_URL);
       setIsLoading(true)
       try {
         const res = await fetch(
@@ -122,6 +121,8 @@ const SignupPage = () => {
         }
       } catch (err) {
         console.log(err);
+        signupBtnFailedAnimation();
+        toastFailed(err.message);
       }
       setIsLoading(false)
     },
@@ -139,37 +140,43 @@ const SignupPage = () => {
       return toastFailed("Enter Otp to proceed");
     }
     console.log(otp);
-    const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + `/auth/verifyOtp`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formdata, otp: otp }),
+    try {
+      
+      const res = await fetch(
+        process.env.REACT_APP_BACKEND_URL + `/auth/verifyOtp`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...formdata, otp: otp }),
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        storeInLocalStorage(data);
+        setAuthenticated(true);
+        navigate("/");
+        setAdmin(data.is_admin);
+        setformData({
+          email: "",
+          password: "",
+          confirmpassword: "",
+        });
+        setShowOtpPage(false);
+        toastSuccess(data.message);
+      } else {
+        toastFailed(data.message);
+        const failed = document.getElementById("verify-otp-btn");
+        failed.classList.add("shake-button");
+        setTimeout(() => {
+          failed.classList.remove("shake-button");
+        }, 1000);
       }
-    );
-    const data = await res.json();
-    console.log(data);
-    if (res.ok) {
-      storeInLocalStorage(data);
-      setAuthenticated(true);
-      navigate("/");
-      setAdmin(data.is_admin);
-      setformData({
-        email: "",
-        password: "",
-        confirmpassword: "",
-      });
-      setShowOtpPage(false);
-      toastSuccess(data.message);
-    } else {
-      toastFailed(data.message);
-      const failed = document.getElementById("verify-otp-btn");
-      failed.classList.add("shake-button");
-      setTimeout(() => {
-        failed.classList.remove("shake-button");
-      }, 1000);
+    } catch (error) {
+      console.log(error);
+      signupBtnFailedAnimation();
+      toastFailed(error.message);
     }
     setOtp("");
     setIsLoading(false)
@@ -202,6 +209,8 @@ const SignupPage = () => {
       setOtp("");
     } catch (error) {
       console.log(error);
+      signupBtnFailedAnimation();
+      toastFailed(error.message);
     }
     setIsLoading(false)
   };
@@ -236,7 +245,7 @@ const SignupPage = () => {
 
   return (
     <>
-        <div className="outer-box mt-[100px] mb-5" id="signup-page">
+        <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
               <>

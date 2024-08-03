@@ -17,7 +17,7 @@
 }
 .home ul li.card {
     position: relative;
-    padding: 1.5rem;
+    padding: 1.5rem 0.9rem 1.5rem 1.5rem;
     background-color: var(--bg-color);
     background-image: linear-gradient(to right, rgb(0 0 0 / .15), transparent);
     transform-style: preserve-3d;
@@ -27,7 +27,7 @@
     gap: 0;
 }
 .home ul li.card::before, .home ul li.card::after {
-    --side-rotate: 60deg;
+    --side-rotate: 76deg;
     content: "";
     position: absolute;
     top: 0;
@@ -55,7 +55,7 @@
     margin-bottom: 0.5rem;
 }
 .home ul li.card .content {
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .home-section {
@@ -76,8 +76,6 @@
     font-family: "Raleway", sans-serif;
     font-size: 2em;
     font-weight: 900;
-    letter-spacing: 1em;
-  
     -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
       0px 0px 0.5em 0px var(--glow-color);
     -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
@@ -264,7 +262,7 @@
 
 @media only screen and (max-width: 600px) {
     .glowing-btn {
-        font-size: 1em;
+        font-size: 1.5em;
     }
 }
 .arrow:hover .arrow-icon {

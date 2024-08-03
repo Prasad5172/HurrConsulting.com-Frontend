@@ -37,12 +37,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between bg-black">
+    <nav className="flex justify-between bg-transparent">
       <div className=" flex justify-center items-center ml-4">
         <div className="logo flex items-center">
           <img src="logo192.png" alt="Logo Image" />
         </div>
-        <h3 className="ml-4">Jinko Inu</h3>
+        <h3 className="2xl:ml-4 xl:ml-4 lg:ml-4 md:ml-4 ml-2">Hurr Consulting</h3>
       </div>
       <ul className="nav-links  2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4  mr-4">
         <li className="hover:cursor-pointer">

@@ -37,3 +37,12 @@
   }
 }
 
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+      width: 80vw;
+      padding: 0;
+      margin: 0;
+      left: inherit !important;
+  }
+}
