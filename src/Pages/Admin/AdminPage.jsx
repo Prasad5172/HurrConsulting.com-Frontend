@@ -31,7 +31,6 @@ function AdminPage() {
   };
   useEffect(() => {
     fetchEvents(); // Call fetchEvents only once when the component mounts
-    console.log(calEvents.length)
   }, []); // Empty dependency array to ensure it runs only on mount
 
   // Render loading message while data is being fetched

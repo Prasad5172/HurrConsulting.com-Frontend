@@ -15,21 +15,6 @@ nav {
 
 }
 
-/* nav {
-    height: 72px;
-    background: hsla(0, 0%, 100%, .005);
-    backdrop-filter: blur(8px);
-    display: flex;
-    position: fixed;
-    z-index: 10;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-} */
-
-
 
 nav h1 {
     margin-bottom: 0px;
@@ -50,6 +35,8 @@ nav h1 {
     width: 48px;
 }
 
+
+
 /*Styling Links*/
 .nav-links {
     display: flex;
@@ -61,35 +48,39 @@ nav h1 {
     margin-bottom: 0px;
 }
 
-.nav-links li p {
-    text-decoration: none;
-    margin: 0 0.7vw;
-    color: white;
-}
-
-.nav-links li p:hover {
-    color: #909195;
-}
-
 .nav-links li {
-    position: relative;
+    position: relative; /* Ensure li is positioned relative to contain ::before */
+}
+
+.nav-links li p {
+    position: relative; /* Ensure p is positioned relative to contain ::before */
+    text-decoration: none; /* Remove default underline for links */
+    margin: 0 0.7vw; /* Adjust spacing as needed */
+    color: white; /* Text color */
+    user-select: none; /* Prevent text selection */
+    padding-bottom: 5px; /* Add padding to make space for underline */
 }
 
 .nav-links li p::before {
-    top: 25px;
     content: "";
     display: block;
     height: 2.5px;
-    width: 0%;
-    background-color: #eedfdf;
+    width: 0%; /* Initial width of the underline */
+    background-color: #eedfdf; /* Color of the underline */
     position: absolute;
-    transition: all ease-in-out 300ms;
-    /* margin: 0 0 0 10%; */
+    bottom: 0; /* Position the underline at the bottom of p */
+    left: 0; /* Align underline from the left */
+    transition: all ease-in-out 300ms; /* Smooth transition for width change */
+}
+
+.nav-links li p:hover {
+    color: #909195; /* Change text color on hover */
 }
 
 .nav-links li p:hover::before {
-    width: 80%;
+    width: 100%; /* Expand underline width on hover */
 }
+
 
 /*Styling Buttons*/
 .nav-right-margin {

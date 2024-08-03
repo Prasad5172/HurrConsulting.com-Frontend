@@ -17,9 +17,10 @@ import About from "./Pages/AboutUs/About";
 import Fotter from "./Components/Fotter/Fotter";
 import AdminPage from "./Pages/Admin/AdminPage";
 import { HashLoader } from "react-spinners";
+import { toastFailed } from "./Util/ToastFunctions";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [displayProfile, setDisplayProfile] = useState(false);
@@ -31,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      // console.log("token",token)
+      setIsLoading(true)
       if (token) {
         try {
           const res = await fetch(
@@ -45,7 +46,6 @@ const App = () => {
             }
           );
           const data = await res.json();
-          console.log(data);
           const user = data.data;
           // console.log(user)
           if (data.message === "succesful") {
@@ -57,15 +57,15 @@ const App = () => {
             setProfile(user.image_url);
             setAuthenticated(true);
             setAdmin(user.is_admin);
-            setIsLoading(false);
           }
         } catch (error) {
           console.log(error);
+          toastFailed(error.message);
         }
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
-    setIsLoading(false);
+    
     checkAuthentication();
   }, []);
 
@@ -129,6 +129,11 @@ const App = () => {
         </Routes>
         <Fotter />
         <ToastContainer position="top-right" />
+        {isLoading && (
+          <div className="loading-spinner fixed top-0 left-0 w-screen h-screen flex justify-center items-center z-50">
+            <HashLoader size={50} color={"#123abc"} loading={true} />
+          </div>
+        )}
       </div>
     </AuthContext.Provider>
   );

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -33,4 +35,8 @@ code {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2), 
                 -3px 3px 5px rgba(0, 0, 0, 0.2),
                 0px -3px 5px rgba(255, 255, 255, 1); /* This cancels out the top shadow */
+}
+
+.loading-spinner{
+  background-color: rgba(255,255,255,0.7);
 }

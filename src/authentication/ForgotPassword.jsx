@@ -225,12 +225,7 @@ function ForgotPassword({}) {
 
   return (
     <>
-      {isLoading && (
-        <div className="loading-spinner w-screen h-screen flex justify-center items-center">
-          <HashLoader size={50} color={"#123abc"} loading={true} />
-        </div>
-      )}
-      {!isLoading && !isAuthenticated && (
+      {!isAuthenticated && (
         <>
           <div className="outer-box mt-[100px] mb-5" >
             <div className="inner-box mx-auto my-auto">

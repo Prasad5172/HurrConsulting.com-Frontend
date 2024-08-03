@@ -236,12 +236,6 @@ const SignupPage = () => {
 
   return (
     <>
-      {isLoading && (
-        <div className="loading-spinner w-screen h-screen flex justify-center items-center">
-          <HashLoader size={50} color={"#123abc"} loading={true} />
-        </div>
-      )}
-      {!isLoading && (
         <div className="outer-box mt-[100px] mb-5" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
@@ -428,7 +422,6 @@ const SignupPage = () => {
             )}
           </div>
         </div>
-      )}
     </>
   );
 };
