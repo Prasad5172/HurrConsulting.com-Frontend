@@ -70,64 +70,35 @@
     backdrop-filter: blur(5px);
     border-radius: 8px;
 }
-
-.field {
-    color: #000000;
+.signup-body input{
+    border: 1px solid #555;
 }
 
-.forgotpassword {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 20px;
-    font-size: 20px;
-    
-}
-.forgotpassword a,.signup-footer a{
-    color: #0091ff;
-    text-decoration: none;
-}
-.forgotpassword a:hover, .signup-footer a:hover{
-    color: #0091ff;
-    text-decoration: underline;
-}
+
+
+
 
 .signup-header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
+    font-weight: 600;
     color: #000000;
 
 }
 
-.signup-header p {
-    font-size: 1rem;
-    color: #000000;
-}
 
 .signup-body {
     margin: 40px 0 0 0;
 
 }
 
-.signup-body p {
-    margin: 10px 0 10px 0
-}
+
 
 .h-90{
     height: 90%;
 }
 
-.signup-body p label {
-    font-weight: bold;
-    font-size: 1.5rem;
-    display: block;
-}
 
-.signup-body p input {
-    width: 94%;
-    border: 2px solid rgb(164, 164, 164);
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-}
+
 
 .create-account {
     color: #ffffff;
@@ -182,6 +153,7 @@
     transition: transform 0.2s ease-in-out;
     transition: all .3s ease;
     width: 95%;
+    height: 55px !important;
 }
 
 .outer-box #sign-up-btn:hover {
@@ -196,8 +168,8 @@
     transition: all .3s ease;
     width: 95%;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
+    padding: 7px;
+    font-size: 1.2rem;
     color: #ffffff;
     font-weight: 700;
     height: 50px;
@@ -241,20 +213,17 @@
 }
 
 .signup-footer {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
-.signup-footer p {
-    text-align: center;
-    color: #000000;
-    font-size: 1.2rem;
-
+.signup-footer p a{
+    color: #0091ff;
+}
+.signup-footer p a:hover{
+    text-decoration: underline;
 }
 
-.signup-footer p a {
-    color: #0091ff  ;
 
-}
 
 .message-box {
     margin-top: 10px;
@@ -269,11 +238,11 @@
 }
 
 #signup-page .signup-body {
-    margin: 20px 0 0 0;
+    margin: 0 0 0 0;
 }
 
 #signup-page .signup-body p {
-    margin: 12px 0;
+    margin: 5px 0;
 }
 
 /* verify otp styling */
@@ -309,8 +278,7 @@ form .otp {
 }
 
 form input {
-    
-    height: 50px;
+    height: 45px;
 }
 
 /* forgot password page */
@@ -344,8 +312,6 @@ form input {
 .row .form-group input {
     display: block;
     width: 100%;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
     /* border: none; */
     border: 1px solid #555;
     padding: 1em 0.5em;
@@ -369,36 +335,20 @@ form input {
     margin-top: 1em;
 }
 
-.row .footer p {
-    margin-top: 1em;
-}
-.row .footer a {
-    text-decoration: underline;
-}
-.information-text{
-    margin-bottom:20px ;
-    font-size: 1em;
-}
+
+
+
 @media screen and (max-width: 700px) {
     .inner-box{
         width: 450px !important;
     }
     .signup-header h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .signup-body {
         margin: 20px 0 0 0;
     }
-    .signup-body p label {
-        font-size: 1.3rem;
-    }
-    .signup-body p input {
-        width: 94%;
-        border: 2px solid rgb(164, 164, 164);
-        border-radius: 5px;
-        padding: 6px;
-        font-size: 1rem;
-    }
+
     .back-arrow-in-login {
         transform: scale(1.3);
         margin-left: 22px;
@@ -424,16 +374,6 @@ form input {
     .signup-body {
         margin: 15px 0 0 0;
     }
-    .signup-body p label {
-        font-size: 1rem;
-    }
-    .signup-body p input {
-        width: 90%;
-        border: 2px solid rgb(164, 164, 164);
-        border-radius: 5px;
-        padding: 6px;
-        font-size: 1rem;
-    }
     .forgotpassword {
        
         font-size: 16px;
@@ -448,10 +388,7 @@ form input {
     .spotify-name-in-loginpage {
         font-size: 1.5rem;
     }
-    .signup-footer p {
-        
-        font-size: 1rem;
-    }
+    
     form input {
         height: 43px;
     }
@@ -462,7 +399,7 @@ form input {
         font-size: 2.0em;
     }
     .row .form-group input {
-        font-size: 0.5em;
+        font-size: 1.1em;
     }
 }
 
@@ -483,16 +420,7 @@ form input {
     .signup-body {
         margin: 15px 0 0 0;
     }
-    .signup-body p label {
-        font-size: 1rem;
-    }
-    .signup-body p input {
-        width: 90%;
-        border: 2px solid rgb(164, 164, 164);
-        border-radius: 5px;
-        padding: 6px;
-        font-size: 0.8rem;
-    }
+  
     .forgotpassword {
        
         font-size: 16px;
@@ -507,10 +435,7 @@ form input {
     .spotify-name-in-loginpage {
         font-size: 1.5rem;
     }
-    .signup-footer p {
-        
-        font-size: 1rem;
-    }
+    
     form input {
         height: 43px;
     }

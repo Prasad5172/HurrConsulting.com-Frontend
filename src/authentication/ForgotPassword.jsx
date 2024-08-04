@@ -8,7 +8,6 @@ import { faEye, faEyeSlash, faL } from "@fortawesome/free-solid-svg-icons";
 import { toastFailed, toastSuccess } from "../Util/ToastFunctions";
 import OtpInput from "react-otp-input";
 import { AuthContext } from "../context/AuthContext";
-import { HashLoader } from "react-spinners";
 
 function ForgotPassword() {
   const [tokenToResetPassword, setTokenToResetPassword] = useState("");
@@ -235,24 +234,24 @@ function ForgotPassword() {
     <>
       {!isAuthenticated && (
         <>
-          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" >
+          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] h-screen flex justify-center items-center" >
             <div className="inner-box mx-auto my-auto">
               {showOtpPage ? (
                 isOtpVerified ? (
                   <>
                     <header>
-                      <h1 className="lg:text-3xl text-black  text-2xl">Reset Password</h1>
+                      <h1 className="lg:text-3xl text-black  text-[25px] text-center pt-3">Reset Password</h1>
                     </header>
                     <main className="signup-body mt-10">
                       <form onSubmit={handleResetPassword} className="form">
                         <p className="my-2.5">
-                          <label htmlFor="fname" className="text-black block text-2xl">
+                          <label htmlFor="fname" className="text-black block text-[19px] font-bold ">
                             New Password
                           </label>
                           <div>
                             <input
                               type={`${showPassword1 ? "text" : "password"}`}
-                              className="w-11/12 rounded-t p-2.5 border-2 border-solid border-slate-400 text-2xl text-black"
+                              className="w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
                               name="password"
                               value={formdata.password}
                               onChange={InputEvent}
@@ -275,13 +274,13 @@ function ForgotPassword() {
                           </div>
                         </p>
                         <p>
-                          <label htmlFor="fname" className="text-black">
+                          <label htmlFor="fname" className="text-black block text-[19px] font-bold ">
                             Check Password
                           </label>
                           <div>
                             <input
                               type={`${showPassword2 ? "text" : "password"}`}
-                              className="w-11/12 rounded-t p-2.5 border-2 border-solid border-slate-400 text-2xl text-black"
+                              className="w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
                               name="confirmpassword"
                               value={formdata.confirmpassword}
                               onChange={InputEvent}
@@ -311,7 +310,7 @@ function ForgotPassword() {
                             type="submit"
                             id="reset-btn"
                             value="Reset Password"
-                            className="w-11/12 rounded-t p-2.5 border-2 border-solid border-slate-400 text-2xl text-black create-account"
+                            className="w-11/12  p-2 border-2 border-solid border-slate-400 text-[19px] text-black create-account"
                           />
                         </p>
                       </form>
@@ -324,14 +323,8 @@ function ForgotPassword() {
                         <div className="col-md-4 text-center">
                           <div className="row">
                             <div className="col-sm-12 mt-5 bgWhite otp-section">
-                              <div className="title centering">Verify OTP</div>
-                              <h4
-                                style={{
-                                  color: "#000000",
-                                  paddingBottom: "20px",
-                                }}
-                                className="centering"
-                              >
+                              <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center">Verify OTP</div>
+                              <h4 className="text-center text-[#000000] pb-8 text-[18px]">
                                 Enter the OTP send to {formdata.email}{" "}
                               </h4>
                               <OtpInput
@@ -356,23 +349,23 @@ function ForgotPassword() {
                                 placeholder="000000"
                                 onPaste={handlePaste}
                               />
-                              <hr className="horizontalLine line-in-verifyOtp mt-10 mb-5" />
+                              <hr className="  mt-5 mb-5" />
                               <button
                                 type="submit"
                                 id="verify-otp-btn"
-                                className="create-account"
+                                className="create-account text-[18px]"
                                 onClick={handleVerifyOtp}
                               >
                                 Verify
                               </button>
                               <footer className="signup-footer footer-in-singup">
-                                <p>
+                                <p className="text-[18px]">
                                   Already Registered?{" "}
                                   <NavLink to="/signin" className="marginDown">
                                     Click here to login
                                   </NavLink>
                                 </p>
-                                <p>
+                                <p className="text-[18px]">
                                   Didn't receive OTP?{" "}
                                   <a
                                     href="#"
@@ -394,39 +387,39 @@ function ForgotPassword() {
               ) : (
                 <>
                   <div className="row">
-                    <h1 style={{ marginBottom: "10px" }}>Forgot Password</h1>
-                    <h6 className="information-text">
+                    <h1 style={{ marginBottom: "10px" }} className="font-semibold">Forgot Password</h1>
+                    <h6 className=" text-[18px] mb-6" >
                       Enter your registered email to reset your password.
                     </h6>
                     <div className="form-group">
                       <form className="form" onSubmit={handleSubmit}>
-                        <label htmlFor="fname" className="text-black">
+                        <label htmlFor="fname" className="text-black text-lg mb-2">
                           Enter Your Email
                         </label>
                         <input
                           type="email"
-                          className="fname"
+                          className="fname text-[18px] mb-6"
                           name="email"
                           value={formdata.email}
                           onChange={InputEvent}
                           title="Enter a valid email address"
                           required
                         />
-                        <p className="centering">
+                        <p className="flex justify-center">
                           <input
                             type="submit"
                             id="verify-otp-btn"
                             value="Reset Password"
-                            className="create-account"
+                            className="create-account "
                           />
                         </p>
                       </form>
                     </div>
                     <div className="footer">
-                      <p>
+                      <p className="text-[18px] mb-2 mt-2">
                         New here? <NavLink to="/signup">Sign Up.</NavLink>
                       </p>
-                      <p>
+                      <p className="text-[18px]">
                         Already have an account?{" "}
                         <NavLink to="/signin">Sign In.</NavLink>
                       </p>

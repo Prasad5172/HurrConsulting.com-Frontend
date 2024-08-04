@@ -27,7 +27,7 @@
     gap: 0;
 }
 .home ul li.card::before, .home ul li.card::after {
-    --side-rotate: 76deg;
+    --side-rotate: 70deg;
     content: "";
     position: absolute;
     top: 0;
@@ -256,6 +256,9 @@
     .glowing-btn{
       font-size: 1em;
     }
+    .home ul li.card::before, .home ul li.card::after {
+      --side-rotate: 76deg;
+  }
   }
   
 

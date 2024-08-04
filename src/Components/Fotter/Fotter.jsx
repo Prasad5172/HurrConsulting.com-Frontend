@@ -56,7 +56,7 @@ function Fotter() {
           </div>
           <div className=" text-sm">
             <p className="text-center text-[12px]">
-              ® 2024 LawFirm.com - The information provided by LawFirm.com is
+              ® 2024 HurrConsulting.com - The information provided by HurrConsulting.com is
               not a substitute for legal or professional medical advice. If you
               request any information you may receive a phone call or email from
               our one of our Case Managers. Our Case Managers can be reached at

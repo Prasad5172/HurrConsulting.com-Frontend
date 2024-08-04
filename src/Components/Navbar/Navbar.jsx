@@ -45,7 +45,7 @@ const Navbar = () => {
         <h3 className="2xl:ml-4 xl:ml-4 lg:ml-4 md:ml-4 ml-2">Hurr Consulting</h3>
       </div>
       <ul className="nav-links  2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4  mr-4">
-        <li className="hover:cursor-pointer">
+        <li className="hover:cursor-pointer ">
           <p
             onClick={() => {
               navigate("/");
@@ -147,8 +147,8 @@ const Navbar = () => {
                 className="relative inline-block text-left"
                 onClick={handleLoginSignup}
               >
-                <div className="dropdown-toggle cursor-pointer">
-                  <FontAwesomeIcon icon={faRightToBracket} color="white" />{" "}
+                <div className="dropdown-toggle cursor-pointer text-[#3e3e3e]">
+                  <FontAwesomeIcon icon={faRightToBracket} color="#3e3e3e" />{" "}
                   Login/SignUp
                   <FontAwesomeIcon
                     className="ml-1.5"

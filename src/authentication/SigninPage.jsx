@@ -128,22 +128,22 @@ const SinginPage = () => {
     <>
       { !isAuthenticated && (
         <>
-          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" id="signin-page">
+          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px]  h-screen flex justify-center items-center" id="signin-page">
             <div className="inner-box mx-auto ">
               <header className="signup-header">
                 <h1>Signin</h1>
-                <p>It just take 30 seconds</p>
+                <p className="text-[18px]">It just take 30 seconds</p>
               </header>
               <main className="signup-body">
                 <form onSubmit={handleSubmit} className="form">
-                  <p>
-                    <label htmlFor="email" className="field">
+                  <p className="items-center">
+                    <label htmlFor="email" className="text-black font-semibold text-[20px] block ">
                       Enter Your Email
                     </label>
                     <input
                       type="email"
                       id="email"
-                      className="email"
+                      className="email w-11/12 rounded-md"
                       name="email"
                       value={signInData.email}
                       onChange={inputEvent}
@@ -152,14 +152,14 @@ const SinginPage = () => {
                     />
                   </p>
                   <p>
-                    <label htmlFor="password" className="field">
+                    <label htmlFor="password" className="field text-[20px] font-bold">
                       Password
                     </label>
                     <div>
                       <input
                         type={`${showPassword ? "text" : "password"}`}
                         id="password"
-                        className="password"
+                        className="password w-11/12 rounded-md"
                         name="password"
                         value={signInData.password}
                         onChange={inputEvent}
@@ -179,22 +179,22 @@ const SinginPage = () => {
                       )}
                     </div>
                   </p>
-                  <p className="forgotpassword">
+                  <p className="pr-6 mt-4 mb-1 text-[#0091ff] no-underline text-[20px] flex justify-end hover:underline ">
                     <NavLink to="/forgotpassword">Forgotpassword?</NavLink>
                   </p>
-                  <p className="centering ">
+                  <p className="">
                     <input
                       type="submit"
                       id="sign-in-btn"
                       value="Sign in"
-                      className="create-account button"
+                      className="create-account button text-[18px]"
                     />
                   </p>
                 </form>
               </main>
-              <div className="centering w-full flex justify-center">
+              <div className="mt-2 w-full flex justify-center">
                 <GoogleLogin
-                  width={"100% "}
+                  width={"100%"}
                   onSuccess={async (credentialResponse) => {
                     const { credential } = credentialResponse;
                     console.log(credential);
@@ -202,12 +202,12 @@ const SinginPage = () => {
                       ? decodeJwt(credential)
                       : undefined;
                     console.log(payload);
-                    if (payload) {
                       const res = await fetch(
                         process.env.REACT_APP_BACKEND_URL + `/auth/signin`,
                         {
                           method: "POST",
                           headers: {
+                            Authorization: `Bearer ${credential}`,
                             "Content-Type": "application/json",
                           },
                           body: JSON.stringify(payload),
@@ -228,7 +228,6 @@ const SinginPage = () => {
                         signinBtnFailedAnimation();
                         toastFailed(data.message);
                       }
-                    }
                   }}
                   onError={(error) => {
                     toastFailed(error);
@@ -236,10 +235,10 @@ const SinginPage = () => {
                 />
               </div>
 
-              <footer className="signup-footer">
-                <p>
+              <footer className="signup-footer flex justify-center">
+                <p className="inline">
                   Not Register ?{" "}
-                  <NavLink to="/signup">Click here to register</NavLink>
+                  <NavLink to="/signup" >Click here to register</NavLink>
                 </p>
               </footer>
             </div>

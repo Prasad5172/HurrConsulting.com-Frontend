@@ -27,9 +27,9 @@ function Home() {
                     See if we can help you or someone you love get justice.
                   </p>
                   <div className="flex 2xl:justify-start xl:justify-start lg:justify-start justify-center ">
-                    <button class="arrow relative  glowing-btn">
-                      <span class="glowing-txt">
-                        <span class="faulty-letter mr-2">Book</span>Appointment
+                    <button className="arrow relative  glowing-btn">
+                      <span className="glowing-txt">
+                        <span className="faulty-letter mr-2">Book</span>Appointment
                       </span>{" "}
                       <FontAwesomeIcon
                         icon={faLongArrowRight}

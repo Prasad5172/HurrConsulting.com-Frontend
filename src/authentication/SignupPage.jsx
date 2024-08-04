@@ -91,9 +91,9 @@ const SignupPage = () => {
       failed.classList.remove("shake-button");
     }, 1000);
   };
-
   const login = useGoogleLogin({
     onSuccess: async (response) => {
+      console.log(response);
       setIsLoading(true)
       try {
         const res = await fetch(
@@ -245,7 +245,7 @@ const SignupPage = () => {
 
   return (
     <>
-        <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px] h-screen flex justify-center items-center" id="signup-page">
+        <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] h-screen flex justify-center items-center" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
               <>
@@ -254,11 +254,8 @@ const SignupPage = () => {
                     <div className="col-md-4 text-center">
                       <div className="row">
                         <div className="col-sm-12 mt-5 bgWhite otp-section">
-                          <div className="title centering">Verify OTP</div>
-                          <h4
-                            style={{ color: "#000000", paddingBottom: "20px" }}
-                            className="centering"
-                          >
+                        <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center">Verify OTP</div>
+                          <h4 className="text-center text-[#000000] pb-8 text-[18px]">
                             Enter the OTP send to {formdata.email}{" "}
                           </h4>
 
@@ -285,23 +282,23 @@ const SignupPage = () => {
                             placeholder="000000"
                             onPaste={handlePaste}
                           />
-                          <hr className="horizontalLine line-in-verifyOtp mt-10 mb-5" />
+                          <hr className="  mt-5 mb-5" />
                           <button
                             type="submit"
                             id="verify-otp-btn"
-                            className="create-account"
+                            className="create-account text-[18px]"
                             onClick={handleVerifyOtp}
                           >
                             Verify
                           </button>
                           <footer className="signup-footer footer-in-singup">
-                            <p>
+                            <p className="inline text-[18px]">
                               Already Registered?{" "}
-                              <NavLink to="/signin" className="marginDown">
+                              <NavLink to="/signin" className="marginDown hover:underline">
                                 Click here to login
                               </NavLink>
                             </p>
-                            <p>
+                            <p className="text-[18px]">
                               Didn't receive OTP?{" "}
                               <a
                                 href="#"
@@ -326,12 +323,12 @@ const SignupPage = () => {
                 <main className="signup-body">
                   <form onSubmit={handleSubmit} className="form">
                     <p>
-                      <label htmlFor="email" className="field">
+                      <label htmlFor="email" className="text-black text-[20px]  font-bold">
                         Enter Your Email
                       </label>
                       <input
                         type="email"
-                        className="email"
+                        className="email p-2 block w-11/12 rounded-md"
                         id="email"
                         name="email"
                         value={formdata.email}
@@ -342,14 +339,15 @@ const SignupPage = () => {
                       />
                     </p>
                     <p>
-                      <label htmlFor="fname" className="field">
+                      <label htmlFor="password" className=" text-[20px] font-bold">
                         Password
                       </label>
-                      <div>
+                      <div className="flex items-center">
                         <input
                           type={`${showPassword1 ? "text" : "password"}`}
-                          className="fname"
+                          className="p-2 block w-11/12 rounded-md"
                           name="password"
+                          id="password"
                           value={formdata.password}
                           onChange={InputEvent}
                           // pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,}$"
@@ -360,25 +358,28 @@ const SignupPage = () => {
                         {showPassword1 ? (
                           <FontAwesomeIcon
                             icon={faEye}
+                            className="hover:cursor-pointer"
                             onClick={() => setShowPassword1(!showPassword1)}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
+                            className="hover:cursor-pointer"
                             onClick={() => setShowPassword1(!showPassword1)}
                           />
                         )}
                       </div>
                     </p>
                     <p>
-                      <label htmlFor="fname" className="field">
+                      <label htmlFor="check-password" className="text-[20px] font-bold">
                         Check Password
                       </label>
-                      <div>
+                      <div className="flex  items-center">
                         <input
                           type={`${showPassword2 ? "text" : "password"}`}
-                          className="fname"
+                          className="p-2 block w-11/12 rounded-md"
                           name="confirmpassword"
+                          id="check-password"
                           value={formdata.confirmpassword}
                           onChange={InputEvent}
                           required
@@ -387,11 +388,13 @@ const SignupPage = () => {
                         {showPassword2 ? (
                           <FontAwesomeIcon
                             icon={faEye}
+                            className="hover:cursor-pointer"
                             onClick={() => setShowPassword2(!showPassword2)}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
+                            className="hover:cursor-pointer"
                             onClick={() => setShowPassword2(!showPassword2)}
                           />
                         )}
@@ -407,7 +410,7 @@ const SignupPage = () => {
                         type="submit"
                         id="sign-up-btn"
                         value="Sign up"
-                        className="create-account"
+                        className="create-account text-[18px]"
                       />
                     </p>
                   </form>
@@ -421,8 +424,8 @@ const SignupPage = () => {
                     <span className="pl-3">Sign up with google</span>
                   </button>
                 </div>
-                <footer className="signup-footer footer-in-singup">
-                  <p>
+                <footer className="signup-footer footer-in-singup flex justify-center text-[18px]">
+                  <p className="inline">
                     Alerady Registred?{" "}
                     <NavLink to="/signin">Click here to login</NavLink>
                   </p>
