@@ -40,7 +40,7 @@ const Navbar = () => {
     <nav className="flex justify-between bg-transparent">
       <div className=" flex justify-center items-center ml-4">
         <div className="logo flex items-center">
-          <img src="HurrConsulting.svg" alt="Logo Image" />
+          <img src="HurrConsulting.svg" width={"235px"} height={"100px"} alt="Logo Image" />
         </div>
       </div>
       <ul className="nav-links  2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4  mr-4">
