@@ -40,7 +40,12 @@ const Navbar = () => {
     <nav className="flex justify-between bg-transparent">
       <div className=" flex justify-center items-center ml-4">
         <div className="logo flex items-center">
-          <img src="HurrConsulting.svg" width={"235px"} height={"100px"} alt="Logo Image" />
+          <img
+            src="HurrConsulting.svg"
+            width={"235px"}
+            height={"100px"}
+            alt="Logo Image"
+          />
         </div>
       </div>
       <ul className="nav-links  2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4  mr-4">
@@ -220,30 +225,29 @@ const Navbar = () => {
                   </button>
                 </div>
               ) : (
-               
-                  <div
-                    className="py-1 absolute mt-2 right-2 z-10  w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="none"
+                <div
+                  className="py-1 absolute mt-2 right-2 z-10  w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="none"
+                >
+                  <a
+                    onClick={() => navigate("/signin")}
+                    className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-0"
                   >
-                    <a
-                      onClick={() => navigate("/signin")}
-                      className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-0"
-                    >
-                      Login
-                    </a>
-                    <a
-                      onClick={() => navigate("/signup")}
-                      className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-1"
-                    >
-                      Signup
-                    </a>
-                  </div>
+                    Login
+                  </a>
+                  <a
+                    onClick={() => navigate("/signup")}
+                    className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-1"
+                  >
+                    Signup
+                  </a>
+                </div>
               )}
             </div>
           )}
