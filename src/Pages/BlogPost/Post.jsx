@@ -1,5 +1,5 @@
 import React from 'react'
-import BreadCrumb from '../../Components/BreadCrumb';
+// import BreadCrumb from '../../Components/BreadCrumb';
 import PostContent from './PostContent';
 import ContactForm from '../ContactUs/ContactForm';
 function Post() {
@@ -26,7 +26,7 @@ function Post() {
               </div>
             </div>
           </div>
-          <BreadCrumb data={[`Phone Plans, ${place}, WV`]} length={1} />
+          {/* <BreadCrumb data={[`Phone Plans, ${place}, WV`]} length={1} /> */}
           <div className="container 2xl:max-w-[1250px] xl:max-w-[1250px] lg:max-w-[1250px] mx-auto  md:my-5 lg:my-10 xl:my-10 2xl:my-10">
             <div className="flex lg:flex-row xl:flex-row 2xl:flex-row flex-col gap-5">
               <div className="lg:basis-2/3 xl:basis-2/3 2xl:basis-2/3">
