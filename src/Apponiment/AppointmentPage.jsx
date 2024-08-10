@@ -4,41 +4,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { toastFailed } from "../Util/ToastFunctions";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
-import axios from "axios";
 
-// Load Stripe with your publishable key
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
-const AppointmentForm = ({ setClientSecret, clientSecret }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [openPaymentPage, setOpenPaymentPage] = useState(false);
+
+const AppointmentPage = () => {
   const [formData, setFormData] = useState({
     email: "",
-    firstname: "",
+    name: "",
     phone: "",
-    problem: "",
+    description:"",
+    summary: "",
     date: "",
     slot: null,
   });
   const textareaRef = useRef(null);
-
-  const [message, setMessage] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-
+  
   const [timeSlots, setTimeSlots] = useState([
-    "11:00 AM - 12:00 AM",
-    "12:00 AM - 01:00 PM",
-    "03:00 PM - 04:00 PM",
-    "04:00 PM - 05:00 PM",
+    "11:00",
+    "12:00",
+    "15:00",
+    "16:00",
   ]);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -64,49 +51,72 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
       slot: null,
     }));
   };
-
-  const handleSubmit = async (event) => {
+  function convertTo12HourFormat(time) {
+      const [hours, minutes] = time.split(':').map(Number);
+      let period = 'AM';
+      let adjustedHours = hours;
+      
+      if (hours === 0) {
+        adjustedHours = 12;
+      } else if (hours === 12) {
+        period = 'PM';
+      } else if (hours > 12) {
+        adjustedHours = hours - 12;
+        period = 'PM';
+      } else {
+        period = 'AM';
+      }
+      // Format to ensure two digits for minutes
+      const formattedMinutes = minutes.toString().padStart(2, '0');
+      
+      return `${adjustedHours}:${formattedMinutes} ${period}`;
+  }
+  
+  const handlePayment = async (event) => {
     event.preventDefault();
     if (!formData.slot) {
       return toastFailed("Select Slot For Appointment");
     }
+    console.log(formData);
+    // Load Stripe with your publishable key
+    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
+    const body = {
+      event:{
+        email:formData.email,
+        name: formData.name,
+        phone:formData.phone,
+        description:formData.description,
+        summary:formData.summary,
+        start :`${formData.date}T${formData.slot}:00`,
+        end :`${formData.date}T${formData.slot}:00`
+      }
+    }
+    console.log(body);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/create-payment-intent`,
-        formData
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
       );
-      const { clientSecret } = response.data;
-      setClientSecret(clientSecret); // Update parent component's state with clientSecret
-      setOpenPaymentPage(true);
+
+      const session = await response.json();
+      console.log(session)
+      const result = stripe.redirectToCheckout({
+        sessionId:session.id
+      })
+
+      if((await result).error){
+        console.log((await result).error);
+      }
     } catch (error) {
       console.log(error);
       toastFailed(error.message);
     }
-  };
-
-  const handlePayment = async (event) => {
-    event.preventDefault();
-
-    if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-    setIsProcessing(true);
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
-      },
-    });
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occured.");
-    }
-    setIsProcessing(false);
   };
 
   const getTodayDate = () => {
@@ -129,26 +139,8 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
 
   return (
     <>
-      <div className="">
-        {!openPaymentPage  ? (
-          <div className="payment-form">
-              <form id="payment-form" onSubmit={handlePayment}>
-                <PaymentElement id="payment-element" />
-                <button
-                  disabled={isProcessing || !stripe || !elements}
-                  id="submit"
-                >
-                  <span id="button-text">
-                    {isProcessing ? "Processing ... " : "Pay now"}
-                  </span>
-                </button>
-                {/* Show any error or success messages */}
-                {message && <div id="payment-message">{message}</div>}
-              </form>
-          </div>
-        )
-        :
-        (
+      <div className="mt-[100px] mb-10">
+
           <div>
             <p className="text-center font-bold 2xl:text-4xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-3xl text-2xl">
               Book an appointment
@@ -156,7 +148,7 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
             <div>
               <form
                 className="2xl:max-w-3xl xl:max-w-3xl lg:max-w-3xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto mt-20 "
-                onSubmit={handleSubmit}
+                // onSubmit={handlePayment}
               >
                 <div className="relative z-0 w-full mb-5 group">
                   <input
@@ -181,8 +173,8 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="text"
-                      name="firstname"
-                      id="firstname"
+                      name="name"
+                      id="name"
                       className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       required
@@ -191,13 +183,13 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                       autoComplete="on"
                     />
                     <label
-                      for="firstname"
+                      for="name"
                       className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Name
                     </label>
                   </div>
-                  <div className="relative z-0 w-full mb-5 group lg:mt-0 2xl:mt-0 xl:mt-0 md:mt-0 mt-5 ">
+                  <div className="relative z-0 w-full mb-5  group lg:mt-0 2xl:mt-0 xl:mt-0 mt-5 ">
                     <InputMask
                       mask="(999)999-9999"
                       value={formData.phone}
@@ -221,24 +213,45 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                     </label>
                   </div>
                 </div>
+
+                <div className="relative z-0 w-full mb-5 mt-5 group">
+                  <input
+                    type="text"
+                    name="summary"
+                    id="summary"
+                    className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=""
+                    required
+                    value={formData.summary}
+                    onChange={handleInputChange}
+                    autoComplete="on"
+                  />
+                  <label
+                    for="summary"
+                    className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Enter Subject For Appoinment
+                  </label>
+                </div>
+                
                 <div className="relative z-0 w-full mb-5 group mt-10">
                   <textarea
                     ref={textareaRef}
-                    name="problem"
-                    id="problem"
+                    name="description"
+                    id="description"
                     className="block p-5 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
-                    value={formData.problem}
+                    value={formData.description}
                     onChange={handleInputChange}
                     required
                     autoComplete="off"
                     rows={6}
                   ></textarea>
                   <label
-                    for="problem"
+                    for="description"
                     className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    Type Your Problem Here :
+                    Type Your problem Here :
                   </label>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6 mt-10">
@@ -256,7 +269,7 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                       onChange={handleInputChange}
                     />
                     <label
-                      for="firstname"
+                      for="name"
                       className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Date
@@ -271,11 +284,11 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                     Available Time Slots :
                   </label>
                   {formData.slot && (
-                    <div className="break-normal text-[15px] bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300">
-                      <span className="text-[15px]">{formData.slot}</span>
+                    <div className="break-normal text-[15px] bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4  hover:bg-stone-300">
+                      <span className="text-[15px]">{convertTo12HourFormat(formData.slot)}</span>
                       <FontAwesomeIcon
                         icon={faXmark}
-                        className="mx-2"
+                        className="mx-2 hover:cursor-pointer"
                         onClick={handleRemoveSlot}
                       />
                     </div>
@@ -286,12 +299,12 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                       {timeSlots.map((slot, index) => (
                         <div
                           key={index}
-                          className="break-normal text-[15px] mb-5 bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4 hover:cursor-pointer hover:bg-stone-300"
+                          className="break-normal text-[15px] mb-5 bg-[#a1a1aa] inline-flex rounded-full px-1 py-2.5 justify-center items-center whitespace-nowrap mr-4  hover:bg-stone-300"
                         >
-                          {slot}
+                          {convertTo12HourFormat(slot)}
                           <FontAwesomeIcon
                             icon={faPlus}
-                            className="mx-2"
+                            className="mx-2 hover:cursor-pointer"
                             onClick={() =>
                               setFormData((preval) => ({
                                 ...preval,
@@ -307,36 +320,15 @@ const AppointmentForm = ({ setClientSecret, clientSecret }) => {
                 <button
                   type="submit"
                   className="mt-10 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700"
+                  onClick={handlePayment}
                 >
-                  Book Appointment
+                  Pay $10.00
                 </button>
               </form>
             </div>
           </div>
-        ) 
-        }
       </div>
     </>
-  );
-};
-
-const AppointmentPage = () => {
-  const [clientSecret, setClientSecret] = useState("");
-  const appearance = {
-    theme: "light",
-  };
-
-  const options = {
-    clientSecret,
-    appearance,
-  };
-  return (
-    <Elements stripe={stripePromise} options={options}>
-      <AppointmentForm
-        setClientSecret={setClientSecret}
-        clientSecret={clientSecret}
-      />
-    </Elements>
   );
 };
 

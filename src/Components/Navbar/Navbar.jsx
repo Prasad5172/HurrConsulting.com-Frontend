@@ -37,13 +37,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between bg-transparent">
-      <div className=" flex justify-center items-center ml-4">
-        <div className="logo flex items-center">
+    <nav className="flex justify-between bg-[#d2e1de]">
+      <div className=" flex justify-center items-center overflow-hidden ml-4">
+        <div className="logo flex items-center mt-2">
           <img
             src="HurrConsulting.svg"
             width={"235px"}
-            height={"100px"}
             alt="Logo Image"
           />
         </div>

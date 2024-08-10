@@ -44,7 +44,7 @@ function Payment() {
     appearance,
   };
   return (
-    <div>
+    <div className="mt-[200px]">
         {clientSecret ? (
           <Elements stripe={stripePromise} options={options}>
             <CheckoutForm/>  
@@ -57,4 +57,4 @@ function Payment() {
   )
 }
 
-export default Payment
+export default Payment;

@@ -19,6 +19,8 @@ import AdminPage from "./Pages/Admin/AdminPage";
 import { HashLoader } from "react-spinners";
 import { toastFailed } from "./Util/ToastFunctions";
 import "./App.css"
+import Payment from "./Payment/Payment.jsx"
+import AppointmentPage from "./Apponiment/AppointmentPage.jsx";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -98,6 +100,7 @@ const App = () => {
           <Route exact path="/resource" element={<Resource />} />
           <Route exact path="/testimonials" element={<Testimonials />} />
           <Route exact path="/contact" element={<ContactUsPage />} />
+          <Route exact path="/bookevent" element={<AppointmentPage />} />
           <Route exact path="/admin" element={isAdmin ? <AdminPage /> : <ErrorPage />}/>
           <Route exact path="/signup" element={
               !isAuthenticated ? (

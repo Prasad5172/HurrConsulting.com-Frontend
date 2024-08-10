@@ -5,7 +5,7 @@ body {
 }
 
 nav {
-    height: 100px;
+    height: 72px;
     width: 100vw;
     background: hsla(0, 0%, 100%, .005);
     backdrop-filter: blur(8px);
@@ -52,7 +52,7 @@ nav h1 {
     display: block;
     height: 2.5px;
     width: 0%; /* Initial width of the underline */
-    background-color: #eedfdf; /* Color of the underline */
+    background-color: #393424; /* Color of the underline */
     position: absolute;
     bottom: 0; /* Position the underline at the bottom of p */
     left: 0; /* Align underline from the left */
@@ -260,11 +260,6 @@ nav h1 {
     
 }
 
-@media(max-width:640px) {
-    nav {
-        height: 60px;
-    }
-}
 
 /*Animating Hamburger Icon on Click*/
 .toggle .line1 {
