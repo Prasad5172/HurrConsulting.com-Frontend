@@ -36,7 +36,7 @@ function AdminPage() {
   // Render loading message while data is being fetched
   if (loading) {
     return <>
-    <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
+    <div className="mt-[80px] ">
     <div className="flex flex-row">
       <div className="2xl:w-1/6 xl:w-1/6 lg:w-1/6 w-auto ">
         <div className="bg-gray-700 h-full ">
@@ -94,7 +94,7 @@ function AdminPage() {
     
   return (
     <>
-      <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
+      <div className="mt-[80px] ">
         <div className="flex flex-row">
           <div className="2xl:w-1/6 xl:w-1/6 lg:w-1/6 w-auto ">
             <div className="bg-gray-700 h-full ">

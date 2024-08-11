@@ -234,7 +234,7 @@ function ForgotPassword() {
     <>
       {!isAuthenticated && (
         <>
-          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] h-screen flex justify-center items-center" >
+          <div className="outer-box mt-[80px] h-screen flex justify-center items-center" >
             <div className="inner-box mx-auto my-auto">
               {showOtpPage ? (
                 isOtpVerified ? (

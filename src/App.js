@@ -18,8 +18,7 @@ import Fotter from "./Components/Fotter/Fotter";
 import AdminPage from "./Pages/Admin/AdminPage";
 import { HashLoader } from "react-spinners";
 import { toastFailed } from "./Util/ToastFunctions";
-import "./App.css"
-import Payment from "./Payment/Payment.jsx"
+import "./App.css";
 import AppointmentPage from "./Apponiment/AppointmentPage.jsx";
 
 const App = () => {
@@ -50,8 +49,9 @@ const App = () => {
           );
           const data = await res.json();
           const user = data.data;
-          // console.log(user)
-          if (data.message === "succesful") {
+          // console.log(user);
+          // console.log(data.code);
+          if (data.code === 200) {
             setAuthenticated(true);
             setUserName(user.first_name);
             if (user.image_url) {

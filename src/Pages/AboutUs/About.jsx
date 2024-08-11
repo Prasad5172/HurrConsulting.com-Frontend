@@ -6,7 +6,7 @@ import "./About.css";
 function About() {
   return (
     <>
-      <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
+      <div className="mt-[80px] ">
 
       </div>
     </>

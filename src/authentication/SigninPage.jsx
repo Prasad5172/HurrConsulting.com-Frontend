@@ -128,7 +128,7 @@ const SinginPage = () => {
     <>
       { !isAuthenticated && (
         <>
-          <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px]  h-screen flex justify-center items-center" id="signin-page">
+          <div className="outer-box mt-[80px]  h-screen flex justify-center items-center" id="signin-page">
             <div className="inner-box mx-auto ">
               <header className="signup-header">
                 <h1>Signin</h1>

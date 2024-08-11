@@ -245,7 +245,7 @@ const SignupPage = () => {
 
   return (
     <>
-        <div className="outer-box 2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] h-screen flex justify-center items-center" id="signup-page">
+        <div className="outer-box mt-[80px]  h-screen flex justify-center items-center" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
               <>

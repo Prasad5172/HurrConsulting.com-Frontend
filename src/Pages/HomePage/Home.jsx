@@ -5,9 +5,9 @@ import "./HomePage.css";
 function Home() {
   return (
     <>
-      <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
-        <div className="home  pb-[72px] bg-red-200">
-          <div className="wrapper  home-section bg-slate-400 flex justify-center">
+      <div className="mt-[80px]">
+        <div className="home bg-[#bebebe] dark:bg-[#686868] pb-[72px] ">
+          <div className="wrapper  home-section bg-[#959595] flex justify-center">
             <div className="container pt-[60px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
               <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-1">
                 <div className="pb-16 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
@@ -73,38 +73,38 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center 2xl:mt-10 xl:mt-10 lg:mt-10 mt-5">
             <div className="container  2xl:max-w-[1100px] xl:max-w-[1100px]">
               <div className="grid lg:grid-cols-3 2xl:grid-cols-3 xl:grid-cols-3  grid-cols-1">
-                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-16 order-2">
-                  <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center">
-                    Our Mission We are committed to delivering practical,
-                    actionable advice that aligns with your specific needs. By
-                    understanding the intricacies of employment law, we aim to
-                    create compliant, fair, and productive workplaces.
-                  </p>
-                </div>
-                <div className="flex justify-center items-end mb-6 2xl:max-w-[400px] xl:max-w-[400px] lg:max-w-[400px] max-w-[300px] mx-auto mt-2 order-1">
+                <div className="flex justify-center items-end mb-6 2xl:max-w-[400px] xl:max-w-[400px] lg:max-w-[400px] max-w-[300px] mx-auto mt-2 2xl:order-2 xl:order-2 lg:order-2">
                   <img
                     src="gavel.jpg"
                     className="rounded-lg"
                     alt="Description of image"
                   />
                 </div>
+                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-16 2xl:order-1 xl:order-1 lg:order-1">
+                  <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center ">
+                    Our Mission We are committed to delivering practical,
+                    actionable advice that aligns with your specific needs. By
+                    understanding the intricacies of employment law, we aim to
+                    create compliant, fair, and productive workplaces.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
+          <div className="flex justify-center 2xl:mt-10 xl:mt-10 lg:mt-10 mt-5">
+            <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px] flex">
               <div className="grid lg:grid-cols-3 2xl:grid-cols-3 xl:grid-cols-3  grid-cols-1">
-                <div className="flex justify-center items-end mb-6 2xl:max-w-[400px] xl:max-w-[400px] lg:max-w-[400px] max-w-[300px] mx-auto mt-2">
+                <div className="flex justify-center items-end mb-6 2xl:max-w-[400px] xl:max-w-[400px] lg:max-w-[400px] max-w-[300px] mx-auto mt-2 2xl:order-1 xl:order-1 lg:order-1">
                   <img
                     src="approach.png"
                     className="rounded-lg"
                     alt="Description of image"
                   />
                 </div>
-                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2  ">
+                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2  2xl:order-2 xl:order-2 lg:order-2">
                   <p className="text-lg 2xl:text-start xl:text-start lg:text-start text-center">
                     Our Approach We pride ourselves on a client-centric
                     approach, focusing on clear communication, timely responses,
@@ -212,7 +212,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center 2xl:mt-10 xl:mt-10 lg:mt-10 mt-5">
             <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
               <div className="grid lg:grid-cols-3 2xl:grid-cols-3 xl:grid-cols-3  grid-cols-1">
                 <div className="flex justify-center items-end mb-5 max-w-[400px] mx-auto mt-2">
@@ -222,15 +222,17 @@ function Home() {
                     alt="Description of image"
                   />
                 </div>
-                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-8">
-                  <p className="text-2xl font-semibold 2xl:text-start xl:text-start lg:text-start text-center mb-3">Meet Our Consultant</p>
-                  <p className="text-[18px] max-w-[600px] text-center">
-                    Masumah Akbar is a seasoned legal expert committed to equity
-                    and justice. With extensive experience representing both
-                    respondents and claimants in Employment Tribunal cases,
-                    Masumah has developed a specialization in workplace
-                    discrimination
-                  </p>
+                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-8 flex justify-center flex-col items-center">
+                  <div className="">
+                    <p className="text-2xl font-semibold  text-center mb-3">Meet Our Consultant</p>
+                    <p className="text-[18px] max-w-[600px] text-center">
+                      Masumah Akbar is a seasoned legal expert committed to equity
+                      and justice. With extensive experience representing both
+                      respondents and claimants in Employment Tribunal cases,
+                      Masumah has developed a specialization in workplace
+                      discrimination
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

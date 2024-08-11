@@ -5,7 +5,7 @@ import Post from '../BlogPost/Post'
 function Resource() {
   return (
     <>
-      <div className="2xl:mt-[72px] xl:mt-[72px] lg:mt-[72px] mt-[60px]">
+      <div className="mt-[80px] ">
         <Post/>
       <div className="flex justify-center">
           <div className="container 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-[1200px] flex flex-wrap justify-between">
