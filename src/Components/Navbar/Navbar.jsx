@@ -1,38 +1,22 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect, isValidElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp, faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/AuthContext";
 import Switcher from "./Switcher";
-import "./Navbar.css"; // Create a separate CSS file for styling
+import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isProfileDropDown, setIsProfileDropDown] = useState(false);
   const { isAuthenticated } = useContext(AuthContext);
-  
-  // Refs for dropdowns
+
   const dropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
 
-  // Handle clicks outside dropdowns
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-      if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
-        setIsProfileDropDown(false);
-      }
-    };
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const handleLoginSignup = () => setIsDropdownOpen(!isDropdownOpen);
-  const handleProfileDropdown = () => setIsProfileDropDown(!isProfileDropDown);
+  const handleLoginSignup = () => setIsDropdownOpen(prev => !prev);
+  const handleProfileDropdown = () => setIsProfileDropDown(prev => !prev);
 
   const handleClick = () => {
     const hamburger = document.querySelector(".hamburger");
@@ -46,9 +30,13 @@ const Navbar = () => {
   };
 
   const handleLogout = (event) => {
+    console.log("handleLogout");
     event.preventDefault();
     localStorage.clear();
-    window.location.reload();
+    // Delay the closing of the dropdown
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); // Adjust delay as needed
   };
 
   return (
@@ -140,11 +128,12 @@ const Navbar = () => {
               </div>
               {isProfileDropDown && (
                 <div
-                  className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
                   tabIndex="-1"
+                  id="dropdown"
                 >
                   <div className="py-1" role="none">
                     <button
@@ -152,7 +141,17 @@ const Navbar = () => {
                       className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
                       role="menuitem"
                       tabIndex="-1"
-                      id="menu-item-3"
+                      id="dropdown-item"
+                      onClick={() => navigate("/admin")}
+                    >
+                      Admin Panel
+                    </button>
+                    <button
+                      type="button"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="dropdown-item"
                       onClick={handleLogout}
                     >
                       Sign out
@@ -184,26 +183,27 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
                   tabIndex="-1"
+                  id="dropdown"
                 >
                   <div className="py-1" role="none">
-                    <a
+                    <div
                       onClick={() => navigate("/signin")}
                       className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
                       role="menuitem"
                       tabIndex="-1"
-                      id="menu-item-0"
+                      id="dropdown-item"
                     >
                       Login
-                    </a>
-                    <a
+                    </div>
+                    <div
                       onClick={() => navigate("/signup")}
                       className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
                       role="menuitem"
                       tabIndex="-1"
-                      id="menu-item-1"
+                      id="dropdown-item"
                     >
                       Signup
-                    </a>
+                    </div>
                   </div>
                 </div>
               )}

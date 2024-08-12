@@ -2,17 +2,19 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="mt-[80px]">
-        <div className="home bg-[#bebebe] dark:bg-[#686868] pb-[72px] ">
-          <div className="wrapper  home-section bg-[#959595] flex justify-center">
+        <div className="home bg-white dark:bg-[#292929] pb-[72px] ">
+          <div className="wrapper  home-section bg-[#959595] dark:bg-[#292929] dark:text-white flex justify-center">
             <div className="container pt-[60px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
               <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-1">
                 <div className="pb-16 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
                   <p
-                    className="2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px]"
+                    className="2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px] dark:text-[#bb86fc]"
                     style={{ lineHeight: "1.1" }}
                   >
                     Hurr Consulting: Empowering Equity
@@ -27,7 +29,7 @@ function Home() {
                     See if we can help you or someone you love get justice.
                   </p>
                   <div className="flex 2xl:justify-start xl:justify-start lg:justify-start justify-center ">
-                    <button className="arrow relative  glowing-btn">
+                    <button className="arrow relative  glowing-btn" onClick={() => navigate("/appointment")}>
                       <span className="glowing-txt">
                         <span className="faulty-letter mr-2">Book</span>Appointment
                       </span>{" "}
@@ -38,7 +40,7 @@ function Home() {
                     </button>
                   </div>
                 </div>
-                <div className="flex  2xl:justify-center xl:justify-center lg:justify-center justify-end px-5 mt-5">
+                <div className="flex  2xl:justify-center xl:justify-center lg:justify-center justify-end px-5 mt-5 pb-10">
                   <div className="2xl:max-w-[400px] xl:max-w-[400px] lg:max-w-[400px] md:max-w-[400px] max-w-[300px]  ">
                     <img
                       src="about-hero-400x374.webp"

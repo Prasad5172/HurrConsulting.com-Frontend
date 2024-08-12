@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import InputMask from "react-input-mask";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { toastFailed } from "../Util/ToastFunctions";
+import { toastFailed, toastSuccess } from "../../Util/ToastFunctions";
 import { loadStripe } from "@stripe/stripe-js";
-
+import { AuthContext } from "../../context/AuthContext";
+import { Tooltip, Button } from "@material-tailwind/react";
 
 
 const AppointmentPage = () => {
+  const {isAuthenticated,setIsLoading} = useContext(AuthContext)
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -72,15 +74,59 @@ const AppointmentPage = () => {
       return `${adjustedHours}:${formattedMinutes} ${period}`;
   }
   
-  const handlePayment = async (event) => {
+  const handleAppoinment = async (event) => {
+    console.log("handleAppoinment")
     event.preventDefault();
-    if (!formData.slot) {
-      return toastFailed("Select Slot For Appointment");
-    }
-    console.log(formData);
-    // Load Stripe with your publishable key
-    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+    //payment button code
+    // if (!formData.slot) {
+    //   return toastFailed("Select Slot For Appointment");
+    // }
+    // console.log(formData);
+    // // Load Stripe with your publishable key
+    // const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
+    // const body = {
+    //   event:{
+    //     email:formData.email,
+    //     name: formData.name,
+    //     phone:formData.phone,
+    //     description:formData.description,
+    //     summary:formData.summary,
+    //     start :`${formData.date}T${formData.slot}:00`,
+    //     end :`${formData.date}T${formData.slot}:00`
+    //   }
+    // }
+    // console.log(body);
+    // try {
+    //   const response = await fetch(
+    //     `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(body),
+    //     }
+    //   );
+
+    //   const session = await response.json();
+    //   console.log(session)
+    //   const result = stripe.redirectToCheckout({
+    //     sessionId:session.id
+    //   })
+
+    //   if((await result).error){
+    //     console.log((await result).error);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   toastFailed(error.message);
+    // }
+    // appoinment code
+    if(!isAuthenticated) {
+      toastFailed("Signin to Book Appoinmentment");
+      return 
+    }
+    setIsLoading(true);
     const body = {
       event:{
         email:formData.email,
@@ -89,13 +135,13 @@ const AppointmentPage = () => {
         description:formData.description,
         summary:formData.summary,
         start :`${formData.date}T${formData.slot}:00`,
-        end :`${formData.date}T${formData.slot}:00`
+        end :`${formData.date}T${addOneHour(formData.slot)}:00`
       }
     }
     console.log(body);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
+        `${process.env.REACT_APP_BACKEND_URL}/event`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -104,19 +150,45 @@ const AppointmentPage = () => {
         }
       );
 
-      const session = await response.json();
-      console.log(session)
-      const result = stripe.redirectToCheckout({
-        sessionId:session.id
-      })
-
-      if((await result).error){
-        console.log((await result).error);
+      const data = await response.json();
+      console.log(data);
+      if(response.ok){
+        toastSuccess("Appointment is Booked");
+      }else{
+        toastFailed("failed to book Appoinment")
       }
+      
     } catch (error) {
       console.log(error);
       toastFailed(error.message);
     }
+    setFormData({
+      email: "",
+      name: "",
+      phone: "",
+      description:"",
+      summary: "",
+      date: "",
+      slot: null,
+    });
+    setIsLoading(false);
+  };  
+  const addOneHour = (startTime) => {
+    // Parse the start time into hours and minutes
+    const [hours, minutes] = startTime.split(':').map(Number);
+
+    // Create a Date object using the start time
+    const startDate = new Date();
+    startDate.setHours(hours, minutes, 0, 0); // Set hours, minutes, and reset seconds and milliseconds
+
+    // Add one hour
+    startDate.setHours(startDate.getHours() + 1);
+
+    // Format the end time as HH:MM
+    const endHours = String(startDate.getHours()).padStart(2, '0');
+    const endMinutes = String(startDate.getMinutes()).padStart(2, '0');
+
+    return `${endHours}:${endMinutes}`;
   };
 
   const getTodayDate = () => {
@@ -148,7 +220,7 @@ const AppointmentPage = () => {
             <div>
               <form
                 className="2xl:max-w-3xl xl:max-w-3xl lg:max-w-3xl md:max-w-3xl sm:max-w-xl max-w-sm mx-auto mt-20 "
-                // onSubmit={handlePayment}
+                onSubmit={handleAppoinment}
               >
                 <div className="relative z-0 w-full mb-5 group">
                   <input
@@ -163,7 +235,7 @@ const AppointmentPage = () => {
                     autoComplete="on"
                   />
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Email address
@@ -183,7 +255,7 @@ const AppointmentPage = () => {
                       autoComplete="on"
                     />
                     <label
-                      for="name"
+                      htmlFor="name"
                       className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Name
@@ -206,7 +278,7 @@ const AppointmentPage = () => {
                       )}
                     </InputMask>
                     <label
-                      for="floating_phone"
+                      htmlFor="floating_phone"
                       className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Phone number (123-456-7890)
@@ -227,7 +299,7 @@ const AppointmentPage = () => {
                     autoComplete="on"
                   />
                   <label
-                    for="summary"
+                    htmlFor="summary"
                     className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Enter Subject For Appoinment
@@ -248,7 +320,7 @@ const AppointmentPage = () => {
                     rows={6}
                   ></textarea>
                   <label
-                    for="description"
+                    htmlFor="description"
                     className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Type Your problem Here :
@@ -269,7 +341,7 @@ const AppointmentPage = () => {
                       onChange={handleInputChange}
                     />
                     <label
-                      for="name"
+                      htmlFor="name"
                       className="peer-focus:font-medium absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Date
@@ -319,11 +391,13 @@ const AppointmentPage = () => {
                 </div>
                 <button
                   type="submit"
-                  className="mt-10 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700"
-                  onClick={handlePayment}
+                  className={`mt-10 bg-blue-600 disabled:opacity-50 text-white py-3 px-6 rounded-lg  `}
+                  onClick={handleAppoinment}
                 >
-                  Pay $10.00
+                  Book Appoinment
                 </button>
+
+
               </form>
             </div>
           </div>
