@@ -77,50 +77,6 @@ const AppointmentPage = () => {
   const handleAppoinment = async (event) => {
     console.log("handleAppoinment")
     event.preventDefault();
-    //payment button code
-    // if (!formData.slot) {
-    //   return toastFailed("Select Slot For Appointment");
-    // }
-    // console.log(formData);
-    // // Load Stripe with your publishable key
-    // const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
-
-    // const body = {
-    //   event:{
-    //     email:formData.email,
-    //     name: formData.name,
-    //     phone:formData.phone,
-    //     description:formData.description,
-    //     summary:formData.summary,
-    //     start :`${formData.date}T${formData.slot}:00`,
-    //     end :`${formData.date}T${formData.slot}:00`
-    //   }
-    // }
-    // console.log(body);
-    // try {
-    //   const response = await fetch(
-    //     `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(body),
-    //     }
-    //   );
-
-    //   const session = await response.json();
-    //   console.log(session)
-    //   const result = stripe.redirectToCheckout({
-    //     sessionId:session.id
-    //   })
-
-    //   if((await result).error){
-    //     console.log((await result).error);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   toastFailed(error.message);
-    // }
     // appoinment code
     if(!isAuthenticated) {
       toastFailed("Signin to Book Appoinmentment");

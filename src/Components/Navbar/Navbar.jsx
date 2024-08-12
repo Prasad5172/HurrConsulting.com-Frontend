@@ -124,7 +124,7 @@ const Navbar = () => {
               ref={profileDropdownRef}
             >
               <div>
-                <FontAwesomeIcon icon={faUser} />
+                <FontAwesomeIcon icon={faUser} color="gray"/>
               </div>
               {isProfileDropDown && (
                 <div

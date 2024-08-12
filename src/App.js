@@ -20,6 +20,9 @@ import { HashLoader } from "react-spinners";
 import { toastFailed } from "./Util/ToastFunctions";
 import "./App.css";
 import AppointmentPage from "./Pages/Apponiment/AppointmentPage";
+import Events from "./Pages/Admin/Events";
+import Users from "./Pages/Admin/Users";
+import RedirectPayment from "./Pages/PaymentRedirect/RedirectPayment";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -101,7 +104,11 @@ const App = () => {
           <Route exact path="/testimonials" element={<Testimonials />} />
           <Route exact path="/contact" element={<ContactUsPage />} />
           <Route exact path="/appointment" element={<AppointmentPage />} />
-          <Route exact path="/admin" element={isAdmin ? <AdminPage /> : <ErrorPage />}/>
+          <Route exact path="/admin" element={isAdmin ? <AdminPage /> : <ErrorPage />}>
+            <Route exact path="/admin" element={isAdmin ? <Events /> : <ErrorPage />}/>
+            <Route exact path="users" element={isAdmin ? <Users /> : <ErrorPage />}/>
+          </Route>
+          <Route exact path="/redirect-to-checkout/:id" element={<RedirectPayment/>}/>
           <Route exact path="/signup" element={
               !isAuthenticated ? (
                 <SignupPage />

@@ -1,9 +1,18 @@
 /* Ensure the cursor changes to a pointer when hovering over the clock icon in the time input field */
 .time-input {
-    position: relative;
+  position: relative;
 }
 
 .time-input::-webkit-calendar-picker-indicator {
-    cursor: pointer;
+  cursor: pointer;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
