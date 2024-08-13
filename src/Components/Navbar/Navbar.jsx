@@ -1,12 +1,24 @@
-import React, { useContext, useState, useRef, useEffect, isValidElement } from "react";
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  isValidElement,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faCaretUp, faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faCaretUp,
+  faRightToBracket,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/AuthContext";
 import Switcher from "./Switcher";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { isAdmin } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isProfileDropDown, setIsProfileDropDown] = useState(false);
@@ -15,8 +27,8 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
 
-  const handleLoginSignup = () => setIsDropdownOpen(prev => !prev);
-  const handleProfileDropdown = () => setIsProfileDropDown(prev => !prev);
+  const handleLoginSignup = () => setIsDropdownOpen((prev) => !prev);
+  const handleProfileDropdown = () => setIsProfileDropDown((prev) => !prev);
 
   const handleClick = () => {
     const hamburger = document.querySelector(".hamburger");
@@ -43,7 +55,7 @@ const Navbar = () => {
     <nav className="flex justify-between bg-transparent dark:bg-[#d2e1de]">
       <div className="flex justify-center items-center overflow-hidden">
         <div className="logo flex items-center mt-3">
-          <img src="HurrConsulting.svg" width={"250px"} alt="Logo Image" />
+          <img src="hurrconsulting.svg" width={"250px"} alt="Logo Image" />
         </div>
       </div>
       <ul className="nav-links 2xl:bg-transparent xl:bg-transparent lg:bg-transparent bg-white dark:2xl:bg-transparent dark:xl:bg-transparent dark:lg:bg-transparent dark:bg-[#131418] 2xl:gap-6 xl:gap-6 lg:gap-6 md:gap-4 mr-4">
@@ -124,7 +136,7 @@ const Navbar = () => {
               ref={profileDropdownRef}
             >
               <div>
-                <FontAwesomeIcon icon={faUser} color="gray"/>
+                <FontAwesomeIcon icon={faUser} color="gray" />
               </div>
               {isProfileDropDown && (
                 <div
@@ -135,28 +147,30 @@ const Navbar = () => {
                   tabIndex="-1"
                   id="dropdown"
                 >
-                  <div className="py-1" role="none">
-                    <button
-                      type="button"
-                      className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="dropdown-item"
-                      onClick={() => navigate("/admin")}
-                    >
-                      Admin Panel
-                    </button>
-                    <button
-                      type="button"
-                      className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="dropdown-item"
-                      onClick={handleLogout}
-                    >
-                      Sign out
-                    </button>
-                  </div>
+                  {isAdmin && (
+                    <div className="py-1" role="none">
+                      <button
+                        type="button"
+                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="dropdown-item"
+                        onClick={() => navigate("/admin")}
+                      >
+                        Admin Panel
+                      </button>
+                      <button
+                        type="button"
+                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="dropdown-item"
+                        onClick={handleLogout}
+                      >
+                        Sign out
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -234,18 +248,21 @@ const Navbar = () => {
             >
               {isAuthenticated ? (
                 <>
-                  <div className="py-1" role="none">
-                    <button
-                      type="button"
-                      className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-3"
-                      onClick={() => navigate("/admin")}
-                    >
-                      Admin Panel
-                    </button>
-                  </div>
+                  {isAdmin && (
+                    <div className="py-1" role="none">
+                      <button
+                        type="button"
+                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="menu-item-3"
+                        onClick={() => navigate("/admin")}
+                      >
+                        Admin Panel
+                      </button>
+                    </div>
+                  )}
+
                   <div className="py-1" role="none">
                     <button
                       type="button"

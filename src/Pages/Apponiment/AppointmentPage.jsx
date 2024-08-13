@@ -9,6 +9,7 @@ import { Tooltip, Button } from "@material-tailwind/react";
 
 
 const AppointmentPage = () => {
+  const token = localStorage.getItem("token");
   const {isAuthenticated,setIsLoading} = useContext(AuthContext)
   const [formData, setFormData] = useState({
     email: "",
@@ -100,6 +101,7 @@ const AppointmentPage = () => {
         `${process.env.REACT_APP_BACKEND_URL}/event`, {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(body),
@@ -217,7 +219,7 @@ const AppointmentPage = () => {
                       Name
                     </label>
                   </div>
-                  <div className="relative z-0 w-full mb-5  group lg:mt-0 2xl:mt-0 xl:mt-0 mt-5 ">
+                  <div className="relative z-0 w-full mb-5  group 2xl:mt-0 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-5 mt-5 ">
                     <InputMask
                       mask="(999)999-9999"
                       value={formData.phone}

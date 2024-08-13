@@ -112,7 +112,7 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
 
   return (
     <>
-      <tr key={id} className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <tr key={id} className=" bg-gray-800 border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row"
           className="px-4 py-4  text-[18px] text-gray-900 whitespace-nowrap dark:text-white"
