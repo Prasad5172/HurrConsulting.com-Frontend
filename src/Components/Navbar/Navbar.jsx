@@ -25,7 +25,6 @@ const Navbar = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   const dropdownRef = useRef(null);
-  const profileDropdownRef = useRef(null);
 
   const handleLoginSignup = () => setIsDropdownOpen((prev) => !prev);
   const handleProfileDropdown = () => setIsProfileDropDown((prev) => !prev);
@@ -133,7 +132,6 @@ const Navbar = () => {
             <div
               className="relative inline-block text-left hover:cursor-pointer"
               onClick={handleProfileDropdown}
-              ref={profileDropdownRef}
             >
               <div>
                 <FontAwesomeIcon icon={faUser} color="gray" />
@@ -147,8 +145,8 @@ const Navbar = () => {
                   tabIndex="-1"
                   id="dropdown"
                 >
-                  {isAdmin && (
                     <div className="py-1" role="none">
+                  {isAdmin && (
                       <button
                         type="button"
                         className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
@@ -159,6 +157,7 @@ const Navbar = () => {
                       >
                         Admin Panel
                       </button>
+                    )}
                       <button
                         type="button"
                         className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
@@ -170,7 +169,6 @@ const Navbar = () => {
                         Sign out
                       </button>
                     </div>
-                  )}
                 </div>
               )}
             </div>
@@ -233,7 +231,6 @@ const Navbar = () => {
         <div
           className="relative inline-block text-left bg-gray-500 hover:bg-gray-400 rounded-full px-2.5 py-1 hover:cursor-pointer"
           onClick={handleProfileDropdown}
-          ref={profileDropdownRef}
         >
           <div>
             <FontAwesomeIcon icon={faUser} />

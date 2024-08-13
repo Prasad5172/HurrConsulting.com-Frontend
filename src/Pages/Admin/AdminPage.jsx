@@ -49,7 +49,7 @@ function AdminPage() {
                       Request
                     </span>
                   </div>
-                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==4 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin/history")}>
+                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==4 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin/payments")}>
                     <FontAwesomeIcon icon={faClockRotateLeft} />{" "}
                     <span className="2xl:inline xl:inline lg:inline hidden ml-3">
                       Payment
