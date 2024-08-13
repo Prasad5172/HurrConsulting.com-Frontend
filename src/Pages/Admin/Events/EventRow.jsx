@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
-import {toastSuccess,toastFailed }  from "../../Util/ToastFunctions"
+import {toastSuccess,toastFailed }  from "../../../Util/ToastFunctions"
 
 
 function EventRow({id, email,  startTime, endTime ,summary,description,attendees,calEventArray,setCalEventsArray }) {

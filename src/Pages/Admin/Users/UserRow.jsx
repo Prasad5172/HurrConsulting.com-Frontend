@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
-import {toastSuccess,toastFailed }  from "../../Util/ToastFunctions"
-import { AdminContext } from "../../context/AdminContext";
+// import {toastSuccess,toastFailed }  from "../../../Util/ToastFunctions"
+import { AdminContext } from "../../../context/AdminContext";
 import { useNavigate } from "react-router-dom";
 
 function EventRow({ id,email}) {
@@ -16,7 +16,7 @@ function EventRow({ id,email}) {
  
   const handleSendRequest = async () => {
     setRequestingEmail(email);
-    navigate("/admin/sendrequest");
+    navigate("/admin/request");
   };
   
 

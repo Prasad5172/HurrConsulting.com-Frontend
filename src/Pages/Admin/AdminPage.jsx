@@ -8,6 +8,17 @@ function AdminPage() {
   const navigate = useNavigate();
   const [requestingEmail,setRequestingEmail] = useState("");
   const [active,setActive] = useState();
+  useEffect(() => {
+    if(window.location.pathname == "/admin"){
+      setActive(1);
+    }else if(window.location.pathname == "/admin/users"){
+      setActive(2)
+    }else if(window.location.pathname == "/admin/request"){
+      setActive(3);
+    }else{
+      setActive(4);
+    }
+  })
   return (
     <>
       <AdminContext.Provider
@@ -20,28 +31,28 @@ function AdminPage() {
           <div className="flex flex-row">
             <div className="2xl:w-1/6 xl:w-1/6 lg:w-1/6 w-auto ">
               <div className="bg-gray-700 h-full ">
-                <div className="pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl text-gray-400 hover:cursor-pointer" onClick={() => navigate("/admin")}>
+                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==1 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin")}>
                   <FontAwesomeIcon icon={faCalendarDays} />{" "}
                   <span className="2xl:inline xl:inline lg:inline hidden ml-3">
                     Events
                   </span>
                 </div>
-                <div className="pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl text-gray-400 hover:cursor-pointer" onClick={() => navigate("/admin/users")}>
+                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==2 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin/users")}>
                     <FontAwesomeIcon icon={faUsers} />{" "}
                     <span className="2xl:inline xl:inline lg:inline hidden ml-3">
                       Users
                     </span>
                   </div>
-                <div className="pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl text-gray-400 hover:cursor-pointer" onClick={() => navigate("/admin/users")}>
+                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==3 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin/request")}>
                     <FontAwesomeIcon icon={faPaperPlane} />{" "}
                     <span className="2xl:inline xl:inline lg:inline hidden ml-3">
                       Request
                     </span>
                   </div>
-                <div className="pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl text-gray-400 hover:cursor-pointer" onClick={() => navigate("/admin/users")}>
+                <div className={`pt-12 2xl:px-5 xl:px-5 lg:px-5 px-3 hover:text-white text-2xl ${active ==4 ? "text-white" : "text-gray-400"} hover:cursor-pointer`} onClick={() => navigate("/admin/history")}>
                     <FontAwesomeIcon icon={faClockRotateLeft} />{" "}
                     <span className="2xl:inline xl:inline lg:inline hidden ml-3">
-                      Payment History
+                      Payment
                     </span>
                   </div>
               </div>

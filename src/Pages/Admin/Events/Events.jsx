@@ -2,7 +2,7 @@ import { faCalendarDays, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import EventRow from "./EventRow";
-import "./Admin.css";
+import "../Admin.css";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 
@@ -52,7 +52,7 @@ function Events() {
                       <tr>
                         <th
                           scope="col"
-                          className="px-4 py-3 text-center font-bold"
+                          className="px-4 py-3 text-center font-bold text-white"
                         >
                           Email
                         </th>

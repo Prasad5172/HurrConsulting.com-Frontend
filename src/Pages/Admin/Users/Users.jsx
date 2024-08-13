@@ -1,9 +1,9 @@
 import { faCalendarDays, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import EventRow from "./EventRow";
+import EventRow from "../Events/EventRow";
 import UserRow from ".//UserRow";
-import "./Admin.css";
+import "../Admin.css";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 
@@ -99,15 +99,15 @@ function Users() {
                     <tr>
                       <th
                         scope="col"
-                        className="px-4 py-3 text-center font-bold"
+                        className="px-4 py-3 text-center font-bold "
                       >
-                        user_id
+                        USER_ID
                       </th>
                       <th
                         scope="col"
                         className="px-4 py-3 text-center font-bold w-32"
                       >
-                        email
+                        EMAIL
                       </th>
 
                       <th scope="col" className="px-4 py-3 text-center">
