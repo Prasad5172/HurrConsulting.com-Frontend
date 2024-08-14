@@ -12,6 +12,7 @@ function Request() {
     email: requestingEmail || "", // Ensure email is initialized as an empty string if requestingEmail is undefined
     amount: "", // Initialize amount as an empty string
   });
+  const token = localStorage.getItem("token");
 
   const InputEvent = (event) => {
     const { name, value } = event.target;
@@ -31,6 +32,7 @@ function Request() {
       },
       {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }

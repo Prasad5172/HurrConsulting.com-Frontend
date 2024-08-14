@@ -132,6 +132,7 @@ function Payments() {
                 status = {ele.status}
                 request_date={ele.request_date}
                 payment_date={ele.payment_date}
+                payment_intent={ele.payment_intent}
                 setPaymentsArray={setPayments}
               />
             ))}
