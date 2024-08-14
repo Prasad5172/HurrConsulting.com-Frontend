@@ -13,13 +13,13 @@ function PaymentRow({
 }) {
   const [isModifying, setIsModifying] = useState(false);
   const token = localStorage.getItem("token");
-  var color = "white";
+  var color = "text-white";
   if(status == "PAID"){
-    color = "[#16a34a]"
+    color = "text-[#16a34a]"
   }else if (status == "PENDING"){
-    color = "[#f1a532]"
+    color = "text-[#f1a532]"
   }else{
-    color = "[#e11d48]"
+    color = "text-[#e11d48]"
   }
   
 
@@ -48,7 +48,7 @@ function PaymentRow({
         <td className="px-4 py-4 text-white  text-[18px] w-32">
           {amount} $
         </td>
-        <td className={`px-4 py-4 text-${color}  text-[18px] w-32`}>
+        <td className={`px-4 py-4 ${color}  text-[18px] w-32`}>
           {status} 
         </td>
         <td className="px-4 py-4 text-white  text-[18px] w-32">
