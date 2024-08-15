@@ -10,7 +10,7 @@ function Request() {
   const { setIsLoading } = useContext(AuthContext);
   const [data, setData] = useState({
     email: requestingEmail || "", // Ensure email is initialized as an empty string if requestingEmail is undefined
-    amount: "", // Initialize amount as an empty string
+    amount: 0, // Initialize amount as an empty string
   });
   const token = localStorage.getItem("token");
 
@@ -24,6 +24,12 @@ function Request() {
 
   const handleSendBill = async () => {
     setIsLoading(true);
+    console.log(data.amount)
+    if(data.amount == "0" || data.amount == ""){
+      setIsLoading(false);
+      return toastFailed("Amount Must Greaterthan 0");
+    }
+
     const res = await axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`,
       {
@@ -44,7 +50,7 @@ function Request() {
     }
     setData({
       email: "",
-      amount: "",
+      amount: 0,
     });
     setIsLoading(false);
   };
