@@ -36,17 +36,7 @@ function Service() {
                   Our Services
                 </p>
                 <p className="mt-4 text-md">
-                  We work with a variety of business types and sizes, but a few
-                  examples include: food and beverage companies like coffee
-                  shops/restaurants/bars, retail (online or brick and mortar),
-                  web designers, app developers, freelance
-                  artists/photographers/writers, fitness/dance teachers and
-                  studios, wellness practitioners, produce marketers and
-                  wholesalers, marketing firms, tech startups, environmental
-                  consultants, and medical device sales companies. We are
-                  headquartered in Oakland, but we can help with any issue
-                  concerning California Law and our client companies are based
-                  around the world.
+                  At Hurr Consulting, we are dedicated to providing expert legal guidance tailored to your unique needs. Our approach is client-centric, focusing on delivering clear, actionable advice to empower you in making informed decisions. Whether you're navigating complex employment matters or seeking thorough assessments of legal agreements, our experienced team is here to help.
                 </p>
               </div>
             </div>

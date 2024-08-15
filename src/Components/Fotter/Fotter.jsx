@@ -7,7 +7,7 @@ function Fotter() {
         <div className="container 2xl:max-w-[1200px] xl:max-w-[1200px] px-5">
           <div className="pb-8 flex items-center flex-wrap 2xl:border-b-2 xl:border-b-2 lg:border-b-2 md:border-b-2  border-[#ffffff4d] ">
             <div className="2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/3 w-full flex items-center 2xl:justify-start xl:justify-start lg:justify-start justify-center 2xl:mb-0 xl:mb-0 lg:mb-0 md:mb-0 mb-8 h-[80px] overflow-hidden">
-              <img src="HurrConsulting.svg" width={"250px"} alt="Logo Image" className="mt-[10px]" />
+              <img src="/hurrconsulting.svg" width={"250px"} alt="Logo Image" className="mt-[10px]" />
             </div>
             <div className="flex items-center 2xl:justify-end xl:justify-end lg:justify-end justify-center 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-2/3 w-full 2xl:border-b-0 xl:border-b-0 lg:border-b-0 md:border-b-0 border-b-2 2xl:pb-0 xl:pb-0 lg:pb-0 md:pb-0 pb-8">
               <div className="text-[20px]">
@@ -46,7 +46,7 @@ function Fotter() {
             <div className="2xl:w-3/5 xl:w-3/5 lg:3/5 md:w-3/5 2xl:order-last xl:order-last lg:order-last md:order-last order-first mt-5  ">
               <p className="text-[16px] mb-2 font-bold ">What Drives Us</p>
               <p className="leading-relaxed">
-                lawfirmsitedomainnamehere is committed to providing accurate and
+                HurrConsulting  is committed to providing accurate and
                 actionable content to individuals injured through no fault of
                 their own. We understand the challenges people face in
                 navigating the legal system, and our mission is to provide

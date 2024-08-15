@@ -45,44 +45,46 @@ useEffect(() => {
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
-
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          signal: controller.signal,
+    console.log(token);
+    if(token){
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            signal: controller.signal,
+          }
+        );
+        const data = await res.json();
+        const user = data.data;
+        if (data.code === 200) {
+          setAuthenticated(true);
+          setUserName(user.first_name);
+          if (user.image_url) {
+            setDisplayProfile(true);
+          }
+          setProfile(user.image_url);
+          setAuthenticated(true);
+          setAdmin(user.is_admin);
         }
-      );
-      const data = await res.json();
-      const user = data.data;
-      if (data.code === 200) {
-        setAuthenticated(true);
-        setUserName(user.first_name);
-        if (user.image_url) {
-          setDisplayProfile(true);
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          // Handle request timeout
+          console.log('Request timed out');
+          toastFailed('Request timed out. Please try again later.');
+        } else {
+          console.log(error);
+          toastFailed(error.message);
         }
-        setProfile(user.image_url);
-        setAuthenticated(true);
-        setAdmin(user.is_admin);
+      } finally {
+        clearTimeout(timeoutId);
       }
-    } catch (error) {
-      if (error.name === 'AbortError') {
-        // Handle request timeout
-        console.log('Request timed out');
-        toastFailed('Request timed out. Please try again later.');
-      } else {
-        console.log(error);
-        toastFailed(error.message);
-      }
-    } finally {
-      clearTimeout(timeoutId);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   checkAuthentication();

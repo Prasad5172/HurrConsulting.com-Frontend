@@ -10,7 +10,7 @@ function Home() {
       <div className="mt-[80px] dark:mt-0">
         <div className="home text-[#666666] dark:text-[#dadada] bg-[#f2f2f2] dark:bg-[#292929] pb-[72px] ">
           <div className="wrapper dark:pt-[80px]  home-section bg-[#f2f2f2] dark:bg-[#292929] text-[#666666] dark:text-white flex justify-center">
-            <div className="container pt-[30px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
+            <div className="container pt-[50px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
               <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-1">
                 <div className="pb-28 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
                   <p
@@ -32,7 +32,7 @@ function Home() {
                   <div className="flex 2xl:justify-start xl:justify-start lg:justify-start justify-center ">
                     <button className="arrow relative  glowing-btn" onClick={() => navigate("/appointment")}>
                       <span className="glowing-txt">
-                        <span className="faulty-letter mr-2">Book</span>Appointment
+                        <span className="faulty-letter mr-2">Book</span>A Free Consultation
                       </span>{" "}
                       <FontAwesomeIcon
                         icon={faLongArrowRight}
@@ -217,15 +217,15 @@ function Home() {
 
           <div className="flex justify-center 2xl:mt-10 xl:mt-10 lg:mt-10 mt-5">
             <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
-              <div className="grid lg:grid-cols-3 2xl:grid-cols-3 xl:grid-cols-3  grid-cols-1">
-                <div className="flex justify-center items-end mb-5 max-w-[400px] mx-auto mt-2">
+              <div className="">
+                {/* <div className="flex justify-center items-end mb-5 max-w-[400px] mx-auto mt-2">
                   <img
                     src="team1-white.jpg"
                     className="rounded-xl 2xl:w-[400px] xl:w-[400px] lg:w-[400px] md:w-[400px] sm:w-[400px] max-w-[380px] h-[400px]"
                     alt="Description of image"
                   />
-                </div>
-                <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-8 flex justify-center flex-col items-center">
+                </div> */}
+                <div className="px-[40px] pb-8 flex justify-center flex-col items-center">
                   <div className="">
                     <p className="text-2xl font-semibold  text-center mb-3 text-[#333333] dark:text-white">Meet Our Consultant</p>
                     <p className="text-[18px] max-w-[600px] text-center">
