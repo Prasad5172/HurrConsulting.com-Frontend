@@ -3,8 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-    --glow-color: #ffff;
+  --glow-color: #a3a3a3;
+  --dark-glow-color: #ffffff;
+  --glow-color-text:#35353500;
+  --dark-glow-color-text:#000000;
+  --bg-color: #000000;
 }
+
+
+
 .home ul {
     width: min(100%, 60rem);
     overflow: hidden;
@@ -18,10 +25,10 @@
 .home ul li.card {
     position: relative;
     padding: 1.5rem 0.9rem 1.5rem 1.5rem;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     background-image: linear-gradient(to right, rgb(0 0 0 / .15), transparent);
     transform-style: preserve-3d;
-    color: var(--color);
+    /* color: var(--color); */
     display: flex;
     align-items: center;
     gap: 0;
@@ -66,7 +73,7 @@
 
 .glowing-btn {
     position: relative;
-    color: var(--glow-color);
+    color: #373737;
     cursor: pointer;
     padding: 0.35em 1em;
     border: 0.15em solid var(--glow-color);
@@ -84,15 +91,45 @@
       0px 0px 0.5em 0px var(--glow-color);
     animation: border-flicker 2s linear infinite;
   }
+.dark .glowing-btn {
+    position: relative;
+    color: var(--dark-glow-color);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--dark-glow-color);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--dark-glow-color),
+      0px 0px 0.5em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--dark-glow-color),
+      0px 0px 0.5em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--dark-glow-color),
+      0px 0px 0.5em 0px var(--dark-glow-color);
+    animation: border-flicker 2s linear infinite;
+  }
   
   .glowing-txt {
     float: left;
     margin-right: -0.8em;
-    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3)
       0 0 0.45em var(--glow-color);
     -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
       0 0 0.45em var(--glow-color);
     text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    animation: text-flicker 3s linear infinite;
+  }
+  .dark .glowing-txt {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3)
+      0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+      0 0 0.45em var(--glow-color);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--dark-glow-color);
     animation: text-flicker 3s linear infinite;
   }
   
@@ -114,6 +151,19 @@
     background: var(--glow-color);
     pointer-events: none;
   }
+  .dark .glowing-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--dark-glow-color);
+    pointer-events: none;
+  }
   
   .glowing-btn::after {
     content: "";
@@ -128,9 +178,27 @@
     box-shadow: 0 0 2em 0.2em var(--glow-color);
     transition: opacity 100ms linear;
   }
+  .dark .glowing-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--dark-glow-color);
+    box-shadow: 0 0 2em 0.2em var(--dark-glow-color);
+    transition: opacity 100ms linear;
+  }
   
   .glowing-btn:hover {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: none;
+    animation: none;
+  }
+  .dark .glowing-btn:hover {
+    color: rgb(70, 70, 70);
     text-shadow: none;
     animation: none;
   }

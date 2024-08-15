@@ -37,45 +37,57 @@ const App = () => {
   const [isAdmin, setAdmin] = useState(false);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      setIsLoading(true)
-      if (token) {
-        try {
-          const res = await fetch(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const data = await res.json();
-          const user = data.data;
-          // console.log(user);
-          // console.log(data.code);
-          if (data.code === 200) {
-            setAuthenticated(true);
-            setUserName(user.first_name);
-            if (user.image_url) {
-              setDisplayProfile(true);
-            }
-            setProfile(user.image_url);
-            setAuthenticated(true);
-            setAdmin(user.is_admin);
-          }
-        } catch (error) {
-          console.log(error);
-          toastFailed(error.message);
+  const TIMEOUT = 5000; // Timeout duration in milliseconds (e.g., 5000ms = 5 seconds)
+
+useEffect(() => {
+  const checkAuthentication = async () => {
+    setIsLoading(true);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
+
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          signal: controller.signal,
         }
+      );
+      const data = await res.json();
+      const user = data.data;
+      if (data.code === 200) {
+        setAuthenticated(true);
+        setUserName(user.first_name);
+        if (user.image_url) {
+          setDisplayProfile(true);
+        }
+        setProfile(user.image_url);
+        setAuthenticated(true);
+        setAdmin(user.is_admin);
       }
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        // Handle request timeout
+        console.log('Request timed out');
+        toastFailed('Request timed out. Please try again later.');
+      } else {
+        console.log(error);
+        toastFailed(error.message);
+      }
+    } finally {
+      clearTimeout(timeoutId);
       setIsLoading(false);
-    };
-    
-    checkAuthentication();
-  }, []);
+    }
+  };
+
+  checkAuthentication();
+}, []);
+
 
   return (
     <AuthContext.Provider

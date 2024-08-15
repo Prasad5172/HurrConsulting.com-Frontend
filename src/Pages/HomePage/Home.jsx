@@ -7,18 +7,19 @@ function Home() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="mt-[80px]">
-        <div className="home bg-white dark:bg-[#292929] pb-[72px] ">
-          <div className="wrapper  home-section bg-[#959595] dark:bg-[#292929] dark:text-white flex justify-center">
-            <div className="container pt-[60px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
+      <div className="mt-[80px] dark:mt-0">
+        <div className="home text-[#666666] dark:text-[#dadada] bg-[#f2f2f2] dark:bg-[#292929] pb-[72px] ">
+          <div className="wrapper dark:pt-[80px]  home-section bg-[#f2f2f2] dark:bg-[#292929] text-[#666666] dark:text-white flex justify-center">
+            <div className="container pt-[30px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
               <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-1">
-                <div className="pb-16 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
+                <div className="pb-28 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
                   <p
-                    className="2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px] dark:text-[#bb86fc]"
+                    className="2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px] text-[#333333] dark:text-[#ffffff]"
                     style={{ lineHeight: "1.1" }}
                   >
                     Hurr Consulting: Empowering Equity
                   </p>
+                  
                   <p className="mb-[20px] text-[22px]">
                     Welcome to Hurr Consulting, a leading employment law
                     consultancy dedicated to empowering businesses and
@@ -59,7 +60,7 @@ function Home() {
                   <img src="legal-network.png" alt="Description of image" />
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2   pb-16">
-                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2">Legal Expert:</p>
+                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Legal Expert:</p>
                   <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center">
                     With over{" "}
                     <span className="font-bold ">10 decades of experience</span>{" "}
@@ -126,7 +127,7 @@ function Home() {
               <div className="p-6">
                 <div className="">
                   <div className="">
-                    <p className="font-bold text-center mb-5 text-[30px]">Our Values:</p>
+                    <p className="font-bold text-center mb-5 text-[30px] text-[#333333] dark:text-white">Our Values:</p>
                     <ul>
                       <li
                         className="card"
@@ -226,7 +227,7 @@ function Home() {
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-8 flex justify-center flex-col items-center">
                   <div className="">
-                    <p className="text-2xl font-semibold  text-center mb-3">Meet Our Consultant</p>
+                    <p className="text-2xl font-semibold  text-center mb-3 text-[#333333] dark:text-white">Meet Our Consultant</p>
                     <p className="text-[18px] max-w-[600px] text-center">
                       Masumah Akbar is a seasoned legal expert committed to equity
                       and justice. With extensive experience representing both
@@ -243,7 +244,7 @@ function Home() {
           <div className="flex justify-center">
             <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
               <div className="p-12">
-                <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 text-center">
+                <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 text-center text-[#333333] dark:text-white">
                   Why Choose Us?
                 </p>
                 <p className="text-[18px] text-center">

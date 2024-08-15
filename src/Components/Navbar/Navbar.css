@@ -52,7 +52,7 @@ nav h1 {
     display: block;
     height: 2.5px;
     width: 0%; /* Initial width of the underline */
-    background-color: #393424; /* Color of the underline */
+    background-color: #d0d0d066; /* Color of the underline */
     position: absolute;
     bottom: 0; /* Position the underline at the bottom of p */
     left: 0; /* Align underline from the left */

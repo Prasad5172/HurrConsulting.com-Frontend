@@ -51,10 +51,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between bg-transparent dark:bg-[#d2e1de]">
+    <nav className="flex justify-between bg-[#d2e1de] dark:bg-transparent ">
       <div className="flex justify-center items-center overflow-hidden">
-        <div className="logo flex items-center mt-3">
-          <img src="hurrconsulting.svg" width={"250px"} alt="Logo Image" />
+        <div className="logo flex items-center mt-3" onClick={() => navigate("/")}>
+          <img src="/hurrconsulting.svg" width={"250px"} alt="Logo Image" />
         </div>
       </div>
       <ul className="nav-links 2xl:bg-transparent xl:bg-transparent lg:bg-transparent bg-white dark:2xl:bg-transparent dark:xl:bg-transparent dark:lg:bg-transparent dark:bg-[#131418] 2xl:gap-6 xl:gap-6 lg:gap-6 md:gap-4 mr-4">
@@ -67,7 +67,7 @@ const Navbar = () => {
               navigate("/");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Home
           </p>
@@ -78,7 +78,7 @@ const Navbar = () => {
               navigate("/service");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Service
           </p>
@@ -89,7 +89,7 @@ const Navbar = () => {
               navigate("/about");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             About
           </p>
@@ -100,7 +100,7 @@ const Navbar = () => {
               navigate("/resource");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Resource
           </p>
@@ -111,7 +111,7 @@ const Navbar = () => {
               navigate("/testimonials");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Testimonials
           </p>
@@ -122,7 +122,7 @@ const Navbar = () => {
               navigate("/contact");
               handleClick();
             }}
-            className="text-black dark:2xl:text-black dark:xl:text-black dark:lg:text-black dark:text-white"
+            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             ContactUs
           </p>
@@ -180,8 +180,8 @@ const Navbar = () => {
               onClick={handleLoginSignup}
               ref={dropdownRef}
             >
-              <div className="dropdown-toggle cursor-pointer text-[#3e3e3e]">
-                <FontAwesomeIcon icon={faRightToBracket} color="#3e3e3e" />{" "}
+              <div className="dropdown-toggle cursor-pointer text-[#3e3e3e] dark:text-[#ffff]">
+                <FontAwesomeIcon icon={faRightToBracket} className="text-[-[#3e3e3e] dark:text-[#ffff]"  />{" "}
                 Login/SignUp
                 <FontAwesomeIcon
                   className="ml-1.5"
