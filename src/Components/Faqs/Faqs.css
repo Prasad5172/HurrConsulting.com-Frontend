@@ -14,3 +14,14 @@
 .faq-row-wrapper .faq-body .faq-row .row-content .row-content-text{
     margin-bottom: 10px;
 }
+
+.dark .faq-row-wrapper .faq-body .faq-row {
+    background-color: #3c3c3c;
+    
+}
+.dark .faq-row-wrapper .faq-body .faq-row .row-title{
+    color: white;
+}
+.dark .faq-row-wrapper .faq-body .faq-row .row-content .row-content-text {
+    color: #e0e0e0;
+}

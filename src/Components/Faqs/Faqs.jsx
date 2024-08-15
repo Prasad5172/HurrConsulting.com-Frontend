@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Faq from "react-faq-component";
 import "./Faqs.css";
+import { AuthContext } from "../../context/AuthContext";
 const data = {
   title: "Frequently Asked Questions",
   rows: [
@@ -30,13 +31,7 @@ const data = {
   ],
 };
 
-const styles = {
-  bgColor: "white",
-  titleTextColor: "black",
-  rowTitleColor: "black",
-  // rowContentColor: 'grey',
-  arrowColor: "black",
-};
+
 
 const config = {
   animate: true,
@@ -45,9 +40,20 @@ const config = {
 };
 
 export default function App() {
+
+  const {isDarkMode} = useContext(AuthContext);
+
+  const styles = {
+    bgColor: `${isDarkMode ? "#292929":"white"}`,
+    titleTextColor: `${isDarkMode ? "white":"black"} `,
+    rowTitleColor: `${isDarkMode ? "black":"black"} `,
+    // rowContentColor: 'grey',
+    arrowColor: `${isDarkMode ? "#3c3c3c":"black"} `,
+  };
+
   return (
     <>
-        <div className="flex justify-center">
+        <div className="flex justify-center dark:bg-[#292929] p-2">
           <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
             <Faq data={data} styles={styles} config={config} />
           </div>

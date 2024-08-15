@@ -33,7 +33,7 @@ function ContactForm() {
   }, []);
   return (
     <>
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 bg-white dark:bg-gray-900 mb-4 rounded-lg">
+      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md border-2 bg-white dark:bg-[#3c3c3c] mb-4 rounded-lg">
           <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white ">
               Contact Us
@@ -83,7 +83,7 @@ function ContactForm() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium text-[#d1d5db] "
                 >
                   Subject
                 </label>
@@ -120,7 +120,7 @@ function ContactForm() {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="py-3 px-5 text-sm font-medium text-center text-black bg-gray-400 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Send message
               </button>

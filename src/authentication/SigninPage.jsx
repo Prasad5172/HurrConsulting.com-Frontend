@@ -128,16 +128,16 @@ const SinginPage = () => {
     <>
       { !isAuthenticated && (
         <>
-          <div className="outer-box mt-[80px]  h-screen flex justify-center items-center" id="signin-page">
+          <div className="outer-box pt-[80px]  dark:bg-[#292929] h-screen flex justify-center items-center" id="signin-page">
             <div className="inner-box mx-auto ">
               <header className="signup-header">
-                <h1>Signin</h1>
-                <p className="text-[18px]">It just take 30 seconds</p>
+                <h1 className="dark:text-white">Signin</h1>
+                
               </header>
               <main className="signup-body">
                 <form onSubmit={handleSubmit} className="form">
                   <p className="items-center">
-                    <label htmlFor="email" className="text-black font-semibold text-[20px] block ">
+                    <label htmlFor="email" className="text-black font-semibold text-[20px] block dark:text-[#e0e0e0] ">
                       Enter Your Email
                     </label>
                     <input
@@ -152,7 +152,7 @@ const SinginPage = () => {
                     />
                   </p>
                   <p>
-                    <label htmlFor="password" className="field text-[20px] font-bold">
+                    <label htmlFor="password" className="field text-[20px] font-bold dark:text-[#e0e0e0]">
                       Password
                     </label>
                     <div>
@@ -236,7 +236,7 @@ const SinginPage = () => {
               </div>
 
               <footer className="signup-footer flex justify-center">
-                <p className="inline">
+                <p className="inline dark:text-[#e0e0e0]">
                   Not Register ?{" "}
                   <NavLink to="/signup" >Click here to register</NavLink>
                 </p>

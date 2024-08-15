@@ -245,7 +245,7 @@ const SignupPage = () => {
 
   return (
     <>
-        <div className="outer-box mt-[80px]  h-screen flex justify-center items-center" id="signup-page">
+        <div className="outer-box pt-[80px] bg-[#292929]  h-screen flex justify-center items-center" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
               <>
@@ -255,7 +255,7 @@ const SignupPage = () => {
                       <div className="row">
                         <div className="col-sm-12 mt-5 bgWhite otp-section">
                         <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center">Verify OTP</div>
-                          <h4 className="text-center text-[#000000] pb-8 text-[18px]">
+                          <h4 className="text-center text-[#000000] pb-8 text-[18px] dark:text-[#e0e0e0]">
                             Enter the OTP send to {formdata.email}{" "}
                           </h4>
 
@@ -292,13 +292,13 @@ const SignupPage = () => {
                             Verify
                           </button>
                           <footer className="signup-footer footer-in-singup">
-                            <p className="inline text-[18px]">
+                            <p className="inline text-[18px] dark:text-[#e0e0e0]">
                               Already Registered?{" "}
                               <NavLink to="/signin" className="marginDown hover:underline">
                                 Click here to login
                               </NavLink>
                             </p>
-                            <p className="text-[18px]">
+                            <p className="text-[18px] dark:text-[#e0e0e0]">
                               Didn't receive OTP?{" "}
                               <a
                                 href="#"
@@ -318,12 +318,13 @@ const SignupPage = () => {
             ) : (
               <>
                 <header className="signup-header">
-                  <h1>SignUp</h1>
+                  <h1 className="dark:text-white">SignUp</h1>
+                  <p className="text-[18px] dark:text-[#e0e0e0]">It just take 30 seconds</p>
                 </header>
                 <main className="signup-body">
                   <form onSubmit={handleSubmit} className="form">
                     <p>
-                      <label htmlFor="email" className="text-black text-[20px]  font-bold">
+                      <label htmlFor="email" className="text-black text-[20px] font-bold dark:text-[#e0e0e0]">
                         Enter Your Email
                       </label>
                       <input
@@ -339,7 +340,7 @@ const SignupPage = () => {
                       />
                     </p>
                     <p>
-                      <label htmlFor="password" className=" text-[20px] font-bold">
+                      <label htmlFor="password" className=" text-[20px] font-bold dark:text-[#e0e0e0]">
                         Password
                       </label>
                       <div className="flex items-center">
@@ -358,20 +359,20 @@ const SignupPage = () => {
                         {showPassword1 ? (
                           <FontAwesomeIcon
                             icon={faEye}
-                            className="hover:cursor-pointer"
+                            className="hover:cursor-pointer dark:text-white"
                             onClick={() => setShowPassword1(!showPassword1)}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
-                            className="hover:cursor-pointer"
+                            className="hover:cursor-pointer dark:text-white"
                             onClick={() => setShowPassword1(!showPassword1)}
                           />
                         )}
                       </div>
                     </p>
                     <p>
-                      <label htmlFor="check-password" className="text-[20px] font-bold">
+                      <label htmlFor="check-password" className="text-[20px] font-bold dark:text-[#e0e0e0]">
                         Check Password
                       </label>
                       <div className="flex  items-center">
@@ -388,13 +389,13 @@ const SignupPage = () => {
                         {showPassword2 ? (
                           <FontAwesomeIcon
                             icon={faEye}
-                            className="hover:cursor-pointer"
+                            className="hover:cursor-pointer dark:text-white"
                             onClick={() => setShowPassword2(!showPassword2)}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
-                            className="hover:cursor-pointer"
+                            className="hover:cursor-pointer dark:text-white"
                             onClick={() => setShowPassword2(!showPassword2)}
                           />
                         )}
@@ -425,7 +426,7 @@ const SignupPage = () => {
                   </button>
                 </div>
                 <footer className="signup-footer footer-in-singup flex justify-center text-[18px]">
-                  <p className="inline">
+                  <p className="inline dark:text-[#e0e0e0]">
                     Alerady Registred?{" "}
                     <NavLink to="/signin">Click here to login</NavLink>
                   </p>

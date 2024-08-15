@@ -5,7 +5,7 @@ import Post from '../BlogPost/Post'
 function Resource() {
   return (
     <>
-      <div className="mt-[80px] ">
+      <div className="pt-[80px] dark:bg-[#292929]">
         <Post/>
       <div className="flex justify-center">
           <div className="container 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-[1200px] flex flex-wrap justify-between">
@@ -14,7 +14,7 @@ function Resource() {
                 {/* <!-- Column --> */}
                 <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                   {/* <!-- Article --> */}
-                  <article className="overflow-hidden rounded-lg shadow-lg">
+                  <article className="overflow-hidden rounded-lg shadow-lg bg-[#3c3c3c]">
                     <a href="#">
                       <img
                         alt="Placeholder"
@@ -23,10 +23,10 @@ function Resource() {
                       />
                     </a>
                     <header className="flex  flex-col px-2 pt-2 md:px-4 md:pt-4">
-                      <p className="text-grey-darker text-sm">11/1/19</p>
+                      <p className="text-grey-darker text-sm dark:text-white">11/1/19</p>
                       <h1 className="text-lg pt-2 ">
                         <a
-                          className="no-underline hover:underline text-black"
+                          className="no-underline hover:underline text-black dark:text-white"
                           href="#"
                         >
                           Article Title hellow hellow
@@ -35,7 +35,7 @@ function Resource() {
                       
                     </header>
 
-                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4">
+                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4 dark:text-white">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Quos dolor provident omnis beatae esse, alias voluptatum
                       iste accusamus, dolorum quisquam, aliquam obcaecati
@@ -56,7 +56,7 @@ function Resource() {
                 {/* <!-- Column --> */}
                 <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                   {/* <!-- Article --> */}
-                  <article className="overflow-hidden rounded-lg shadow-lg">
+                  <article className="overflow-hidden rounded-lg shadow-lg bg-[#3c3c3c]">
                     <a href="#">
                       <img
                         alt="Placeholder"
@@ -65,10 +65,10 @@ function Resource() {
                       />
                     </a>
                     <header className="flex  flex-col px-2 pt-2 md:px-4 md:pt-4">
-                      <p className="text-grey-darker text-sm">11/1/19</p>
+                      <p className="text-grey-darker text-sm dark:text-white">11/1/19</p>
                       <h1 className="text-lg pt-2 ">
                         <a
-                          className="no-underline hover:underline text-black"
+                          className="no-underline hover:underline text-black dark:text-white"
                           href="#"
                         >
                           Article Title hellow hellow
@@ -77,7 +77,7 @@ function Resource() {
                       
                     </header>
 
-                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4">
+                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4 dark:text-white">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Quos dolor provident omnis beatae esse, alias voluptatum
                       iste accusamus, dolorum quisquam, aliquam obcaecati
@@ -98,7 +98,7 @@ function Resource() {
                 {/* <!-- Column --> */}
                 <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                   {/* <!-- Article --> */}
-                  <article className="overflow-hidden rounded-lg shadow-lg">
+                  <article className="overflow-hidden rounded-lg shadow-lg bg-[#3c3c3c]">
                     <a href="#">
                       <img
                         alt="Placeholder"
@@ -107,10 +107,10 @@ function Resource() {
                       />
                     </a>
                     <header className="flex  flex-col px-2 pt-2 md:px-4 md:pt-4">
-                      <p className="text-grey-darker text-sm">11/1/19</p>
+                      <p className="text-grey-darker text-sm dark:text-white">11/1/19</p>
                       <h1 className="text-lg pt-2 ">
                         <a
-                          className="no-underline hover:underline text-black"
+                          className="no-underline hover:underline text-black dark:text-white"
                           href="#"
                         >
                           Article Title hellow hellow
@@ -119,7 +119,7 @@ function Resource() {
                       
                     </header>
 
-                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4">
+                    <p className=" justify-between leading-tight px-2 pt-2 md:px-4 md:pt-4  line-clamp-4 dark:text-white">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Quos dolor provident omnis beatae esse, alias voluptatum
                       iste accusamus, dolorum quisquam, aliquam obcaecati

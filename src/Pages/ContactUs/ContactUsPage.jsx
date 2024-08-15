@@ -8,7 +8,7 @@ function ContactUsPage() {
   
   return (
     <>
-      <section className="mt-[85px] bg-white">
+      <section className="pt-[85px] bg-white dark:bg-[#292929] ">
         <ContactForm/>
       </section>
     </>

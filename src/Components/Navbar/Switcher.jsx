@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import useDarkSide from "../../hooks/useDarkSide";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Switcher() {
   const [colorTheme, setTheme] = useDarkSide();
+  const {setIsDarkMode} = useContext(AuthContext);
   const [darkSide, setDarkSide] = useState(
     colorTheme === "light" ? true : false
   );
@@ -11,6 +13,7 @@ export default function Switcher() {
   const toggleDarkMode = (checked) => {
     setTheme(colorTheme);
     setDarkSide(checked);
+    setIsDarkMode(checked);
   };
 
   return (

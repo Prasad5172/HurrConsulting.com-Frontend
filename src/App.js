@@ -31,6 +31,7 @@ const App = () => {
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [displayProfile, setDisplayProfile] = useState(false);
+  const [isDarkMode,setIsDarkMode] = useState(false);
   const [profile, setProfile] = useState(
     "https://images.unsplash.com/photo-1620554600249-636b81e27699?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c291cmNlfGVufDB8fDB8fHww"
   );
@@ -106,6 +107,8 @@ useEffect(() => {
         setDisplayProfile,
         profile,
         setProfile,
+        isDarkMode,
+        setIsDarkMode
       }}
     >
       <div className="overflow-x-hidden h-screen">

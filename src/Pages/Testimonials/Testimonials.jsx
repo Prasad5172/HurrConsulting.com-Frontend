@@ -3,8 +3,8 @@ import "./Testimonials.css";
 function Testimonials() {
   return (
     <>
-      <div className="mt-[80px] ">
-        <div className="outerdiv">
+      <div className="pt-[80px] dark:bg-[#292929]">
+        <div className="outerdiv dark:bg-[#292929]">
           <div className="innerdiv">
             <div className="div1 eachdiv">
               <div className="userdetails">
