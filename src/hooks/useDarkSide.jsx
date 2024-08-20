@@ -9,7 +9,6 @@ export default function useDarkSide() {
     root.classList.remove(colorTheme);
     root.classList.add(theme);
 
-    // save theme to local storage
     localStorage.setItem("theme", theme);
   }, [theme, colorTheme]);
 
