@@ -50,7 +50,7 @@ useEffect(() => {
     if(token){
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/auth/verifyToken`,
           {
             method: "GET",
             headers: {

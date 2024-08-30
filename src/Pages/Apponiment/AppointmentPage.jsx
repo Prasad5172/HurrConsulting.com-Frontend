@@ -98,7 +98,7 @@ const AppointmentPage = () => {
     console.log(body);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/event`, {
+        `${process.env.REACT_APP_BACKEND_URL}/api/event`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

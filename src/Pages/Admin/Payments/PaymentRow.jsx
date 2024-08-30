@@ -31,7 +31,7 @@ function PaymentRow({
     try {
       
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/payment/refund`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/payment/refund`,
         {
           method: "POST",
           headers: {

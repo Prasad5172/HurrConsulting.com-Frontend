@@ -43,7 +43,7 @@ function ForgotPassword() {
     setIsLoading(true)
     try {
       const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
+        process.env.REACT_APP_BACKEND_URL + `/api/auth/sendOtp`,
         {
           method: "POST",
           headers: {
@@ -98,7 +98,7 @@ function ForgotPassword() {
     }
     try {
       const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/auth/verifyOtp`,
+        process.env.REACT_APP_BACKEND_URL + `/api/auth/verifyOtp`,
         {
           method: "POST",
           headers: {
@@ -132,7 +132,7 @@ function ForgotPassword() {
     setIsLoading(true)
     try {
       const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/auth/sendOtp`,
+        process.env.REACT_APP_BACKEND_URL + `/api/auth/sendOtp`,
         {
           method: "POST",
           headers: {
@@ -171,7 +171,7 @@ function ForgotPassword() {
     console.log("i am in handle reset password function");
     try {
       const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + `/auth/resetpassword`,
+        process.env.REACT_APP_BACKEND_URL + `/api/auth/resetpassword`,
         {
           method: "PUT",
           headers: {

@@ -50,7 +50,7 @@ const SinginPage = () => {
   
     setIsLoading(true);
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND_URL + `/auth/signin`, {
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -203,7 +203,7 @@ const SinginPage = () => {
                       : undefined;
                     console.log(payload);
                       const res = await fetch(
-                        process.env.REACT_APP_BACKEND_URL + `/auth/signin`,
+                        process.env.REACT_APP_BACKEND_URL + `/api/auth/signin`,
                         {
                           method: "POST",
                           headers: {

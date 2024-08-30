@@ -12,7 +12,7 @@ function Payments() {
   const fetchPayments = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/payment`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/payment`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

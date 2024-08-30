@@ -32,7 +32,7 @@ function Request() {
     }
 
     const res = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/create-checkout-session`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/create-checkout-session`,
       {
         email: data.email,
         amount: data.amount,

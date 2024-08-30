@@ -15,7 +15,7 @@ function Events() {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/event`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/event`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

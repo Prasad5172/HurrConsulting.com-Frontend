@@ -15,7 +15,7 @@ function Users() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/users`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/users`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

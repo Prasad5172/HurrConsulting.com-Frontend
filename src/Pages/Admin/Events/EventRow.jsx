@@ -57,7 +57,7 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
   };
   const handleUpdate = async () => {
     setIsModifying(true);
-    const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`,
+    const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}`,
       {
       summary:summary,
       description:description,
@@ -88,7 +88,7 @@ function EventRow({id, email,  startTime, endTime ,summary,description,attendees
   const handleDelete = async () => {
     setIsModifying(true);
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/event/${id}`,{
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}`,{
         headers: {
           Authorization: `Bearer ${token}`
         }
