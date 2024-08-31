@@ -143,7 +143,7 @@ const SinginPage = () => {
                     <input
                       type="email"
                       id="email"
-                      className="email w-11/12 rounded-md"
+                      className="email w-11/12 rounded-md pl-2"
                       name="email"
                       value={signInData.email}
                       onChange={inputEvent}
@@ -159,7 +159,7 @@ const SinginPage = () => {
                       <input
                         type={`${showPassword ? "text" : "password"}`}
                         id="password"
-                        className="password w-11/12 rounded-md"
+                        className="password w-11/12 rounded-md pl-2"
                         name="password"
                         value={signInData.password}
                         onChange={inputEvent}

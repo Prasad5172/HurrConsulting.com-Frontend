@@ -1,20 +1,54 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { toastFailed, toastSuccess } from "../../Util/ToastFunctions";
+import { AuthContext } from "../../context/AuthContext";
 
 function ContactForm() {
   const [formData, setFormData] = useState({
-    fname: "",
+    phone: "",
     email: "",
     message: "",
     subject: "",
   });
+  const {setIsLoading} = useContext(AuthContext);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+
+  const handleSubmitForm = async (event) => {
     event.preventDefault();
-  };
+    setIsLoading(true);
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "/api/contact",
+        {
+          method: "POST",
+          headers: {
+            // Authorization: `Bearer ${response.access_token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await res.json();
+      if(res.ok){
+        toastSuccess("Submitted Succesfully");
+      }else{
+        toastFailed("Failed to submit");
+      }
+    } catch (error) {
+      console.log(error);
+      toastFailed(error.message);
+    }
+    setIsLoading(false);
+    setFormData({
+      phone: "",
+      email: "",
+      message: "",
+      subject: "",
+    });
+  }
 
   const textareaRef = useRef(null);
   useEffect(() => {
@@ -42,7 +76,7 @@ function ContactForm() {
               Got a technical issue? Want to send feedback about a beta feature?
               Need details about our Business plan? Let us know.
             </p>
-            <form action="#" className="space-y-8">
+            <form action="#" className="space-y-8" >
               <div>
                 <label
                   htmlFor="fname"
@@ -119,7 +153,7 @@ function ContactForm() {
               </div>
               <button
                 type="submit"
-                onClick={handleSubmit}
+                onClick={handleSubmitForm}
                 className="py-3 px-5 text-sm font-medium text-center text-black bg-gray-400 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Send message

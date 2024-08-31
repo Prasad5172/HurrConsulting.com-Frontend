@@ -97,7 +97,7 @@ const SignupPage = () => {
       setIsLoading(true)
       try {
         const res = await fetch(
-          process.env.REACT_APP_BACKEND_URL + "api/auth/signup",
+          process.env.REACT_APP_BACKEND_URL + "/api/auth/signup",
           {
             method: "POST",
             headers: {
@@ -187,7 +187,7 @@ const SignupPage = () => {
     setIsLoading(true)
     try {
       const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + "/api//auth/sendOtp",
+        process.env.REACT_APP_BACKEND_URL + "/api/auth/sendOtp",
         {
           method: "POST",
           headers: {

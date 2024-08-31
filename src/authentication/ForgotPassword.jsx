@@ -184,7 +184,7 @@ function ForgotPassword() {
       // console.log(await res.json())
       const data = await res.json();
       console.log(data);
-      if (data == "succesful") {
+      if (res.ok) {
         setIsOtpVerified(false);
         setShowOtpPage(false);
         toastSuccess("Password Reset Succesful")
