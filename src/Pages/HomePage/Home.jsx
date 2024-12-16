@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
+import ScrollToTop from "../../Util/ScrollToTop";
 function Home() {
   const navigate = useNavigate();
   // const scrollToTop = () => {
@@ -16,6 +17,7 @@ function Home() {
   // },[]);
   return (
     <>
+    <ScrollToTop/>
       <div className="mt-[80px] dark:mt-0">
         <div className="home text-[#666666] dark:text-[#dadada] bg-[#f2f2f2] dark:bg-[#292929] pb-[72px] ">
           <div className="wrapper dark:pt-[80px]  home-section bg-[#f2f2f2] dark:bg-[#292929] text-[#666666] dark:text-white flex justify-center">

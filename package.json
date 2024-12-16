@@ -2,7 +2,7 @@
   "name": "hurrconsulting_frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://hurrconsulting.com",
+  "homepage": "https://hurrconsulting.com",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -17,7 +17,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "flowbite-react": "^0.10.1",
     "jose": "^5.6.2",
     "jsonwebtoken": "^9.0.2",

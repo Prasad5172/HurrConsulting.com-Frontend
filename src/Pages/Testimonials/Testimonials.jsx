@@ -1,5 +1,6 @@
 import React from "react";
 import "./Testimonials.css";
+import SimpleSlider from "../Service/SimpleSlider";
 function Testimonials() {
   return (
     <>
@@ -26,8 +27,9 @@ function Testimonials() {
                   honestly feel I got every penny’s worth.
                 </h4>
                 <p>
-                  “Our advocate during the final appeal meeting was thorough, experienced, on top of her
-                  game, and very professional. She was a star!”
+                  “Our advocate during the final appeal meeting was thorough,
+                  experienced, on top of her game, and very professional. She
+                  was a star!”
                 </p>
               </div>
             </div>
@@ -135,6 +137,11 @@ function Testimonials() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <div className="container 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-[900px] md:max-w-[700px] sm:max-w-[650px]">
+            <SimpleSlider slidesToShow={3} at1250={2} />
           </div>
         </div>
       </div>

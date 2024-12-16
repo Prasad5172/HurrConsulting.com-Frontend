@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./About.css";
 
 function About() {
@@ -1034,3 +1034,4 @@ negligence, fraud, or other liabilities that cannot be legally excluded.
 }
 
 export default About;
+

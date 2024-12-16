@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import SignupPage from "./authentication/SignupPage";
 import SigninPage from "./authentication/SigninPage";
 import ForgotPassword from "./authentication/ForgotPassword";
@@ -91,7 +91,6 @@ useEffect(() => {
   checkAuthentication();
 }, []);
 
-
   return (
     <AuthContext.Provider
       value={{
@@ -115,6 +114,7 @@ useEffect(() => {
         <header>
           <Navbar />
         </header>
+        
         <Routes>
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/service" element={<Service />} />

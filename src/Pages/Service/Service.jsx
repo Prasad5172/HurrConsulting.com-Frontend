@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Service.css";
 import SimpleSlider from "./SimpleSlider";
 
@@ -46,7 +46,7 @@ function Service() {
               <SimpleSlider slidesToShow={3} at1250={2} />
             </div>
           </div>
-          <div className="flex justify-center slider-with-sidediv ">
+          {/* <div className="flex justify-center slider-with-sidediv ">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-[1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col bg-[#f3f3fd] mb-5 rounded-lg pt-10">
               <div className="2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 w-full 2xl:order-1 xl:order-1 lg:order-1 md:order-1 order-2">
                 <SimpleSlider slidesToShow={1} at1250={1} />
@@ -65,7 +65,7 @@ function Service() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
 
           <div className="flex justify-center ">
