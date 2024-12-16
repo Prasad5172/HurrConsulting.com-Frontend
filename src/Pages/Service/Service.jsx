@@ -70,13 +70,13 @@ function Service() {
 
           <div className="flex justify-center ">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col  mb-5 rounded-lg pt-10">
-              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-4 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c] pt-5">
-                <div className="p-4 ">
+              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-3 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c] pt-5">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-4 dark:text-white">Settlement Agreements</p>
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">What is a Settlement Agreement?</p>
                   <p className=" 2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] dark:text-[#e0e0e0]">A Settlement Agreement is a legally binding <span className="font-bold">contract</span> between an employer and an employee that resolves any disputes or claims the employee might have against the employer. It typically includes terms such as the amount of compensation to be paid to the employee, any confidentiality clauses, and other agreed-upon terms and conditions. These agreements are commonly used to settle disputes arising from issues such as <span className="font-bold">redundancy</span> , <span className="font-bold">unfair dismissal</span> , <span className="font-bold">discrimination</span> , and other <span className="font-bold">workplace grievances</span> .</p>
                 </div>
-                <div className="p-4">
+                <div className="2xl:px-8 xl:px-8 lg:px-8 md:px-8 pxm-4-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">Key Features of a Settlement Agreement:</p>
                   <ul className="list-disc ml-4 ">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Voluntary:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Both parties must enter into the agreement willingly. There should be no coercion or undue pressure.</span> </li>
@@ -86,7 +86,7 @@ function Service() {
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Compensation:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Typically includes a financial settlement, which can include severance pay, notice pay, and other benefits.</span> </li>
                   </ul>
                 </div>
-                <div className="p-4">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">When to Use a Settlement Agreement:</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Redundancy:</span> <span className="text-[17px] dark:text-[#e0e0e0]">To amicably resolve redundancy situations.</span> </li>
@@ -100,13 +100,13 @@ function Service() {
 
           <div className="flex justify-center">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col mb-5 rounded-lg ">
-              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-4 rounded-[16px] bg-[#f3f3fd]  dark:bg-[#3c3c3c]  pt-5">
-                <div className="p-4">
+              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-3 rounded-[16px] bg-[#f3f3fd]  dark:bg-[#3c3c3c]  pt-5">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-4 dark:text-white">COT3 Agreements</p>
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white ">What is a COT3 Agreement?</p>
                   <p className="2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] dark:text-[#e0e0e0]">A COT3 agreement is a legally binding document that records the terms of a settlement reached through the Advisory, Conciliation and Arbitration Service (ACAS). It is used to resolve employment disputes without the need for a tribunal hearing. The COT3 is similar to a settlement agreement but is specifically facilitated by ACAS.</p>
                 </div>
-                <div className="p-4">
+                <div className="2xl:px-8 xl:px-8 lg:px-8 md:px-8 px-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">Key Features of a COT3 Agreement:</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Facilitated by Acas:</span> <span className="text-[17px] dark:text-[#e0e0e0]">An Acas conciliator assists both parties in reaching a mutually agreeable settlement.</span> </li>
@@ -115,7 +115,7 @@ function Service() {
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Quick Resolution:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Often results in a quicker settlement compared to going through a tribunal.</span> </li>
                   </ul>
                 </div>
-                <div className="p-4">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">When to Use a COT3 Agreement:</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Pre-Claim Conciliation:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Before a formal claim is lodged with an employment tribunal.</span> </li>
@@ -129,8 +129,8 @@ function Service() {
           </div>
           <div className="flex justify-center">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col mb-5 rounded-lg ">
-              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-4 rounded-[16px]  dark:bg-[#3c3c3c]  pt-5">
-                <div className="p-4">
+              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-3 rounded-[16px]  dark:bg-[#3c3c3c]  pt-5">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                     <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-4 text-center dark:text-white">Choosing Between Settlement Agreements and COT3</p>
                     <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-semibold mb-3 dark:text-white">Considerations:</p>
                     <ul className="list-disc ml-4">
@@ -146,12 +146,12 @@ function Service() {
           </div>
           <div className="flex justify-center">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col mb-5 rounded-lg">
-              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-4 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c]  pt-5">
-                <div className="p-4">
+              <div className="2xl:m-5 xl:m-5 lg:m-5 md:m-5 sm:m-5 m-3 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c]  pt-5">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-4 2xl:leading-normal xl:leading-normal lg:leading-normal md:leading-tight leading-normal dark:text-white">Our Services: Expert Review of Settlement Agreements and COT3</p>
                   <p className=" 2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal 2xl:text-[20px] xl:text-[20px] lg:text-[20px] md:text-[20px] text-[18px] dark:text-[#e0e0e0]">Navigating the complexities of Settlement Agreements and COT3 can be challenging. Our team of experienced employment law specialists are here to help. We offer comprehensive services to review and advise on these agreements, ensuring that your rights are protected and that you fully understand the terms and implications.</p>
                 </div>
-                <div className="p-4">
+                <div className="2xl:px-8 xl:px-8 lg:px-8 md:px-8 px-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-semibold mb-3 dark:text-white">What We Offer:</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Detailed Review:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Thorough examination of the terms and conditions to ensure fairness and compliance with legal standards.</span> </li>
@@ -168,20 +168,20 @@ function Service() {
           <div className="flex justify-center">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col mb-5 rounded-lg ">
               <div className="m-5 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c]  pt-5">
-                <div className="p-4">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 dark:text-white">Case Assessment</p>
                   <p className="2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal 2xl:text-[20px] xl:text-[20px] lg:text-[20px] md:text-[20px] text-[18px] mb-4 dark:text-[#e0e0e0]">Navigating the complexities of employment law can be daunting, whether you're an employee or an employer. At Hurr Consulting we offer comprehensive Case Assessments to help you understand the strength and viability of your case before you proceed with legal action. Our goal is to provide you with a clear, objective evaluation, empowering you to make informed decisions.</p>
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-2 dark:text-white">What is a Case Assessment?</p>
                   <p className="2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] dark:text-[#e0e0e0]">A Case Merits Assessment is an in-depth review and analysis of your employment-related issue by our experienced legal team. This service is designed to evaluate the potential success of your case based on the facts you provide and applicable legal principles. It helps in identifying the strengths, weaknesses, opportunities, and risks involved in pursuing legal action.</p>
                 </div>
-                <div className="p-4">
+                <div className="2xl:px-8 xl:px-8 lg:px-8 md:px-8 px-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">Who Can Benefit from a Case Assessment?</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Employees: </span> <span className="text-[17px] dark:text-[#e0e0e0]">If you believe you have been wrongfully terminated, discriminated against, harassed, or otherwise treated unfairly in your workplace, a Case Merits Assessment can help you understand the potential merits of your claims. </span> </li>
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Employers: </span> <span className="text-[17px] dark:text-[#e0e0e0]"> If you are facing a claim or anticipate a dispute with an employee, a Case Merits Assessment can help you assess the situation and develop a strategic response.</span> </li>
                   </ul>
                 </div>
-                <div className="p-4">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 dark:text-white">Our Assessment Process</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Initial Consultation: </span> <span className="text-[17px] dark:text-[#e0e0e0]">We begin with a thorough consultation to understand the details of your situation. This includes gathering all relevant documentation and discussing the circumstances surrounding your case.</span> </li>
@@ -211,7 +211,7 @@ function Service() {
           <div className="flex justify-center">
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col  mb-5 rounded-lg pt-10">
               <div className="m-5 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c]  pt-5">
-                <div className="p-4">
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 dark:text-white">Why Choose Us?</p>
                   <ul className="list-disc ml-4">
                     <li className="mb-3 dark:text-white"><span className="font-bold text-[19px] dark:text-white">Expertise:</span> <span className="text-[17px] dark:text-[#e0e0e0]">Our team comprises seasoned employment law attorneys with extensive experience in handling a wide range of employment disputes.</span> </li>
@@ -228,11 +228,11 @@ function Service() {
             <div className="container flex justify-center 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px] 2xl:flex-row xl:flex-row lg:flex-row md:flex-row flex-col  mb-5 rounded-lg ">
               <div className="m-5 rounded-[16px] bg-[#f3f3fd] dark:bg-[#3c3c3c]  pt-5">
                 <div className="px-4">
-                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-white">Get Started Today</p>
-                  <p className=" 2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] text-[#e0e0e0]">Understanding the merits of your employment case is crucial for making strategic decisions. Contact us today to schedule your Case Merits Assessment and take the first step toward resolving your employment issue effectively.</p>
+                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 ">Get Started Today</p>
+                  <p className=" 2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] ">Understanding the merits of your employment case is crucial for making strategic decisions. Contact us today to schedule your Case Merits Assessment and take the first step toward resolving your employment issue effectively.</p>
                 </div>
-                <div className="p-4">
-                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-white">Link to Contact</p>
+                <div className="2xl:p-8 xl:p-8 lg:p-8 md:p-8 p-4">
+                  <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 ">Link to Contact</p>
                  <p className="2xl:px-5 xl:px-5 lg:px-5 md:px-5 leading-normal text-[18px] dark:text-[#e0e0e0]">Let Hurr Consulting guide you through the complexities of employment law with clarity and confidence.</p>
                 </div>
               </div>

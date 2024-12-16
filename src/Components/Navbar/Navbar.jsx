@@ -49,6 +49,7 @@ const Navbar = () => {
       window.location.reload();
     }, 100); // Adjust delay as needed
   };
+  
 
   return (
     <nav className="flex justify-between bg-[#d2e1de] dark:bg-transparent ">
@@ -80,7 +81,7 @@ const Navbar = () => {
             }}
             className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
-            Service
+            Services
           </p>
         </li>
         <li className="hover:cursor-pointer">
@@ -96,13 +97,14 @@ const Navbar = () => {
         </li>
         <li className="hover:cursor-pointer">
           <p
+          
             onClick={() => {
               navigate("/resource");
               handleClick();
             }}
             className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
-            Resource
+            Resources
           </p>
         </li>
         <li className="hover:cursor-pointer">
@@ -124,7 +126,7 @@ const Navbar = () => {
             }}
             className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
-            ContactUs
+            Contact Us
           </p>
         </li>
         {isAuthenticated ? (

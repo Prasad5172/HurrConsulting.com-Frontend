@@ -15,7 +15,7 @@ function Testimonials() {
                   />
                 </div>
                 <div className="detbox">
-                  <p className="name">Daniel Clifford</p>
+                  <p className="name">Anah M.</p>
                   <p className="designation">Verified Graduate</p>
                 </div>
               </div>
@@ -26,14 +26,8 @@ function Testimonials() {
                   honestly feel I got every penny’s worth.
                 </h4>
                 <p>
-                  “ I was an EMT for many years before I joined the bootcamp.
-                  I’ve been looking to make a transition and have heard some
-                  people who had an amazing experience here. I signed up for the
-                  free intro course and found it incredibly fun! I enrolled
-                  shortly thereafter. The next 12 weeks was the best - and most
-                  grueling - time of my life. Since completing the course, I’ve
-                  successfully switched careers, working as a Software Engineer
-                  at a VR startup. ”
+                  “Our advocate during the final appeal meeting was thorough, experienced, on top of her
+                  game, and very professional. She was a star!”
                 </p>
               </div>
             </div>

@@ -1,1 +1,69 @@
+.about #page-header {
+    padding-bottom: 0;
+    margin: 0;
+    border-bottom: none;
+    background-color: #38393a;
+    background-position: center;
+    background-size: cover; /* Ensures the image covers the container */
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 320px; /* Default height for large screens */
+}
 
+.about #page-header.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("https://t3.ftcdn.net/jpg/01/28/44/76/360_F_128447604_6deYSrg6bgH2F3YaoU0icdhvxNu4ReDN.jpg");
+    background-position: center;
+    background-size: cover; /* Makes image responsive */
+    background-color: rgba(58, 73, 90, 0.8); /* Adds overlay with opacity */
+}
+
+.about #page-header .container {
+    height: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center; /* Center-align content vertically */
+    justify-content: center; /* Center-align content horizontally */
+}
+
+.about #page-header .section-header {
+    text-align: center;
+    z-index: 1; /* Keeps content above the background */
+}
+
+.about #page-header .page-title {
+    color: #fff;
+    margin-bottom: 0;
+    line-height: 1.4; /* Improves readability */
+    font-weight: 550;
+}
+
+.about #page-header .page-title span {
+    color: #9fbf51;
+}
+
+/* Media Queries for Different Screen Sizes */
+@media (max-width: 1024px) {
+    .about #page-header {
+        min-height: 240px; /* Reduce height for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .about #page-header {
+        min-height: 200px;
+        background-position: top; /* Adjust position for narrow viewports */
+    }
+
+    .about #page-header .page-title {
+        font-size: 18px; /* Scale down font size */
+    }
+}

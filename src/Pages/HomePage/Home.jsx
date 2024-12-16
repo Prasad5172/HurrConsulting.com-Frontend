@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth", // Smooth scrolling animation
+  //   });
+  // };
+  // useEffect(() => {
+  //   scrollToTop();
+  // },[]);
   return (
     <>
       <div className="mt-[80px] dark:mt-0">
@@ -63,7 +72,7 @@ function Home() {
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Legal Expert:</p>
                   <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center">
                     With over{" "}
-                    <span className="font-bold ">10 decades of experience</span>{" "}
+                    <span className="font-bold ">10 years of experience</span>{" "}
                     in the legal industry, our lead consultant specialises in
                     navigating the challenges of workplace legalities. We offer
                     tailored solutions in areas such as settlement agreement
@@ -87,8 +96,9 @@ function Home() {
                   />
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-16 2xl:order-1 xl:order-1 lg:order-1">
-                  <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center ">
-                    Our Mission We are committed to delivering practical,
+                  <p className="font-bold text-center mb-2 text-[30px] text-[#333333] dark:text-white">Our Mission</p>
+                  <p className="text-[18px] text-center ">
+                    We are committed to delivering practical,
                     actionable advice that aligns with your specific needs. By
                     understanding the intricacies of employment law, we aim to
                     create compliant, fair, and productive workplaces.
@@ -108,8 +118,9 @@ function Home() {
                   />
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2  2xl:order-2 xl:order-2 lg:order-2">
-                  <p className="text-lg 2xl:text-start xl:text-start lg:text-start text-center">
-                    Our Approach We pride ourselves on a client-centric
+                <p className="font-bold text-center mb-2 text-[30px] text-[#333333] dark:text-white">Our Approach</p>
+                  <p className="text-lg text-center">
+                    We pride ourselves on a client-centric
                     approach, focusing on clear communication, timely responses,
                     and a deep understanding of your unique situation. Our
                     consultancy blends legal acumen with practical business
