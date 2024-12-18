@@ -52,7 +52,7 @@ const Navbar = () => {
   
 
   return (
-    <nav className="flex justify-between bg-[#d2e1de] dark:bg-transparent ">
+    <nav className="flex font-serif justify-between bg-[#d2e1de] dark:bg-transparent ">
       <div className="flex justify-center items-center overflow-hidden">
         <div className="logo flex items-center mt-3" onClick={() => navigate("/")}>
           <img src="/hurrconsulting.svg" width={"250px"} alt="Logo Image" />
@@ -68,20 +68,9 @@ const Navbar = () => {
               navigate("/");
               handleClick();
             }}
-            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
+            className=" text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Home
-          </p>
-        </li>
-        <li className="hover:cursor-pointer">
-          <p
-            onClick={() => {
-              navigate("/service");
-              handleClick();
-            }}
-            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
-          >
-            Services
           </p>
         </li>
         <li className="hover:cursor-pointer">
@@ -90,9 +79,20 @@ const Navbar = () => {
               navigate("/about");
               handleClick();
             }}
-            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
+            className=" text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             About
+          </p>
+        </li>
+        <li className="hover:cursor-pointer">
+          <p
+            onClick={() => {
+              navigate("/service");
+              handleClick();
+            }}
+            className=" text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
+          >
+            Services
           </p>
         </li>
         <li className="hover:cursor-pointer">
@@ -102,12 +102,12 @@ const Navbar = () => {
               navigate("/resource");
               handleClick();
             }}
-            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
+            className=" text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Resources
           </p>
         </li>
-        <li className="hover:cursor-pointer">
+        {/* <li className="hover:cursor-pointer">
           <p
             onClick={() => {
               navigate("/testimonials");
@@ -117,14 +117,14 @@ const Navbar = () => {
           >
             Testimonials
           </p>
-        </li>
+        </li> */}
         <li className="hover:cursor-pointer">
           <p
             onClick={() => {
               navigate("/contact");
               handleClick();
             }}
-            className="text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
+            className=" text-black dark:2xl:text-[#f0f0f0] dark:xl:text-[#f0f0f0] dark:lg:text-[#f0f0f0] dark:text-white"
           >
             Contact Us
           </p>
@@ -151,7 +151,7 @@ const Navbar = () => {
                   {isAdmin && (
                       <button
                         type="button"
-                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
+                        className=" block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
                         role="menuitem"
                         tabIndex="-1"
                         id="dropdown-item"
@@ -162,7 +162,7 @@ const Navbar = () => {
                     )}
                       <button
                         type="button"
-                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
+                        className="  block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5]"
                         role="menuitem"
                         tabIndex="-1"
                         id="dropdown-item"
@@ -182,7 +182,7 @@ const Navbar = () => {
               onClick={handleLoginSignup}
               ref={dropdownRef}
             >
-              <div className="dropdown-toggle cursor-pointer text-[#3e3e3e] dark:text-[#ffff]">
+              <div className=" dropdown-toggle cursor-pointer text-[#3e3e3e] dark:text-[#ffff]">
                 <FontAwesomeIcon icon={faRightToBracket} className="text-[-[#3e3e3e] dark:text-[#ffff]"  />{" "}
                 Login/SignUp
                 <FontAwesomeIcon
@@ -192,7 +192,7 @@ const Navbar = () => {
               </div>
               {isDropdownOpen && (
                 <div
-                  className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className=" absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
@@ -202,7 +202,7 @@ const Navbar = () => {
                   <div className="py-1 dark:bg-[#f5f5f5] rounded-lg" role="none">
                     <div
                       onClick={() => navigate("/signin")}
-                      className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer "
+                      className=" block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer "
                       role="menuitem"
                       tabIndex="-1"
                       id="dropdown-item"
@@ -211,7 +211,7 @@ const Navbar = () => {
                     </div>
                     <div
                       onClick={() => navigate("/signup")}
-                      className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer "
+                      className=" block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer "
                       role="menuitem"
                       tabIndex="-1"
                       id="dropdown-item"
@@ -251,7 +251,7 @@ const Navbar = () => {
                     <div className="py-1" role="none">
                       <button
                         type="button"
-                        className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
+                        className=" block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-3"
@@ -265,7 +265,7 @@ const Navbar = () => {
                   <div className="py-1" role="none">
                     <button
                       type="button"
-                      className="block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
+                      className=" block w-full px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#f5f5f5] hover:cursor-pointer"
                       role="menuitem"
                       tabIndex="-1"
                       id="menu-item-3"
@@ -282,7 +282,7 @@ const Navbar = () => {
                 >
                   <a
                     onClick={() => navigate("/signin")}
-                    className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer"
+                    className=" block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer"
                     role="menuitem"
                     tabIndex="-1"
                     id="menu-item-0"
@@ -291,7 +291,7 @@ const Navbar = () => {
                   </a>
                   <a
                     onClick={() => navigate("/signup")}
-                    className="block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer"
+                    className=" block px-4 py-2 text-sm text-gray-700 text-center hover:bg-[#e0e0e0] hover:cursor-pointer"
                     role="menuitem"
                     tabIndex="-1"
                     id="menu-item-1"

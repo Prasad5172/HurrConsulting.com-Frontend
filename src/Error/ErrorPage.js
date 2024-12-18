@@ -16,7 +16,7 @@ const ErrorPage = () => {
                     </div>
                     <div className='loading'>
                         <p>We can’t seem to find the page you are looking for</p>
-                    `</div>
+                    </div>
                     <div className="button-link">
                         <button className='Home-button' onClick={() => navigate("/")}>Home</button>
                         <br/>

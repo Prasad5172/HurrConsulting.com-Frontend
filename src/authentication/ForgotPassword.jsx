@@ -234,7 +234,7 @@ function ForgotPassword() {
     <>
       {!isAuthenticated && (
         <>
-          <div className="outer-box pt-[80px] dark:bg-[#292929] h-screen flex justify-center items-center" >
+          <div className="font-serif outer-box pt-[80px] dark:bg-[#292929] h-screen flex justify-center items-center" >
             <div className="inner-box mx-auto my-auto">
               {showOtpPage ? (
                 isOtpVerified ? (
@@ -245,13 +245,13 @@ function ForgotPassword() {
                     <main className="signup-body mt-10">
                       <form onSubmit={handleResetPassword} className="form">
                         <p className="my-2.5">
-                          <label htmlFor="fname" className="text-black block text-[19px] font-bold ">
+                          <label htmlFor="fname" className=" text-black block text-[19px] font-bold ">
                             New Password
                           </label>
                           <div>
                             <input
                               type={`${showPassword1 ? "text" : "password"}`}
-                              className="w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
+                              className=" w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
                               name="password"
                               value={formdata.password}
                               onChange={InputEvent}
@@ -274,13 +274,13 @@ function ForgotPassword() {
                           </div>
                         </p>
                         <p>
-                          <label htmlFor="fname" className="text-black block text-[19px] font-bold ">
+                          <label htmlFor="fname" className=" text-black block text-[19px] font-bold ">
                             Check Password
                           </label>
                           <div>
                             <input
                               type={`${showPassword2 ? "text" : "password"}`}
-                              className="w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
+                              className=" w-11/12 rounded-md p-2.5 border-2 border-solid border-slate-400 text-[18px] text-black"
                               name="confirmpassword"
                               value={formdata.confirmpassword}
                               onChange={InputEvent}
@@ -324,7 +324,7 @@ function ForgotPassword() {
                           <div className="row">
                             <div className="col-sm-12 mt-5 bgWhite otp-section">
                               <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center">Verify OTP</div>
-                              <h4 className="text-center text-[#000000] pb-8 text-[18px] dark:text-[#e0e0e0]">
+                              <h4 className=" text-center text-[#000000] pb-8 text-[18px] dark:text-[#e0e0e0]">
                                 Enter the OTP send to {formdata.email}{" "}
                               </h4>
                               <OtpInput
@@ -353,19 +353,19 @@ function ForgotPassword() {
                               <button
                                 type="submit"
                                 id="verify-otp-btn"
-                                className="create-account text-[18px]"
+                                className=" create-account text-[18px]"
                                 onClick={handleVerifyOtp}
                               >
                                 Verify
                               </button>
                               <footer className="signup-footer footer-in-singup">
-                                <p className="text-[18px] dark:text-[#e0e0e0]">
+                                <p className=" text-[18px] dark:text-[#e0e0e0]">
                                   Already Registered?{" "}
                                   <NavLink to="/signin" className="marginDown">
                                     Click here to login
                                   </NavLink>
                                 </p>
-                                <p className="text-[18px] dark:text-[#e0e0e0]">
+                                <p className=" text-[18px] dark:text-[#e0e0e0]">
                                   Didn't receive OTP?{" "}
                                   <a
                                     href="#"
@@ -387,18 +387,18 @@ function ForgotPassword() {
               ) : (
                 <>
                   <div className="row">
-                    <h1 style={{ marginBottom: "10px" }} className="font-semibold dark:text-white">Forgot Password</h1>
+                    <h1 style={{ marginBottom: "10px" }} className="font-semibold dark:text-white ">Forgot Password</h1>
                     <h6 className=" text-[18px] mb-6 dark:text-[#a8a8a8]" >
                       Enter your registered email to reset your password.
                     </h6>
                     <div className="form-group">
                       <form className="form" onSubmit={handleSubmit}>
-                        <label htmlFor="fname" className="text-black text-lg mb-2 dark:text-[#e0e0e0]">
+                        <label htmlFor="fname" className=" text-black text-lg mb-2 dark:text-[#e0e0e0]">
                           Enter Your Email
                         </label>
                         <input
                           type="email"
-                          className="fname text-[18px] mb-6"
+                          className=" fname text-[18px] mb-6"
                           name="email"
                           value={formdata.email}
                           onChange={InputEvent}
@@ -410,16 +410,16 @@ function ForgotPassword() {
                             type="submit"
                             id="verify-otp-btn"
                             value="Reset Password"
-                            className="create-account "
+                            className=" create-account "
                           />
                         </p>
                       </form>
                     </div>
                     <div className="footer">
-                      <p className="text-[18px] mb-2 mt-2 dark:text-[#e0e0e0]">
+                      <p className=" text-[18px] mb-2 mt-2 dark:text-[#e0e0e0]">
                         New here? <NavLink to="/signup">Sign Up.</NavLink>
                       </p>
-                      <p className="text-[18px] dark:text-[#e0e0e0]">
+                      <p className=" text-[18px] dark:text-[#e0e0e0]">
                         Already have an account?{" "}
                         <NavLink to="/signin">Sign In.</NavLink>
                       </p>

@@ -5,7 +5,11 @@ module.exports = {
   ],
   darkMode:"class",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['Noto Serif Display', 'serif'], // Add the font to the theme
+      },
+    },
   },
   plugins: [],
 }

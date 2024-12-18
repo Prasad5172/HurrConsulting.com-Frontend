@@ -25,24 +25,24 @@ function Home() {
               <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-1">
                 <div className="pb-28 px-[20px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 md:col-span-2">
                   <p
-                    className="2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px] text-[#333333] dark:text-[#ffffff]"
+                    className="font-serif 2xl:text-[62px] xl:text-[60px] lg:text[60px] md:text-[50px] sm:text-[45px] text-[40px] font-bold mb-[20px] text-[#333333] dark:text-[#ffffff]"
                     style={{ lineHeight: "1.1" }}
                   >
                     Hurr Consulting: Empowering Equity
                   </p>
                   
-                  <p className="mb-[20px] text-[22px]">
+                  <p className="font-serif mb-[20px] text-[22px]">
                     Welcome to Hurr Consulting, a leading employment law
                     consultancy dedicated to empowering businesses and
                     individuals with expert legal guidance in the complex realm
                     of employment law.
                   </p>
-                  <p className="mb-[20px] text-[20px] font-semibold">
+                  <p className="font-serif mb-[20px] text-[20px] font-semibold">
                     See if we can help you or someone you love get justice.
                   </p>
                   <div className="flex 2xl:justify-start xl:justify-start lg:justify-start justify-center ">
                     <button className="arrow relative  glowing-btn" onClick={() => navigate("/appointment")}>
-                      <span className="glowing-txt">
+                      <span className="font-serif glowing-txt">
                         <span className="faulty-letter mr-2">Book</span>A Free Consultation
                       </span>{" "}
                       <FontAwesomeIcon
@@ -72,7 +72,7 @@ function Home() {
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2   pb-16">
                   <p className="2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Legal Expert:</p>
-                  <p className="text-[18px] 2xl:text-start xl:text-start lg:text-start text-center">
+                  <p className="font-serif text-[18px] 2xl:text-start xl:text-start lg:text-start text-center">
                     With over{" "}
                     <span className="font-bold ">10 years of experience</span>{" "}
                     in the legal industry, our lead consultant specialises in
@@ -98,8 +98,8 @@ function Home() {
                   />
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2 pb-16 2xl:order-1 xl:order-1 lg:order-1">
-                  <p className="font-bold text-center mb-2 text-[30px] text-[#333333] dark:text-white">Our Mission</p>
-                  <p className="text-[18px] text-center ">
+                  <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Our Mission</p>
+                  <p className="font-serif text-[18px] text-center ">
                     We are committed to delivering practical,
                     actionable advice that aligns with your specific needs. By
                     understanding the intricacies of employment law, we aim to
@@ -120,8 +120,8 @@ function Home() {
                   />
                 </div>
                 <div className="px-[40px] lg:col-span-2 2xl:col-span-2 xl:col-span-2  2xl:order-2 xl:order-2 lg:order-2">
-                <p className="font-bold text-center mb-2 text-[30px] text-[#333333] dark:text-white">Our Approach</p>
-                  <p className="text-lg text-center">
+                <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Our Approach</p>
+                  <p className="font-serif text-lg text-center">
                     We pride ourselves on a client-centric
                     approach, focusing on clear communication, timely responses,
                     and a deep understanding of your unique situation. Our
@@ -140,7 +140,7 @@ function Home() {
               <div className="p-6">
                 <div className="">
                   <div className="">
-                    <p className="font-bold text-center mb-5 text-[30px] text-[#333333] dark:text-white">Our Values:</p>
+                    <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Our Values</p>
                     <ul>
                       <li
                         className="card"
@@ -154,10 +154,10 @@ function Home() {
                           />
                         </div>
                         <div>
-                          <div className="social-title max-w-[700px]">
+                          <div className="social-title max-w-[700px] font-serif">
                             Integrity
                           </div>
-                          <div className="content ">
+                          <div className="content font-serif">
                             We uphold the highest ethical standards in all our
                             interactions.
                           </div>
@@ -175,8 +175,8 @@ function Home() {
                           />
                         </div>
                         <div>
-                          <div className="social-title">Excellence</div>
-                          <div className="content">
+                          <div className="social-title font-serif">Excellence</div>
+                          <div className="content font-serif">
                             We strive for exceptional quality in our services
                             and advice.
                           </div>
@@ -194,8 +194,8 @@ function Home() {
                           />
                         </div>
                         <div>
-                          <div className="social-title">Innovation</div>
-                          <div className="content">
+                          <div className="social-title font-serif">Innovation</div>
+                          <div className="content font-serif">
                             We leverage the latest legal developments and
                             technology to provide cutting-edge solutions.
                           </div>
@@ -213,8 +213,8 @@ function Home() {
                           />
                         </div>
                         <div>
-                          <div className="social-title">Empathy</div>
-                          <div className="content">
+                          <div className="social-title font-serif">Empathy</div>
+                          <div className="content font-serif">
                             {" "}
                             We listen actively and respond with care
                             andunderstanding.
@@ -240,8 +240,8 @@ function Home() {
                 </div> */}
                 <div className="px-[40px] pb-8 flex justify-center flex-col items-center">
                   <div className="">
-                    <p className="text-2xl font-semibold  text-center mb-3 text-[#333333] dark:text-white">Meet Our Consultant</p>
-                    <p className="text-[18px] max-w-[600px] text-center">
+                    <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Meet Our Consultant</p>
+                    <p className="text-[18px] max-w-[600px] text-center font-serif">
                       Masumah Akbar is a seasoned legal expert committed to equity
                       and justice. With extensive experience representing both
                       respondents and claimants in Employment Tribunal cases,
@@ -257,10 +257,10 @@ function Home() {
           <div className="flex justify-center">
             <div className="container 2xl:max-w-[1100px] xl:max-w-[1100px]">
               <div className="p-12">
-                <p className="2xl:text-[25px] xl:text-[25px] lg:text-[25px] md:text-[25px] text-[24px] font-bold mb-3 text-center text-[#333333] dark:text-white">
+                <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">
                   Why Choose Us?
                 </p>
-                <p className="text-[18px] text-center">
+                <p className="text-[18px] text-center font-serif">
                   At Hurr Consulting, we believe in building lasting
                   relationships through trust, expertise, and a proactive
                   approach to legal challenges. Whether you're seeking to

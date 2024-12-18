@@ -40,7 +40,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
     ],
   };
   return (
-    <div className="slider-container mb-20">
+    <div className="slider-container mb-20 font-serif ">
       <Slider {...settings}>
         <div className="p-1">
           <div className=" rounded-sm">
@@ -53,7 +53,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
                     was a star!“
                   </blockquote>
                   <div></div>
-                  <p className="text-black">
+                  <p className="text-black dark:text-white">
                     - Anah M. &mdash; Worcestershire, UK
                   </p>
                 </div>
@@ -73,7 +73,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
                     recommended!”
                   </blockquote>
                   <div></div>
-                  <p className="text-black">
+                  <p className="text-black dark:text-white">
                     - Rajiv L. &mdash; Worcestershire, UK
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
                     behalf. I felt supported every step of the way.”
                   </blockquote>
                   <div></div>
-                  <p className="text-black">- Mei T.</p>
+                  <p className="text-black dark:text-white">- Mei T.</p>
                 </div>
               </div>
             </h3>
@@ -111,7 +111,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
                     expertise.”
                   </blockquote>
                   <div></div>
-                  <p className="text-black">- James K.</p>
+                  <p className="text-black dark:text-white">- James K.</p>
                 </div>
               </div>
             </h3>
@@ -129,7 +129,7 @@ export default function SimpleSlider({ slidesToShow, at1250 }) {
                     process.”
                   </blockquote>
                   <div></div>
-                  <p className="text-black">- Amara C.</p>
+                  <p className="text-black dark:text-white">- Amara C.</p>
                 </div>
               </div>
             </h3>

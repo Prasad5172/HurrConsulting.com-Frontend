@@ -245,7 +245,7 @@ const SignupPage = () => {
 
   return (
     <>
-        <div className="outer-box pt-[80px] dark:bg-[#292929]  h-screen flex justify-center items-center" id="signup-page">
+        <div className="font-serif outer-box pt-[80px] dark:bg-[#292929]  h-screen flex justify-center items-center" id="signup-page">
           <div className="inner-box mx-auto my-auto">
             {showOtpPage ? (
               <>
@@ -254,8 +254,8 @@ const SignupPage = () => {
                     <div className="col-md-4 text-center">
                       <div className="row">
                         <div className="col-sm-12 mt-5 bgWhite otp-section">
-                        <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center">Verify OTP</div>
-                          <h4 className="text-center text-[#000000] pb-8 text-[18px] dark:text-[#e0e0e0]">
+                        <div className="font-bold mt-0 text-[#aaaaaa] mb-3 text-[25px] text-center ">Verify OTP</div>
+                          <h4 className=" text-center text-[#000000] pb-8 text-[18px] dark:text-[#e0e0e0]">
                             Enter the OTP send to {formdata.email}{" "}
                           </h4>
 
@@ -286,19 +286,19 @@ const SignupPage = () => {
                           <button
                             type="submit"
                             id="verify-otp-btn"
-                            className="create-account text-[18px]"
+                            className=" create-account text-[18px]"
                             onClick={handleVerifyOtp}
                           >
                             Verify
                           </button>
                           <footer className="signup-footer footer-in-singup">
-                            <p className="inline text-[18px] dark:text-[#e0e0e0]">
+                            <p className=" inline text-[18px] dark:text-[#e0e0e0]">
                               Already Registered?{" "}
                               <NavLink to="/signin" className="marginDown hover:underline">
                                 Click here to login
                               </NavLink>
                             </p>
-                            <p className="text-[18px] dark:text-[#e0e0e0]">
+                            <p className=" text-[18px] dark:text-[#e0e0e0]">
                               Didn't receive OTP?{" "}
                               <a
                                 href="#"
@@ -318,18 +318,18 @@ const SignupPage = () => {
             ) : (
               <>
                 <header className="signup-header">
-                  <h1 className="dark:text-white">SignUp</h1>
-                  <p className="text-[18px] dark:text-[#e0e0e0]">It just take 30 seconds</p>
+                  <h1 className="dark:text-white ">SignUp</h1>
+                  <p className="text-[18px] dark:text-[#e0e0e0] ">It just take 30 seconds</p>
                 </header>
                 <main className="signup-body">
                   <form onSubmit={handleSubmit} className="form">
                     <p>
-                      <label htmlFor="email" className="text-black text-[20px] font-bold dark:text-[#e0e0e0]">
+                      <label htmlFor="email" className=" text-black text-[20px] font-bold dark:text-[#e0e0e0]">
                         Enter Your Email
                       </label>
                       <input
                         type="email"
-                        className="email p-2 block w-11/12 rounded-md"
+                        className="focus:outline-none  email p-2 block w-11/12 rounded-md"
                         id="email"
                         name="email"
                         value={formdata.email}
@@ -346,7 +346,7 @@ const SignupPage = () => {
                       <div className="flex items-center">
                         <input
                           type={`${showPassword1 ? "text" : "password"}`}
-                          className="p-2 block w-11/12 rounded-md"
+                          className="focus:outline-none p-2 block w-11/12 rounded-md"
                           name="password"
                           id="password"
                           value={formdata.password}
@@ -372,13 +372,13 @@ const SignupPage = () => {
                       </div>
                     </p>
                     <p>
-                      <label htmlFor="check-password" className="text-[20px] font-bold dark:text-[#e0e0e0]">
+                      <label htmlFor="check-password" className=" text-[20px] font-bold dark:text-[#e0e0e0]">
                         Check Password
                       </label>
-                      <div className="flex  items-center">
+                      <div className="flex items-center">
                         <input
                           type={`${showPassword2 ? "text" : "password"}`}
-                          className="p-2 block w-11/12 rounded-md"
+                          className=" focus:outline-none p-2 block w-11/12 rounded-md"
                           name="confirmpassword"
                           id="check-password"
                           value={formdata.confirmpassword}
@@ -401,7 +401,7 @@ const SignupPage = () => {
                         )}
                       </div>
                       {formdata.password !== formdata.confirmpassword && (
-                        <span className="password-mismatch">
+                        <span className=" password-mismatch">
                           *Passwords do not match
                         </span>
                       )}
@@ -411,7 +411,7 @@ const SignupPage = () => {
                         type="submit"
                         id="sign-up-btn"
                         value="Sign up"
-                        className="create-account text-[18px]"
+                        className=" create-account text-[18px]"
                       />
                     </p>
                   </form>
@@ -422,11 +422,11 @@ const SignupPage = () => {
                     className="signup-with-google-btn flex justify-between items-center"
                   >
                     <FontAwesomeIcon icon={faGoogle} />
-                    <span className="pl-3">Sign up with google</span>
+                    <span className="pl-3 ">Sign up with google</span>
                   </button>
                 </div>
                 <footer className="signup-footer footer-in-singup flex justify-center text-[18px]">
-                  <p className="inline dark:text-[#e0e0e0]">
+                  <p className=" inline dark:text-[#e0e0e0]">
                     Alerady Registred?{" "}
                     <NavLink to="/signin">Click here to login</NavLink>
                   </p>

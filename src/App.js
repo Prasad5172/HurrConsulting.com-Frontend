@@ -120,7 +120,7 @@ useEffect(() => {
           <Route exact path="/service" element={<Service />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/resource" element={<Resource />} />
-          <Route exact path="/testimonials" element={<Testimonials />} />
+          {/* <Route exact path="/testimonials" element={<Testimonials />} /> */}
           <Route exact path="/contact" element={<ContactUsPage />} />
           <Route exact path="/appointment" element={<AppointmentPage />} />
           <Route exact path="/admin" element={isAdmin ? <AdminPage /> : <ErrorPage />}>
