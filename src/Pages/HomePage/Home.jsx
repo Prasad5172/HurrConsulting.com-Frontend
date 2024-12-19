@@ -18,7 +18,7 @@ function Home() {
   return (
     <>
     <ScrollToTop/>
-      <div className="mt-[80px] dark:mt-0">
+      <div className="pt-[80px] dark:mt-0">
         <div className="home text-[#666666] dark:text-[#dadada] bg-[#f2f2f2] dark:bg-[#292929] pb-[72px] ">
           <div className="wrapper dark:pt-[80px]  home-section bg-[#f2f2f2] dark:bg-[#292929] text-[#666666] dark:text-white flex justify-center">
             <div className="container pt-[50px] 2xl:max-w-[1100px] xl:max-w-[1100px]  ">
@@ -217,7 +217,7 @@ function Home() {
                           <div className="content font-serif">
                             {" "}
                             We listen actively and respond with care
-                            andunderstanding.
+                            and understanding.
                           </div>
                         </div>
                       </li>

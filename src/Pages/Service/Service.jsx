@@ -17,17 +17,7 @@ function Service() {
               backgroundPosition: "center center",
             }}
           >
-            <div className="container service">
-              <div className="section-header">
-                <div className="row">
-                  <div className=" 2xl:max-w-fit xl:max-w-fit lg:max-w-fit md:max-w-fit w-full ">
-                    <p className=" page-title 2xl:text-[65px] xl:text-[50px] lg:text-[40px] md:text-[40px] text-[35px]">
-                      Our <span>Quality</span> Services{" "}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </header>
           <div className="flex justify-center">
             <div className="container 2xl:max-w-[1200px] xl:max-w-[1200px] lg:max-w-1200px]">

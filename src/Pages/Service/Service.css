@@ -13,8 +13,9 @@
   position: relative;
 }
 #page-header.overlay::before {
-  background-image: url(overlay-hero.webp);
+  background-image: url(service.jpeg);
   background-color: transparent;
+  background-position: center;
 }
 .overlay::before {
   content: "";

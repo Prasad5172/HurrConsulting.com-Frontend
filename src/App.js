@@ -25,6 +25,10 @@ import Users from "./Pages/Admin/Users/Users";
 import RedirectPayment from "./Pages/PaymentRedirect/RedirectPayment";
 import Request from "./Pages/Admin/Request/Request";
 import Payments from "./Pages/Admin/Payments/Payments";
+import TermsOfService from "./Pages/TermsOfService/TermsOfService";
+import Disclaimer from "./Pages/Disclaimer/Disclaimer";
+import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
+import ScrollToTop from "./Util/ScrollToTop";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -114,7 +118,7 @@ useEffect(() => {
         <header>
           <Navbar />
         </header>
-        
+        <ScrollToTop/>
         <Routes>
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/service" element={<Service />} />
@@ -123,6 +127,9 @@ useEffect(() => {
           {/* <Route exact path="/testimonials" element={<Testimonials />} /> */}
           <Route exact path="/contact" element={<ContactUsPage />} />
           <Route exact path="/appointment" element={<AppointmentPage />} />
+          <Route exact path="/termsofservice" element={<TermsOfService />} />
+          <Route exact path="/disclaimer" element={<Disclaimer />} />
+          <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route exact path="/admin" element={isAdmin ? <AdminPage /> : <ErrorPage />}>
             <Route exact path="/admin" element={isAdmin ? <Events /> : <ErrorPage />}/>
             <Route exact path="users" element={isAdmin ? <Users /> : <ErrorPage />}/>
