@@ -186,7 +186,7 @@ const SinginPage = () => {
                     <input
                       type="submit"
                       id="sign-in-btn"
-                      value="Sign in"
+                      value="Sign In"
                       className=" create-account button text-[18px]"
                     />
                   </p>
