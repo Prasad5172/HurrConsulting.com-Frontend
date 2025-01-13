@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Fotter() {
-  const navigate = useNavigate();
   return (
     <>
       <div className="font-serif flex justify-center bg-gray-500 py-[50px]">
