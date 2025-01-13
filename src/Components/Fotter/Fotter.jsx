@@ -12,7 +12,7 @@ function Fotter() {
               <img
                 src="/HurrConsultingTransparentLogo.svg"
                 width={"250px"}
-                alt="Logo Image"
+                alt="logo of hurrconsulting"
                 className="mt-[10px]"
               />
             </div>
