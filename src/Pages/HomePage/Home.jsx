@@ -238,7 +238,7 @@ function Home() {
                     alt="Description of image"
                   />
                 </div> */}
-                <div className="px-[40px] pb-8 flex justify-center flex-col items-center">
+                {/* <div className="px-[40px] pb-8 flex justify-center flex-col items-center">
                   <div className="">
                     <p className="text-center 2xl:text-[42px] xl:text-[42px] lg:text-[42px] md:text-[35px] sm:text-[35px] text-[29px] font-bold font-serif mb-2 text-[#333333] dark:text-white">Meet Our Consultant</p>
                     <p className="text-[18px] max-w-[600px] text-center font-serif">
@@ -249,7 +249,7 @@ function Home() {
                       discrimination
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

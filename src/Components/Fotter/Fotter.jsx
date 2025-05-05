@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Fotter() {
   return (
@@ -67,24 +67,24 @@ function Fotter() {
             <div>
               <p className="text-center text-[20px]">Legal</p>
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0 gap-3">
-                <Link
+                <NavLink
                   className="text-center sm:text-left hover:cursor-pointer underline text-[16px] mt-5"
                   to="/termsofservice"
                 >
                   Terms of Service
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   className="text-center sm:text-left hover:cursor-pointer underline text-[16px] mt-10"
                   to="/disclaimer"
                 >
                   Disclaimer: Non-Reserved Legal Services
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   className="text-center sm:text-left hover:cursor-pointer underline text-[16px] mt-10"
                   to="/privacy-policy"
                 >
                   Privacy Policy
-                </Link>
+                </NavLink>
               </div>
             </div>
           </div>

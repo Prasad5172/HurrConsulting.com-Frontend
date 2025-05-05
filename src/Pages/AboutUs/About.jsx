@@ -18,7 +18,7 @@ function About() {
                   At Hurr Consulting we are passionate about providing expert
                   legal consultancy services focused on employment law, with a
                   particular emphasis on workplace discrimination cases. Our
-                  principal consultant. <b>Masumah Akbar</b>, has over <b>10</b>{" "}
+                  principal consultant has over <b>10</b>{" "}
                   years of experience advocating for both claimants and
                   respondents, offering a well-rounded perspective that
                   strengthens our ability to achieve fair outcomes.

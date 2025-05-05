@@ -6,6 +6,7 @@ import { toastFailed, toastSuccess } from "../../Util/ToastFunctions";
 import { loadStripe } from "@stripe/stripe-js";
 import { AuthContext } from "../../context/AuthContext";
 import { Tooltip, Button } from "@material-tailwind/react";
+import { toast } from "react-toastify";
 
 const AppointmentPage = () => {
   const token = localStorage.getItem("token");
@@ -73,8 +74,50 @@ const AppointmentPage = () => {
     return `${adjustedHours}:${formattedMinutes} ${period}`;
   }
 
+  const validateForm = () => {
+    if (!formData.email) {
+      toast.error("Email address is required");
+      return false;
+    }
+    
+    if (!formData.name) {
+      toast.error("Name is required");
+      return false;
+    }
+    
+    if (!formData.phone) {
+      toast.error("Phone number is required");
+      return false;
+    }
+    
+    if (!formData.summary) {
+      toast.error("Subject for appointment is required");
+      return false;
+    }
+    
+    if (!formData.description) {
+      toast.error("Please describe how we can help you");
+      return false;
+    }
+    
+    if (!formData.date) {
+      toast.error("Please select a date for your appointment");
+      return false;
+    }
+    
+    if (!formData.slot) {
+      toast.error("Please select a time slot for your appointment");
+      return false;
+    }
+    
+    return true;
+  };
+
   const handleAppoinment = async (event) => {
     console.log("handleAppoinment");
+    if (!validateForm()) {
+      return;
+    }
     event.preventDefault();
     // appoinment code
     setIsLoading(true);
@@ -166,7 +209,7 @@ const AppointmentPage = () => {
       <div className="mt-[100px] mb-10 font-serif">
         <div>
           <p className="text-center font-bold 2xl:text-4xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-3xl text-2xl">
-            Book Your Free Consultation
+            Book Your Free 15 Minute Consultation
           </p>
           <div>
             <form
@@ -275,7 +318,7 @@ const AppointmentPage = () => {
                   htmlFor="description"
                   className="peer-focus:font-medium absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3.5 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Type Your problem Here :
+                  How Can We Help?:
                 </label>
               </div>
               <div className="grid md:grid-cols-2 md:gap-6 mt-10">
